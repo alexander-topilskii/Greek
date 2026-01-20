@@ -6,13 +6,13 @@
 | --- | --- |
 | 📌 Список слов | [all_words.md](all_words.md) |
 | 🧠 Карточки | [index.html](index.html) |
-| 📘 Правила (глаголы) | [rules_werb.md](rules_werb.md) |
+| 📘 Правила (глаголы) | [../lesson_5/rules.md](../lesson_5/rules.md) |
 | 🧭 К урокам | [../../Readme.md](../../Readme.md) |
 
 ## 📌 Суммарные материалы
 - 📌 [all_words.md](all_words.md)
 - 🧠 [index.html](index.html)
-- 📘 [rules_werb.md](rules_werb.md)
+- 📘 [rules](../lesson_5/rules.md)
 
 ## 🔁 Переходы
 - ⬅️ [К Readme](../../Readme.md)

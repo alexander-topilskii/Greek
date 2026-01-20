@@ -5,7 +5,7 @@
 | ⚡ Быстрые ссылки | |
 | --- | --- |
 | 🧠 Карточки | [index.html](index.html) |
-| 📘 Правила (глаголы) | [rules_werb.md](rules_werb.md) |
+| 📘 Правила (глаголы) | [../lesson_5/rules.md](../lesson_5/rules.md) |
 | 🧭 К урокам | [../../Readme.md](../../Readme.md) |
 
 ## 👋 Приветствия и вежливые формулы

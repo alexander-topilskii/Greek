@@ -7,11 +7,13 @@
 | 📄 Список слов      | [all.md](all.md)                                         |
 | 🧠 Карточки         | [index.html](index.html)                                 |
 | 🧾 Суммарный список | [../lesson_1-5/all_words.md](../lesson_1-5/all_words.md) |
+| 📘 Правила          | [rules.md](rules.md)                                     |
 
 ## 📚 Материалы
 
 - 📄 [all.md](all.md)
 - 🧠 [index.html](index.html)
+- 📘 [rules.md](rules.md)
 
 ## 🔁 Переходы
 
