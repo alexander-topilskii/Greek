@@ -3,6 +3,7 @@
 ## Материалы
 - [all.md](all.md)
 - [карточки](https://quizlet.com/1128968975/1-all-flash-cards/)
+- [локальные карточки](index.html)
 
 ## Переходы
 - [К списку уроков](../navigation.md)
