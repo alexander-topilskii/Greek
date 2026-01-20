@@ -1,5 +1,13 @@
 # 📘 Урок 5
 
+**Хлебные крошки:** [🏠 Readme](../../Readme.md) → [📘 Урок 5](navigation.md) → 📄 `all.md`
+
+| ⚡ Быстрые ссылки | |
+| --- | --- |
+| 🧠 Карточки | [index.html](index.html) |
+| 🧭 Навигация урока | [navigation.md](navigation.md) |
+| 🧾 Суммарный список | [../lesson_1-5/all_words.md](../lesson_1-5/all_words.md) |
+
 ## 🔢 Числа
 - έντεκα — одиннадцать
 - δώδεκα — двенадцать

@@ -1,5 +1,13 @@
 # 📘 Урок 2
 
+**Хлебные крошки:** [🏠 Readme](../../Readme.md) → [📘 Урок 2](navigation.md) → 📄 `all.md`
+
+| ⚡ Быстрые ссылки | |
+| --- | --- |
+| 🧠 Карточки | [index.html](index.html) |
+| 🧭 Навигация урока | [navigation.md](navigation.md) |
+| 🧾 Суммарный список | [../lesson_1-5/all_words.md](../lesson_1-5/all_words.md) |
+
 ## 🧠 Слова
 - οικονομία — экономика
 - υιός — сын
