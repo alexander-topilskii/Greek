@@ -11,4 +11,7 @@
 4. Четвертый урок
    -[all.md](lesson_4/all.md)
 5. Пятый урок 
-    - 
+    - [all.md](lesson_5/all.md)
+
+Суммарный:
+[all_words.md](lesson_1-5/all_words.md)
