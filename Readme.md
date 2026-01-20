@@ -1,7 +1,8 @@
-# Данные для изучения греческого языка
+# 🇬🇷 Данные для изучения греческого языка
 
-- Github pages: https://alexander-topilskii.github.io/Greek/
+- 🌐 Github pages: https://alexander-topilskii.github.io/Greek/
 
 
-## Quizlet модули
-[navigation.md](modules/navigation.md)
+## 🧭 Навигация
+- 📚 Модули и уроки: [navigation.md](modules/navigation.md)
+- 🧾 Суммарный список: [all_words.md](modules/lesson_1-5/all_words.md)
