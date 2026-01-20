@@ -15,4 +15,5 @@
 ## 🧾 Суммарный
 
 - 📌 [all_words.md](lesson_1-5/all_words.md)
+- 🧠 [index.html](lesson_1-5/index.html)
 - 📘 [rules verbs](lesson_1-5/rules_werb.md)
