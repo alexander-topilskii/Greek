@@ -34,6 +34,7 @@
   let isFlipped = false;
   let isDragging = false;
   let isAnimating = false;
+  let activePointerId = null;
   let startX = 0;
   let startY = 0;
   let lastX = 0;
@@ -129,7 +130,7 @@
     repeatLeftOnly.checked = state.repeatLeftOnly;
     isFlipped = false;
     cardEl.classList.remove("flipped");
-    cardEl.classList.remove("swipe-left", "swipe-right");
+    cardEl.classList.remove("swipe-left", "swipe-right", "drag-left", "drag-right");
     cardEl.style.transform = "";
     cardEl.style.opacity = "";
 
@@ -197,7 +198,7 @@
   function animateSwipe(direction) {
     if (isAnimating || state.index >= activeOrder.length) return;
     isAnimating = true;
-    cardEl.classList.remove("swipe-left", "swipe-right");
+    cardEl.classList.remove("swipe-left", "swipe-right", "drag-left", "drag-right");
     cardEl.classList.add(direction === "right" ? "swipe-right" : "swipe-left");
 
     const onEnd = () => {
@@ -215,17 +216,20 @@
   function handlePointerDown(event) {
     if (state.index >= activeOrder.length) return;
     if (event.pointerType === "mouse" && event.button !== 0) return;
+    if (activePointerId !== null) return;
+    activePointerId = event.pointerId;
     startX = event.clientX;
     startY = event.clientY;
     lastX = startX;
     moved = false;
     isDragging = false;
     cardEl.setPointerCapture(event.pointerId);
+    cardEl.classList.remove("drag-left", "drag-right");
   }
 
   function handlePointerMove(event) {
     if (state.index >= activeOrder.length) return;
-    if (event.pointerId === undefined) return;
+    if (activePointerId === null || event.pointerId !== activePointerId) return;
     const dx = event.clientX - startX;
     const dy = event.clientY - startY;
     lastX = event.clientX;
@@ -239,21 +243,25 @@
     const rotate = dx / 18;
     const opacity = Math.max(0.2, 1 - Math.abs(dx) / 260);
     cardEl.classList.add("dragging");
+    cardEl.classList.toggle("drag-right", dx > 0);
+    cardEl.classList.toggle("drag-left", dx < 0);
     cardEl.style.transform = `translateX(${dx}px) rotate(${rotate}deg)`;
     cardEl.style.opacity = opacity;
   }
 
   function handlePointerUp(event) {
-    if (event.pointerId !== undefined) {
-      cardEl.releasePointerCapture(event.pointerId);
-    }
+    if (activePointerId === null || event.pointerId !== activePointerId) return;
+    cardEl.releasePointerCapture(event.pointerId);
+    activePointerId = null;
     if (!isDragging) {
       isDragging = false;
       cardEl.classList.remove("dragging");
+      cardEl.classList.remove("drag-left", "drag-right");
       return;
     }
     isDragging = false;
     cardEl.classList.remove("dragging");
+    cardEl.classList.remove("drag-left", "drag-right");
     const dx = lastX - startX;
     const swipeThreshold = 80;
     if (Math.abs(dx) >= swipeThreshold) {

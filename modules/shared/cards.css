@@ -147,6 +147,16 @@
    background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%);
  }
 
+.card.drag-left,
+.card.swipe-left {
+  background: linear-gradient(135deg, #fee2e2 0%, #fff5f5 100%);
+}
+
+.card.drag-right,
+.card.swipe-right {
+  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+}
+
  .card.dragging {
    transition: none;
    box-shadow: 0 30px 65px rgba(15, 23, 42, 0.18);
