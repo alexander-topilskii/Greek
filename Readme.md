@@ -23,6 +23,7 @@
 | [5. Пятый урок](modules/lesson_5/navigation.md)     | [📄 список слов](modules/lesson_5/all.md) | [карточки](modules/lesson_5/index.html) | [Глаголы А](modules/lesson_5/rules.md)   |
 | [6. Предлоги](modules/lesson_6/navigation.md)       | [📄 список слов](modules/lesson_6/all.md) | —                                       | —                                        |
 | [7. Местоимения](modules/lesson_7/navigation.md)    | [📄 список слов](modules/lesson_7/all.md) | —                                       | —                                        |
+| [8. Связь и притяжательные](modules/lesson_8/navigation.md) | [📄 список слов](modules/lesson_8/all.md) | —                                       | [правила](modules/lesson_8/rules.md)     |
 
 ## 🧾 Суммарный
 
@@ -33,4 +34,6 @@
 - 📘 [Глаголы А](modules/lesson_5/rules.md)
 - 📘 [Предлоги](modules/lesson_6/all.md)
 - 📘 [Местоимения](modules/lesson_7/all.md)
+- 📘 [Связь и притяжательные](modules/lesson_8/all.md)
+- 📘 [Притяжательные (таблица)](modules/lesson_8/rules.md)
 - 🧭 [navigation.md](modules/lesson_1-5/navigation.md)
