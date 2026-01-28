@@ -24,7 +24,7 @@
 | [6. Предлоги](modules/lesson_6/navigation.md)       | [📄 список слов](modules/lesson_6/all.md) | —                                       | —                                        |
 | [7. Местоимения](modules/lesson_7/navigation.md)    | [📄 список слов](modules/lesson_7/all.md) | —                                       | —                                        |
 | [8. Связь и притяжательные](modules/lesson_8/navigation.md) | [📄 список слов](modules/lesson_8/all.md) | —                                       | [правила](modules/lesson_8/rules.md)     |
-| [9. Профессии и семья](modules/lesson_9/navigation.md)      | [📄 список слов](modules/lesson_9/all.md) | —                                       | —                                        |
+| [9. Профессии и семья](modules/lesson_9/navigation.md)      | [📄 список слов](modules/lesson_9/all.md) | —                                       | [правила](modules/lesson_9/rules.md)     |
 
 ## 🧾 Суммарный
 
@@ -38,4 +38,6 @@
 - 📘 [Связь и притяжательные](modules/lesson_8/all.md)
 - 📘 [Притяжательные (таблица)](modules/lesson_8/rules.md)
 - 📘 [Профессии и семья](modules/lesson_9/all.md)
+- 📘 [Профессии и семья — грамматика](modules/lesson_9/rules.md)
+- 📘 [Уроки 1–10 — фразы](modules/lesson_1-10/all.md)
 - 🧭 [navigation.md](modules/lesson_1-5/navigation.md)
