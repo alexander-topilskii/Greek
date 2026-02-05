@@ -11,6 +11,7 @@
 - 🌐 Github pages: https://alexander-topilskii.github.io/Greek/
 
 ## 🧭 Навигация
+[местоимения](https://quizlet.com/1140040581/%D0%BC%D0%B5%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8%D1%8F-flash-cards/?i=4zi0po&x=1qqt)
 
 ## 📘 Уроки
 
