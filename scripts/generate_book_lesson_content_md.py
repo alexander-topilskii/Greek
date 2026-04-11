@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate book/pages/lesson_*/content.md from raw/*.png in each folder."""
+"""Regenerate book/pages/lesson_*/content_{N}.md from raw/*.png in each folder."""
 from __future__ import annotations
 
 import re
@@ -29,16 +29,21 @@ def lesson_md_exists(n: int) -> bool:
     return (REPO / "modules" / f"lesson_{n}" / "lesson.md").is_file()
 
 
+def content_filename(lesson_num: int) -> str:
+    return f"content_{lesson_num}.md"
+
+
 def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     rel_readme = "../../../Readme.md"
     rel_pages = "../"
     rel_lesson = f"../../../modules/lesson_{lesson_num}/lesson.md"
     lesson_cell = f"[lesson.md]({rel_lesson})" if lesson_md_exists(lesson_num) else "—"
+    out_name = content_filename(lesson_num)
 
     lines = [
         f"# 📚 Страницы учебника — урок {lesson_num}",
         "",
-        f"**[🏠 Readme]({rel_readme}) → [📘 book/pages]({rel_pages}) → 📄 `content.md`**",
+        f"**[🏠 Readme]({rel_readme}) → [📘 book/pages]({rel_pages}) → 📄 `{out_name}`**",
         "",
         "| ⚡ Быстрые ссылки |                                                          |",
         "|------------------|----------------------------------------------------------|",
@@ -103,7 +108,12 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
         )
 
     folder.mkdir(parents=True, exist_ok=True)
-    (folder / "content.md").write_text("\n".join(lines), encoding="utf-8")
+    out_path = folder / out_name
+    out_path.write_text("\n".join(lines), encoding="utf-8")
+    # Удаляем старое имя, если осталось после перехода на content_{N}.md
+    legacy = folder / "content.md"
+    if legacy.is_file() and legacy.resolve() != out_path.resolve():
+        legacy.unlink()
 
 
 def main() -> None:
@@ -114,7 +124,7 @@ def main() -> None:
     for d in lesson_dirs:
         n = int(d.name.split("_")[1])
         write_content(n, d, page_nums(d))
-    print(f"Updated {len(lesson_dirs)} content.md under {BOOK_PAGES}")
+    print(f"Updated {len(lesson_dirs)} content_*.md under {BOOK_PAGES}")
 
 
 if __name__ == "__main__":

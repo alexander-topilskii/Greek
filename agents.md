@@ -52,11 +52,9 @@ Use these rules for all new `.md` pages in this repo.
 
 ## 5. 📘 Lesson table (Readme)
 
-- The main lesson table in `Readme.md` uses 4 columns:
-    - `📘 Урок`, `📚 Материалы`, `🃏 Карточки`, `📘 Правила`
-- Replace `all.md` link text with: `[📄 список слов](...)`
-- If no rules, use `—`.
-- Use local `index.html` for “карточки”, not external Quizlet.
+- The main lesson table in `Readme.md` uses 3 columns (без столбца «урок»):
+    - `📑 content` (`content_{N}.md`), `📁 raw`, `✨ digitized` — строки по порядку соответствуют `lesson_0` … `lesson_20` под `book/pages/`
+- Ссылки на слова/карточки в других модулях оформляй отдельно, не в этой таблице.
 
 ## 6. 🧾 Summary section (Суммарный)
 
