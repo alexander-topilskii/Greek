@@ -1,13 +1,13 @@
 # 🧩 Markdown Formatting Rules (Project Standard)
 
- [🏠 Readme](Readme.md) → 🧭 `agents.md`
+[🏠 Readme](Readme.md) → 🧭 `agents.md`
 
-| ⚡ Быстрые ссылки |                                            |
-|------------------|--------------------------------------------|
-| 🏠 Readme        | [Readme.md](Readme.md)                     |
-| 📘 Уроки         | [К таблице уроков](#5-lesson-table-readme) |
-| 🧾 Суммарный     | [К спискам](#6-summary-section-суммарный)  |
-| 📷 Скриншоты стр.| [page-screenshot-renaming.md](docs/page-screenshot-renaming.md) |
+| ⚡ Быстрые ссылки  |                                                                 |
+|-------------------|-----------------------------------------------------------------|
+| 🏠 Readme         | [Readme.md](Readme.md)                                          |
+| 📘 Уроки          | [К таблице уроков](#5-lesson-table-readme)                      |
+| 🧾 Суммарный      | [К спискам](#6-summary-section-суммарный)                       |
+| 📷 Скриншоты стр. | [page-screenshot-renaming.md](docs/page-screenshot-renaming.md) |
 
 Use these rules for all new `.md` pages in this repo.
 
@@ -79,5 +79,8 @@ Use these rules for all new `.md` pages in this repo.
 
 ## 9. 📷 Скриншоты страниц учебника (`modules/pages/`)
 
-- При переименовании PNG в `lesson N` в вид **`{номер}.png`** по номеру в колонтитуле страницы следуй полному чеклисту: надёжная идентификация номера (OCR только как помощник), проверка диапазона, **двухфазное** переименование без коллизий, поиск битых ссылок в репо.
-- Подробности, типичные ошибки OCR и шаблон процесса: [docs/page-screenshot-renaming.md](docs/page-screenshot-renaming.md).
+- При переименовании PNG в `lesson N` в вид **`{номер}.png`** по номеру в колонтитуле страницы следуй полному чеклисту:
+  надёжная идентификация номера (OCR только как помощник), проверка диапазона, **двухфазное** переименование без
+  коллизий, поиск битых ссылок в репо.
+- Подробности, типичные ошибки OCR и шаблон
+  процесса: [docs/page-screenshot-renaming.md](docs/page-screenshot-renaming.md).
