@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate book/pages/lesson_*/content.md from *.png in each folder."""
+"""Regenerate book/pages/lesson_*/content.md from raw/*.png in each folder."""
 from __future__ import annotations
 
 import re
@@ -10,12 +10,19 @@ BOOK_PAGES = REPO / "book" / "pages"
 
 
 def page_nums(folder: Path) -> list[int]:
+    raw = folder / "raw"
     out: list[int] = []
-    for f in folder.glob("*.png"):
+    if not raw.is_dir():
+        return out
+    for f in raw.glob("*.png"):
         m = re.match(r"^(\d+)\.png$", f.name)
         if m:
             out.append(int(m.group(1)))
     return sorted(out)
+
+
+def rel_raw_png(n: int) -> str:
+    return f"raw/{n}.png"
 
 
 def lesson_md_exists(n: int) -> bool:
@@ -36,6 +43,8 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
         "| ⚡ Быстрые ссылки |                                                          |",
         "|------------------|----------------------------------------------------------|",
         f"| 📘 Урок          | {lesson_cell:<56} |",
+        "| 📁 Исходники     | [raw/](raw/)                                             |",
+        "| ✨ Оцифровка     | [digitized/](digitized/)                                 |",
         "| 📑 Оглавление    | [К навигации](#lesson-pages-nav)                         |",
         "| 🖼 Просмотр       | [К превью](#lesson-pages-preview)                        |",
         "",
@@ -48,14 +57,14 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     if not nums:
         lines.extend(
             [
-                "Пока нет файлов `*.png` в этой папке — добавьте сканы страниц учебника.",
+                "Пока нет файлов `raw/*.png` — добавьте сканы страниц учебника в папку `raw/`.",
                 "",
             ]
         )
     else:
         row: list[str] = []
         for i, n in enumerate(nums):
-            row.append(f"[{n}]({n}.png)")
+            row.append(f"[{n}]({rel_raw_png(n)})")
             if len(row) >= 8 or i == len(nums) - 1:
                 lines.append("- " + " · ".join(row))
                 row = []
@@ -72,7 +81,7 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     if nums:
         lines.extend(
             [
-                "Ниже — те же файлы в порядке номеров страницы (удобно листать сверху вниз).",
+                "Ниже — те же файлы из `raw/` в порядке номеров страницы (удобно листать сверху вниз).",
                 "",
             ]
         )
@@ -81,14 +90,14 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
                 [
                     f"### Стр. {n}",
                     "",
-                    f"![Страница {n}]({n}.png)",
+                    f"![Страница {n}]({rel_raw_png(n)})",
                     "",
                 ]
             )
     else:
         lines.extend(
             [
-                "Здесь появятся встроенные превью после добавления `*.png` в эту папку.",
+                "Здесь появятся встроенные превью после добавления `*.png` в папку `raw/`.",
                 "",
             ]
         )
