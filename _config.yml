@@ -1,0 +1,13 @@
+# Настройки GitHub Pages (Jekyll). Тема Minimal — простая вёрстка без лишнего декора.
+# Включается, если в настройках репозитория Pages указан источник из ветки с этим файлом.
+# Сам README на github.com оформляется отдельно; стиль ниже применяется к генерируемому сайту Pages.
+
+title: Greek
+description: Материалы для изучения греческого языка
+theme: jekyll-theme-minimal
+lang: ru-RU
+show_downloads: false
+
+# Проектный сайт: https://alexander-topilskii.github.io/Greek/
+url: "https://alexander-topilskii.github.io"
+baseurl: "/Greek"
