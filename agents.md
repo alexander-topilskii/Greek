@@ -7,6 +7,7 @@
 | 🏠 Readme        | [Readme.md](Readme.md)                     |
 | 📘 Уроки         | [К таблице уроков](#5-lesson-table-readme) |
 | 🧾 Суммарный     | [К спискам](#6-summary-section-суммарный)  |
+| 📷 Скриншоты стр.| [page-screenshot-renaming.md](docs/page-screenshot-renaming.md) |
 
 Use these rules for all new `.md` pages in this repo.
 
@@ -75,3 +76,8 @@ Use these rules for all new `.md` pages in this repo.
 - Prefer clear link text (e.g., `карточки`, `📄 список слов`, `Местоимения`).
 - Use relative links within the repo.
 - Avoid empty lines between heading and table; add a blank line before a new section.
+
+## 9. 📷 Скриншоты страниц учебника (`modules/pages/`)
+
+- При переименовании PNG в `lesson N` в вид **`{номер}.png`** по номеру в колонтитуле страницы следуй полному чеклисту: надёжная идентификация номера (OCR только как помощник), проверка диапазона, **двухфазное** переименование без коллизий, поиск битых ссылок в репо.
+- Подробности, типичные ошибки OCR и шаблон процесса: [docs/page-screenshot-renaming.md](docs/page-screenshot-renaming.md).
