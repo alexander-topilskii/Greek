@@ -34,6 +34,10 @@ def lesson_md_exists(n: int) -> bool:
     return (REPO / "modules" / f"lesson_{n}" / "lesson.md").is_file()
 
 
+def essence_md_exists(folder: Path, lesson_num: int) -> bool:
+    return (folder / f"essence_{lesson_num}.md").is_file()
+
+
 def content_filename(lesson_num: int) -> str:
     return f"content_{lesson_num}.md"
 
@@ -51,6 +55,8 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     rel_pages = "../"
     rel_lesson = f"../../../modules/lesson_{lesson_num}/lesson.md"
     lesson_cell = f"[lesson.md]({rel_lesson})" if lesson_md_exists(lesson_num) else "—"
+    essence_name = f"essence_{lesson_num}.md"
+    essence_cell = f"[{essence_name}]({essence_name})" if essence_md_exists(folder, lesson_num) else None
     out_name = content_filename(lesson_num)
 
     lines = [
@@ -58,19 +64,31 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
         "",
         f"**[🏠 Readme]({rel_readme}) → [📘 book/pages]({rel_pages}) → 📄 `{out_name}`**",
         "",
-        "*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть.*",
+        "*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть"
+        + ("; при необходимости — сводка лексики в `essence_*.md`" if essence_cell else "")
+        + ".*",
         "",
         "| ⚡ Быстрые ссылки |                                                          |",
         "|------------------|----------------------------------------------------------|",
         f"| 📘 Урок (modules) | {lesson_cell:<56} |",
+    ]
+    if essence_cell:
+        lines.append(f"| 💎 Суть урока     | {essence_cell:<56} |")
+    lines.extend(
+        [
         "| 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |",
         "| 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |",
         "",
-        '<a id="lesson-pages-nav"></a>',
-        "",
-        "## 🔢 Навигация по страницам",
-        "",
-    ]
+        ]
+    )
+    lines.extend(
+        [
+            '<a id="lesson-pages-nav"></a>',
+            "",
+            "## 🔢 Навигация по страницам",
+            "",
+        ]
+    )
 
     if not nums:
         lines.extend(
