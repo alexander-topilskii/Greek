@@ -65,7 +65,7 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
         f"**[🏠 Readme]({rel_readme}) → [📘 book/pages]({rel_pages}) → 📄 `{out_name}`**",
         "",
         "*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть"
-        + ("; при необходимости — сводка лексики в `essence_*.md`" if essence_cell else "")
+        + ("; при необходимости — конспект в `essence_*.md`" if essence_cell else "")
         + ".*",
         "",
         "| ⚡ Быстрые ссылки |                                                          |",
