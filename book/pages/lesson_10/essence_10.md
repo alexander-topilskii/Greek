@@ -10,7 +10,7 @@
 |------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 📚 Страницы со сканами | [content_10.md](content_10.md)                                                                                                                                 |
 | 🖼 Диапазон            | стр. 122–131                                                                                                                                                  |
-| 📘 Углубление          | [essence_6](../lesson_6/essence_6.md) · [essence_7](../lesson_7/essence_7.md) · [essence_8](../lesson_8/essence_8.md) · [essence_9](../lesson_9/essence_9.md) |
+| 📘 Углубление          | [essence_6](../lesson_6/essence_6.md) · [essence_7](../lesson_7/essence_7.md) · [essence_8](../lesson_8/essence_8.md) · [essence_9](../lesson_9/essence_9.md) · [essence_11](../lesson_11/essence_11.md) |
 
 ## 📌 Зачем этот урок
 
