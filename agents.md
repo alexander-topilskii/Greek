@@ -52,8 +52,8 @@ Use these rules for all new `.md` pages in this repo.
 
 ## 5. 📘 Lesson table (Readme)
 
-- The main lesson table in `Readme.md` uses 3 columns (без столбца «урок»):
-    - `📑 content` (`content_{N}.md`), `📁 raw`, `✨ digitized` — строки по порядку соответствуют `lesson_0` … `lesson_20` под `book/pages/`
+- В `Readme.md` одна колонка: ссылка на **`content_{N}.md`** как точку входа по уроку (`lesson_0` … `lesson_20`).
+- Ссылки на сканы (`raw/*.png`) и оцифровки (`digitized/N.md`) задаются **внутри** соответствующего `content_N.md`, не дублируются отдельными колонками в Readme.
 - Ссылки на слова/карточки в других модулях оформляй отдельно, не в этой таблице.
 
 ## 6. 🧾 Summary section (Суммарный)

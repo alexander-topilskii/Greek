@@ -25,12 +25,25 @@ def rel_raw_png(n: int) -> str:
     return f"raw/{n}.png"
 
 
+def digitized_md_exists(folder: Path, n: int) -> bool:
+    p = folder / "digitized" / f"{n}.md"
+    return p.is_file()
+
+
 def lesson_md_exists(n: int) -> bool:
     return (REPO / "modules" / f"lesson_{n}" / "lesson.md").is_file()
 
 
 def content_filename(lesson_num: int) -> str:
     return f"content_{lesson_num}.md"
+
+
+def page_links_line(folder: Path, n: int) -> str:
+    """Скан PNG + опционально оцифровка digitized/N.md."""
+    parts = [f"[{n}.png]({rel_raw_png(n)})"]
+    if digitized_md_exists(folder, n):
+        parts.append(f"[{n}.md](digitized/{n}.md)")
+    return " · ".join(parts)
 
 
 def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
@@ -45,13 +58,13 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
         "",
         f"**[🏠 Readme]({rel_readme}) → [📘 book/pages]({rel_pages}) → 📄 `{out_name}`**",
         "",
+        "*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть.*",
+        "",
         "| ⚡ Быстрые ссылки |                                                          |",
         "|------------------|----------------------------------------------------------|",
-        f"| 📘 Урок          | {lesson_cell:<56} |",
-        "| 📁 Исходники     | [raw/](raw/)                                             |",
-        "| ✨ Оцифровка     | [digitized/](digitized/)                                 |",
-        "| 📑 Оглавление    | [К навигации](#lesson-pages-nav)                         |",
-        "| 🖼 Просмотр       | [К превью](#lesson-pages-preview)                        |",
+        f"| 📘 Урок (modules) | {lesson_cell:<56} |",
+        "| 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |",
+        "| 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |",
         "",
         '<a id="lesson-pages-nav"></a>',
         "",
@@ -67,12 +80,8 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
             ]
         )
     else:
-        row: list[str] = []
-        for i, n in enumerate(nums):
-            row.append(f"[{n}]({rel_raw_png(n)})")
-            if len(row) >= 8 or i == len(nums) - 1:
-                lines.append("- " + " · ".join(row))
-                row = []
+        for n in nums:
+            lines.append(f"- **{n}** — {page_links_line(folder, n)}")
         lines.append("")
 
     lines.extend(
@@ -86,14 +95,17 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     if nums:
         lines.extend(
             [
-                "Ниже — те же файлы из `raw/` в порядке номеров страницы (удобно листать сверху вниз).",
+                "Ниже — превью в порядке номеров страницы; перед картинкой — те же ссылки, что в навигации.",
                 "",
             ]
         )
         for n in nums:
+            sub = page_links_line(folder, n)
             lines.extend(
                 [
                     f"### Стр. {n}",
+                    "",
+                    sub,
                     "",
                     f"![Страница {n}]({rel_raw_png(n)})",
                     "",
@@ -102,7 +114,7 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     else:
         lines.extend(
             [
-                "Здесь появятся встроенные превью после добавления `*.png` в папку `raw/`.",
+                "Здесь появятся превью после добавления `*.png` в папку `raw/`.",
                 "",
             ]
         )
@@ -110,7 +122,6 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     folder.mkdir(parents=True, exist_ok=True)
     out_path = folder / out_name
     out_path.write_text("\n".join(lines), encoding="utf-8")
-    # Удаляем старое имя, если осталось после перехода на content_{N}.md
     legacy = folder / "content.md"
     if legacy.is_file() and legacy.resolve() != out_path.resolve():
         legacy.unlink()
