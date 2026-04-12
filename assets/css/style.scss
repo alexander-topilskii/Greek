@@ -1,0 +1,55 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+// 1. Принудительный фон для всей страницы
+html, body {
+  background: linear-gradient(45deg, #001f3f, #0074D9, #7FDBFF); // Более "греческая" палитра
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  min-height: 100vh;
+  margin: 0;
+}
+
+// 2. Стеклянный контейнер
+.wrapper {
+  background: rgba(255, 255, 255, 0.1) !important; // !important перекроет стандартный белый фон темы
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+
+  // Делаем весь текст внутри белым для контраста
+  color: #ffffff !important;
+}
+
+// 3. Исправляем цвета заголовков и служебного текста
+header h1, header h1 a, h1, h2, h3, h4, strong {
+  color: #ffffff !important;
+}
+
+header p {
+  color: rgba(255, 255, 255, 0.7) !important; // Описание сайта чуть приглушенным цветом
+}
+
+// 4. Кнопки (если они есть в теме)
+.btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white !important;
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+// Анимация фона
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
