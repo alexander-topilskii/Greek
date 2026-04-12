@@ -6,9 +6,10 @@
 |-------------------|-----------------------------|
 | 📘 Уроки          | [К таблице уроков](#-уроки) |
 | 🧾 Суммарный      | [К спискам](#-суммарный)    |
+| 🎙 Voice + essence | [Индекс HTML](book/pages/essence_voice_index.html) |
 | 🧩 Форматирование | [agents.md](agents.md)      |
 
-- 🌐 Github pages: https://alexander-topilskii.github.io/Greek/
+- 🌐 Github pages: https://alexander-topilskii.github.io/Greek/ — статические страницы «промпт + конспект» по урокам: [essence_voice_index.html](book/pages/essence_voice_index.html) (источник правды — `essence_N.md`, см. [docs/ai_voice_promt.md](docs/ai_voice_promt.md)).
 
 ## 🧭 Навигация
 

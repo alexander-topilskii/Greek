@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Regenerate book/pages/lesson_*/content_{N}.md from raw/*.png in each folder."""
+"""Regenerate book/pages/lesson_*/content_{N}.md from raw/*.png in each folder.
+
+Also runs generate_essence_html.generate_all() so essence_N.html and essence_voice_index.html
+stay in sync before quick links are written."""
 from __future__ import annotations
 
 import re
 from pathlib import Path
+
+from generate_essence_html import generate_all
 
 REPO = Path(__file__).resolve().parents[1]
 BOOK_PAGES = REPO / "book" / "pages"
@@ -74,6 +79,11 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     ]
     if essence_cell:
         lines.append(f"| 💎 Суть урока     | {essence_cell:<56} |")
+        voice_cell = (
+            f"[essence_{lesson_num}.html](essence_{lesson_num}.html) · "
+            f"[индекс Voice](../essence_voice_index.html)"
+        )
+        lines.append(f"| 🎙 Voice (HTML)   | {voice_cell:<56} |")
     lines.extend(
         [
         "| 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |",
@@ -146,6 +156,7 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
 
 
 def main() -> None:
+    generate_all()
     lesson_dirs = sorted(
         [p for p in BOOK_PAGES.iterdir() if p.is_dir() and re.match(r"^lesson_\d+$", p.name)],
         key=lambda p: int(p.name.split("_")[1]),

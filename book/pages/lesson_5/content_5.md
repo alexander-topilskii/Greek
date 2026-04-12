@@ -8,6 +8,7 @@
 |------------------|----------------------------------------------------------|
 | 📘 Урок (modules) | —                                                        |
 | 💎 Суть урока     | [essence_5.md](essence_5.md)                             |
+| 🎙 Voice (HTML)   | [essence_5.html](essence_5.html) · [индекс Voice](../essence_voice_index.html) |
 | 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
 | 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |
 

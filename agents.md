@@ -7,6 +7,7 @@
 | 🏠 Readme         | [Readme.md](Readme.md)                                          |
 | 📘 Уроки          | [К таблице уроков](#5-lesson-table-readme)                      |
 | 🧾 Суммарный      | [К спискам](#6-summary-section-суммарный)                       |
+| 🎙 Voice + essence | [essence_voice_index.html](book/pages/essence_voice_index.html) |
 | 📷 Скриншоты стр. | [page-screenshot-renaming.md](docs/page-screenshot-renaming.md) |
 | 📖 Урок из учебника | [lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) |
 
@@ -55,7 +56,7 @@ Use these rules for all new `.md` pages in this repo.
 
 - В `Readme.md` одна колонка: ссылка на **`content_{N}.md`** как точку входа по уроку (`lesson_0` … `lesson_20`).
 - Ссылки на сканы (`raw/*.png`) и оцифровки (`digitized/N.md`) задаются **внутри** соответствующего `content_N.md`, не дублируются отдельными колонками в Readme.
-- Опционально в `book/pages/lesson_N/` можно добавить **`essence_N.md`** — **самодостаточный конспект** для повторения (правила, фразы, словарь; без отсылок читателя к печатному пособию). Рекомендуемый порядок: **грамматика → готовые фразы/диалоги → [опционально] эталоны → словарь в конце**. Вместо сносок «это не входит в активный словарь» давай **пояснение + таблицу или примеры для тренировки**. При наличии файла генератор добавит строку «💎 Суть урока» в быстрые ссылки `content_N.md`. Подробный чеклист: [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md).
+- Опционально в `book/pages/lesson_N/` можно добавить **`essence_N.md`** — **самодостаточный конспект** для повторения (правила, фразы, словарь; без отсылок читателя к печатному пособию). Рекомендуемый порядок: **грамматика → готовые фразы/диалоги → [опционально] эталоны → словарь в конце**. Вместо сносок «это не входит в активный словарь» давай **пояснение + таблицу или примеры для тренировки**. При наличии файла скрипт регенерации `content_N.md` добавит строки «💎 Суть урока» и «🎙 Voice (HTML)» и обновит сгенерированный **`essence_N.html`** (промпт из [docs/ai_voice_promt.md](docs/ai_voice_promt.md) + конспект; индекс: [essence_voice_index.html](book/pages/essence_voice_index.html)). Подробный чеклист: [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md).
 - Ссылки на слова/карточки в других модулях оформляй отдельно, не в этой таблице.
 
 ## 6. 🧾 Summary section (Суммарный)

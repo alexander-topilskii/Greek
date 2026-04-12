@@ -10,8 +10,9 @@
 | 📚 Точка входа по уроку | `book/pages/lesson_N/content_N.md` |
 | 💎 Конспект | `book/pages/lesson_N/essence_N.md` |
 | 🎙 Промпт Voice + ИИ | [ai_voice_promt.md](ai_voice_promt.md) |
+| 🎙 HTML (Voice + essence) | [essence_voice_index.html](../book/pages/essence_voice_index.html) — генерируется вместе с `content` |
 | 🖼 Сканы | `book/pages/lesson_N/raw/{номер}.png` |
-| 🔧 Регенерация `content` | [scripts/generate_book_lesson_content_md.py](../scripts/generate_book_lesson_content_md.py) |
+| 🔧 Регенерация `content` + HTML | [scripts/generate_book_lesson_content_md.py](../scripts/generate_book_lesson_content_md.py) (внутри вызывает `generate_essence_html.py`) |
 
 ## 1. Что такое «урок» в этом репозитории
 
@@ -21,6 +22,7 @@
 | **Оцифровка** | `lesson_N/digitized/K.md` (опционально) | Текст страницы `K` для поиска и цитирования при выносе. |
 | **Навигация** | `lesson_N/content_N.md` | Список страниц, превью, ссылки на `raw` и `digitized`; генерируется скриптом. |
 | **Суть урока** | `lesson_N/essence_N.md` (опционально) | **Самодостаточный конспект** для повторения: правила, готовые фразы, словарь; без отсылок читателя к печатному изданию. Объём упражнений с пропусками в курс не копируется целиком — в конспекте держим **готовые формулировки** и при необходимости **сжатые эталоны**. |
+| **Voice + HTML** | `lesson_N/essence_N.html` (генерируется) | Не редактировать вручную: собирается из `docs/ai_voice_promt.md` + `essence_N.md` скриптом `scripts/generate_essence_html.py` (вызывается при регенерации `content_N.md`). |
 
 **Вынос урока** для авторов — подготовка **`essence_N.md`** и при необходимости оцифровки; **сканы** задают границы урока по нумерации страниц.
 
@@ -82,14 +84,14 @@
 
   `python3 scripts/generate_book_lesson_content_md.py`
 
-- В `content_N.md` появится строка **«💎 Суть урока»** со ссылкой на `essence_N.md`, если файл существует.
+- В `content_N.md` появятся строки **«💎 Суть урока»** (на `essence_N.md`) и **«🎙 Voice (HTML)»** (на `essence_N.html` и общий индекс), если файл конспекта существует. Обновляется также `essence_N.html` и [essence_voice_index.html](../book/pages/essence_voice_index.html).
 
 ## 8. Контрольный список перед коммитом
 
 - [ ] Диапазон страниц в шапке совпадает с `raw/*.png` в папке урока.
 - [ ] Конспект **самодостаточен** для повторения основных блоков темы.
 - [ ] Таблицы выровнены, ссылки относительные, стиль согласован с [AGENTS.md](../AGENTS.md).
-- [ ] Скрипт генерации выполнен при изменении `essence_*.md`.
+- [ ] Скрипт генерации выполнен при изменении `essence_*.md` (пересобраны `content_*.md`, `essence_*.html`, индекс Voice).
 
 ---
 
