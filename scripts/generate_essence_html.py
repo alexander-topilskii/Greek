@@ -65,9 +65,22 @@ def build_page_html(lesson_num: int, essence_md: str, voice_prompt: str) -> str:
     #essence-render {{ overflow-x: auto; }}
     #essence-render table {{ border-collapse: collapse; width: 100%; }}
     #essence-render th, #essence-render td {{ border: 1px solid #ccc; padding: 0.35rem 0.5rem; }}
+    .prompt-details {{
+      margin-top: 0.5rem; border: 1px solid #d0d7de; border-radius: 8px; background: #fafbfc;
+    }}
+    .prompt-details summary {{
+      cursor: pointer; padding: 0.65rem 1rem; font-size: 1.05rem; font-weight: 600;
+      list-style: none;
+    }}
+    .prompt-details summary::-webkit-details-marker {{ display: none; }}
+    .prompt-details summary::before {{
+      content: "▸ "; display: inline-block; width: 1.1em; color: #57606a;
+    }}
+    .prompt-details[open] summary::before {{ content: "▾ "; }}
+    .prompt-details[open] summary {{ border-bottom: 1px solid #e1e4e8; }}
     #prompt-block {{
-      white-space: pre-wrap; background: #f6f8fa; padding: 1rem; border-radius: 8px;
-      border: 1px solid #d0d7de; font-size: 0.9rem;
+      white-space: pre-wrap; background: #f6f8fa; padding: 1rem; margin: 0;
+      font-size: 0.9rem; border-radius: 0 0 7px 7px;
     }}
     .hint {{ font-size: 0.85rem; color: #57606a; margin-top: 0.35rem; }}
   </style>
@@ -91,8 +104,10 @@ def build_page_html(lesson_num: int, essence_md: str, voice_prompt: str) -> str:
   </header>
 
   <section>
-    <h2>Промпт (из docs/ai_voice_promt.md)</h2>
-    <div id="prompt-block"></div>
+    <details class="prompt-details">
+      <summary>Промпт (из docs/ai_voice_promt.md)</summary>
+      <div id="prompt-block"></div>
+    </details>
   </section>
   <section>
     <h2>Конспект (essence_{lesson_num}.md)</h2>
