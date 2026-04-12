@@ -9,6 +9,7 @@
 | 🧩 Формат `.md` | [AGENTS.md](../AGENTS.md) |
 | 📚 Точка входа по уроку | `book/pages/lesson_N/content_N.md` |
 | 💎 Конспект | `book/pages/lesson_N/essence_N.md` |
+| 🎙 Промпт Voice + ИИ | [ai_voice_promt.md](ai_voice_promt.md) |
 | 🖼 Сканы | `book/pages/lesson_N/raw/{номер}.png` |
 | 🔧 Регенерация `content` | [scripts/generate_book_lesson_content_md.py](../scripts/generate_book_lesson_content_md.py) |
 
