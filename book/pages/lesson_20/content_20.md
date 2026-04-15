@@ -24,6 +24,8 @@
 - **285** — [285.png](raw/285.png) · [285.md](digitized/285.md)
 - **286** — [286.png](raw/286.png) · [286.md](digitized/286.md)
 - **287** — [287.png](raw/287.png) · [287.md](digitized/287.md)
+- **288** — [288.png](raw/288.png) · [288.md](digitized/288.md)
+- **289** — [289.png](raw/289.png) · [289.md](digitized/289.md)
 
 <a id="lesson-pages-preview"></a>
 
@@ -90,3 +92,15 @@
 [287.png](raw/287.png) · [287.md](digitized/287.md)
 
 ![Страница 287](raw/287.png)
+
+### Стр. 288
+
+[288.png](raw/288.png) · [288.md](digitized/288.md)
+
+![Страница 288](raw/288.png)
+
+### Стр. 289
+
+[289.png](raw/289.png) · [289.md](digitized/289.md)
+
+![Страница 289](raw/289.png)
