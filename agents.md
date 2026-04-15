@@ -10,6 +10,7 @@
 | 🎙 Voice + essence | [essence_voice_index.html](book/pages/essence_voice_index.html) |
 | 📷 Скриншоты стр. | [page-screenshot-renaming.md](docs/page-screenshot-renaming.md) |
 | 📖 Урок из учебника | [lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) |
+| 🎙 Голосовой урок (оцифровка) | [voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md) |
 
 Use these rules for all new `.md` pages in this repo.
 
@@ -57,6 +58,7 @@ Use these rules for all new `.md` pages in this repo.
 - В `Readme.md` одна колонка: ссылка на **`content_{N}.md`** как точку входа по уроку (`lesson_0` … `lesson_20`).
 - Ссылки на сканы (`raw/*.png`) и оцифровки (`digitized/N.md`) задаются **внутри** соответствующего `content_N.md`, не дублируются отдельными колонками в Readme.
 - Опционально в `book/pages/lesson_N/` можно добавить **`essence_N.md`** — **практическая замена** печатного материала для повторения: правила, фразы, словарь. **В тексте конспекта нельзя** упоминать или подразумевать учебник, книгу, пособие — читатель опирается только на конспект и файлы репозитория (см. [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) §3.1). Рекомендуемый порядок: **грамматика → готовые фразы/диалоги → [опционально] эталоны → словарь в конце**; **в конце раздела со словарём (📇)** — **итоговая таблица** всех **уникальных** слов и форм из материала урока в учебнике, **включая слова из названий и условий заданий**, с переводом (греч. | рус.). Вместо сносок «это не входит в активный словарь» давай **пояснение + таблицу или примеры для тренировки**. При наличии файла скрипт регенерации `content_N.md` добавит строки «💎 Суть урока» и «🎙 Voice (HTML)» и обновит сгенерированный **`essence_N.html`** (промпт из [docs/ai_voice_promt.md](docs/ai_voice_promt.md) + конспект; индекс: [essence_voice_index.html](book/pages/essence_voice_index.html)). Подробный чеклист: [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md).
+- Опционально **`lesson_voice_N/voice_lesson_N.md`** — раздаточный материал для разговорной отработки **по единой оцифровке** `lesson_digitized/lesson_N_digitized.md`: чеклист, структура папки, промпт и ссылка из `content_N.md` — [docs/voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md).
 - Ссылки на слова/карточки в других модулях оформляй отдельно, не в этой таблице.
 
 ## 6. 🧾 Summary section (Суммарный)
