@@ -8,6 +8,7 @@
 |------------------|----------------------------------------------------------|
 | 📘 Урок (modules) | —                                                        |
 | 📄 Оцифровка (единый текст) | [lesson_15_digitized.md](lesson_digitized/lesson_15_digitized.md)                             |
+| 🎙 Голосовой урок | [voice_lesson_15.md](lesson_voice_15/voice_lesson_15.md)                      |
 | 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
 | 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |
 

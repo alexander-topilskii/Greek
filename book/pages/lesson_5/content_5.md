@@ -10,6 +10,7 @@
 | 💎 Суть урока     | [essence_5.md](essence_5.md)                             |
 | 📄 Оцифровка (единый текст) | [lesson_5_digitized.md](lesson_digitized/lesson_5_digitized.md)                             |
 | 🎙 Voice (HTML)   | [essence_5.html](essence_5.html) · [индекс Voice](../essence_voice_index.html) |
+| 🎙 Голосовой урок | [voice_lesson_5.md](lesson_voice_5/voice_lesson_5.md)                      |
 | 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
 | 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |
 
