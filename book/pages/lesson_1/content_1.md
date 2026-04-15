@@ -9,6 +9,7 @@
 | 📘 Урок (modules) | —                                                        |
 | 💎 Суть урока     | [essence_1.md](essence_1.md)                             |
 | 📄 Оцифровка (единый текст) | [lesson_1_digitized.md](lesson_digitized/lesson_1_digitized.md)                             |
+| 🎙 Голосовой урок | [voice_lesson_1.md](lesson_voice_1/voice_lesson_1.md)                             |
 | 🎙 Voice (HTML)   | [essence_1.html](essence_1.html) · [индекс Voice](../essence_voice_index.html) |
 | 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
 | 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |
