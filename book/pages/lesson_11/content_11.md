@@ -2,15 +2,13 @@
 
 **[🏠 Readme](../../../Readme.md) → [📘 book/pages](../) → 📄 `content_11.md`**
 
-*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть; при необходимости — конспект в `essence_*.md`.*
+*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть; при необходимости — конспект в `essence_*/essence_*.md`.*
 
 | ⚡ Быстрые ссылки |                                                          |
 |------------------|----------------------------------------------------------|
 | 📘 Урок (modules) | —                                                        |
-| 💎 Суть урока     | [essence_11.md](essence_11.md)                           |
-| 📄 Оцифровка (единый текст) | [lesson_11_digitized.md](lesson_digitized/lesson_11_digitized.md)                             |
+| 💎 Суть урока     | [essence_11.md](essence_11/essence_11.md)                |
 | 🎙 Voice (HTML)   | [essence_11.html](essence_11.html) · [индекс Voice](../essence_voice_index.html) |
-| 🎙 Голосовой урок | [voice_lesson_11.md](lesson_voice_11/voice_lesson_11.md)                      |
 | 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
 | 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |
 

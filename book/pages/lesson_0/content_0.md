@@ -2,12 +2,12 @@
 
 **[🏠 Readme](../../../Readme.md) → [📘 book/pages](../) → 📄 `content_0.md`**
 
-*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть; при необходимости — конспект в `essence_*.md`.*
+*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть; при необходимости — конспект в `essence_*/essence_*.md`.*
 
 | ⚡ Быстрые ссылки |                                                          |
 |------------------|----------------------------------------------------------|
 | 📘 Урок (modules) | —                                                        |
-| 💎 Суть урока     | [essence_0.md](essence_0.md)                             |
+| 💎 Суть урока     | [essence_0.md](essence_0/essence_0.md)                   |
 | 🎙 Voice (HTML)   | [essence_0.html](essence_0.html) · [индекс Voice](../essence_voice_index.html) |
 | 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
 | 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |

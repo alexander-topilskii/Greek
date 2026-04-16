@@ -63,7 +63,7 @@ def main() -> None:
     ln("|------------------|--------------------------------------------------------------------|")
     ln(f"| {book} Урок          | [content_9.md](../content_9.md)                                    |")
     ln(f"| {page} Оцифровка     | [lesson_9_digitized.md](../lesson_digitized/lesson_9_digitized.md) |")
-    ln(f"| {gem} Суть урока    | [essence_9.md](../essence_9.md)                                    |")
+    ln(f"| {gem} Суть урока    | [essence_9/essence_9.md](../essence_9/essence_9.md)                                    |")
     ln(f"| {mic} Voice (HTML)  | [essence_9.html](../essence_9.html)                                |")
     ln()
     ln("### Блок 1: Коммуникативные ситуации и ролевые игры")

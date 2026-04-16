@@ -6,7 +6,7 @@
 |------------------|--------------------------------------------------------------------|
 | 📚 Урок          | [content_1.md](../content_1.md)                                    |
 | 📄 Оцифровка     | [lesson_1_digitized.md](../lesson_digitized/lesson_1_digitized.md) |
-| 💎 Суть урока    | [essence_1.md](../essence_1.md)                                    |
+| 💎 Суть урока    | [essence_1/essence_1.md](../essence_1/essence_1.md)                                    |
 | 🎙 Voice (HTML)  | [essence_1.html](../essence_1.html)                                |
 
 ### Блок 1: Коммуникативные ситуации (Ролевые игры)

@@ -7,8 +7,6 @@
 | ⚡ Быстрые ссылки |                                                          |
 |------------------|----------------------------------------------------------|
 | 📘 Урок (modules) | —                                                        |
-| 📄 Оцифровка (единый текст) | [lesson_18_digitized.md](lesson_digitized/lesson_18_digitized.md)                             |
-| 🎙 Голосовой урок | [voice_lesson_18.md](lesson_voice_18/voice_lesson_18.md)                      |
 | 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
 | 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |
 

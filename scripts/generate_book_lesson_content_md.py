@@ -40,7 +40,7 @@ def lesson_md_exists(n: int) -> bool:
 
 
 def essence_md_exists(folder: Path, lesson_num: int) -> bool:
-    return (folder / f"essence_{lesson_num}.md").is_file()
+    return (folder / f"essence_{lesson_num}" / f"essence_{lesson_num}.md").is_file()
 
 
 def content_filename(lesson_num: int) -> str:
@@ -61,7 +61,8 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     rel_lesson = f"../../../modules/lesson_{lesson_num}/lesson.md"
     lesson_cell = f"[lesson.md]({rel_lesson})" if lesson_md_exists(lesson_num) else "—"
     essence_name = f"essence_{lesson_num}.md"
-    essence_cell = f"[{essence_name}]({essence_name})" if essence_md_exists(folder, lesson_num) else None
+    essence_rel = f"essence_{lesson_num}/essence_{lesson_num}.md"
+    essence_cell = f"[{essence_name}]({essence_rel})" if essence_md_exists(folder, lesson_num) else None
     out_name = content_filename(lesson_num)
 
     lines = [
@@ -70,7 +71,7 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
         f"**[🏠 Readme]({rel_readme}) → [📘 book/pages]({rel_pages}) → 📄 `{out_name}`**",
         "",
         "*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть"
-        + ("; при необходимости — конспект в `essence_*.md`" if essence_cell else "")
+        + ("; при необходимости — конспект в `essence_*/essence_*.md`" if essence_cell else "")
         + ".*",
         "",
         "| ⚡ Быстрые ссылки |                                                          |",

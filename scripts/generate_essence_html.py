@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate book/pages/lesson_N/essence_N.html — Voice prompt + essence for GitHub Pages (copy button).
 
-Source of truth: docs/ai_voice_promt.md (prompt block) + essence_N.md
+Source of truth: docs/ai_voice_promt.md (prompt block) + lesson_N/essence_N/essence_N.md
 Run from repo root: python3 scripts/generate_essence_html.py
 Also invoked from generate_book_lesson_content_md.py
 """
@@ -38,7 +38,7 @@ def html_escape(s: str) -> str:
 
 
 def build_page_html(lesson_num: int, essence_md: str, voice_prompt: str) -> str:
-    """Single static HTML; links relative to book/pages/lesson_N/essence_N.html"""
+    """Single static HTML; links relative to book/pages/lesson_N/essence_N.html."""
     title = f"Урок {lesson_num} — Voice + конспект (essence)"
     import json
 
@@ -93,14 +93,14 @@ def build_page_html(lesson_num: int, essence_md: str, voice_prompt: str) -> str:
       <a href="../../../agents.md">agents</a>
       <a href="../../../docs/ai_voice_promt.md">Промпт (md)</a>
       <a href="content_{lesson_num}.md">content_{lesson_num}.md</a>
-      <a href="essence_{lesson_num}.md">essence_{lesson_num}.md</a>
+      <a href="essence_{lesson_num}/essence_{lesson_num}.md">essence_{lesson_num}.md</a>
       <a href="../essence_voice_index.html">Все уроки (индекс)</a>
     </span>
     <p style="margin: 0.75rem 0 0;">
       <button type="button" id="copy-all">Скопировать промпт + конспект</button>
       <span id="copy-feedback" class="ok" aria-live="polite"></span>
     </p>
-    <p class="hint">В буфер попадает греческий блок промпта из docs и полный markdown конспекта (как в essence_N.md).</p>
+      <p class="hint">В буфер попадает греческий блок промпта из docs и полный markdown конспекта (как в essence_N/essence_N.md).</p>
   </header>
 
   <section>
@@ -110,7 +110,7 @@ def build_page_html(lesson_num: int, essence_md: str, voice_prompt: str) -> str:
     </details>
   </section>
   <section>
-    <h2>Конспект (essence_{lesson_num}.md)</h2>
+    <h2>Конспект (essence_{lesson_num}/essence_{lesson_num}.md)</h2>
     <div id="essence-render"></div>
   </section>
 
@@ -144,12 +144,12 @@ def build_page_html(lesson_num: int, essence_md: str, voice_prompt: str) -> str:
 
 
 def write_index_html(entries: list[tuple[int, str]]) -> None:
-    """entries: (lesson_num, relative_path_from_book_pages)"""
+    """entries: (lesson_num, relative_path_from_book_pages)."""
     rows = []
     for n, rel in sorted(entries, key=lambda x: x[0]):
         rows.append(
             f'    <tr><td>{n}</td><td><a href="{html_escape(rel)}">essence_{n}.html</a> '
-            f'· <a href="{html_escape(rel.replace(".html", ".md"))}">essence_{n}.md</a></td></tr>'
+            f'· <a href="lesson_{n}/essence_{n}/essence_{n}.md">essence_{n}.md</a></td></tr>'
         )
     body = "\n".join(rows) if rows else "    <tr><td colspan=\"2\">Нет сгенерированных страниц.</td></tr>"
     html = f"""<!DOCTYPE html>
@@ -168,7 +168,7 @@ def write_index_html(entries: list[tuple[int, str]]) -> None:
 <body>
   <p><a href="../../Readme.md">Readme</a> · <a href="../../docs/ai_voice_promt.md">Промпт Voice (md)</a></p>
   <h1>🎙 Страницы Voice + конспект (HTML)</h1>
-  <p>Генерируются скриптом <code>scripts/generate_essence_html.py</code>. Источник правды — <code>essence_N.md</code>.</p>
+  <p>Генерируются скриптом <code>scripts/generate_essence_html.py</code>. Источник правды — <code>lesson_N/essence_N/essence_N.md</code>.</p>
   <table>
     <thead><tr><th>Урок</th><th>Страница</th></tr></thead>
     <tbody>
@@ -183,7 +183,7 @@ def write_index_html(entries: list[tuple[int, str]]) -> None:
 
 
 def generate_all() -> list[tuple[int, str]]:
-    """Generate essence_N.html for each lesson with essence_N.md. Remove orphan html."""
+    """Generate essence_N.html for each lesson with essence markdown. Remove orphan html."""
     voice = load_voice_prompt()
     entries: list[tuple[int, str]] = []
     lesson_dirs = sorted(
@@ -192,7 +192,7 @@ def generate_all() -> list[tuple[int, str]]:
     )
     for folder in lesson_dirs:
         n = int(folder.name.split("_")[1])
-        emd = folder / f"essence_{n}.md"
+        emd = folder / f"essence_{n}" / f"essence_{n}.md"
         ehtml = folder / f"essence_{n}.html"
         if emd.is_file():
             md_text = emd.read_text(encoding="utf-8")

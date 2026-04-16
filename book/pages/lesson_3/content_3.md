@@ -2,18 +2,15 @@
 
 **[🏠 Readme](../../../Readme.md) → [📘 book/pages](../) → 📄 `content_3.md`**
 
-*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть; при
-необходимости — конспект в `essence_*.md`.*
+*Точка входа: здесь ссылки на файл скана (`raw/*.png`) и на оцифровку (`digitized/N.md`), если она есть; при необходимости — конспект в `essence_*/essence_*.md`.*
 
-| ⚡ Быстрые ссылки  |                                                                                |
-|-------------------|--------------------------------------------------------------------------------|
-| 📘 Урок (modules) | —                                                                              |
-| 💎 Суть урока     | [essence_3.md](essence_3.md)                                                   |
-| 📄 Оцифровка (единый текст) | [lesson_3_digitized.md](lesson_digitized/lesson_3_digitized.md)                                                   |
-| 🎙 Голосовой урок | [voice_lesson_3.md](lesson_voice_3/voice_lesson_3.md)                                                   |
+| ⚡ Быстрые ссылки |                                                          |
+|------------------|----------------------------------------------------------|
+| 📘 Урок (modules) | —                                                        |
+| 💎 Суть урока     | [essence_3.md](essence_3/essence_3.md)                   |
 | 🎙 Voice (HTML)   | [essence_3.html](essence_3.html) · [индекс Voice](../essence_voice_index.html) |
-| 📑 Оглавление     | [К навигации по страницам](#lesson-pages-nav)                                  |
-| 🖼 Превью         | [К превью страниц](#lesson-pages-preview)                                      |
+| 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
+| 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |
 
 <a id="lesson-pages-nav"></a>
 
