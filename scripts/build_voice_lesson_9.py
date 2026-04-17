@@ -79,7 +79,10 @@ def main() -> None:
         f"| {BOOK} Урок          | [content_9.md](../content_9.md)                                    |",
         f"| {PAGE} Оцифровка     | [lesson_9_digitized.md](../lesson_digitized/lesson_9_digitized.md) |",
         f"| {GEM} Суть урока    | [essence_9/essence_9.md](../essence_9/essence_9.md)                                    |",
-        f"| {MIC} Voice (HTML)  | [essence_9.html](../essence_9.html)                                |",
+        (
+            f"| {MIC} Voice (HTML)  | [voice_lesson_9.html](voice_lesson_9.html) · "
+            f"[essence_9.html](../essence_9.html)                                |"
+        ),
         "",
         "### Блок 1: Коммуникативные ситуации (Ролевые игры)",
         "",

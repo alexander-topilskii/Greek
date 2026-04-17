@@ -7,6 +7,7 @@
 | ⚡ Быстрые ссылки |                                                          |
 |------------------|----------------------------------------------------------|
 | 📘 Урок (modules) | —                                                        |
+| 🎙 Voice (HTML)   | [voice_lesson_15.html](lesson_voice_15/voice_lesson_15.html) · [voice_lesson_15.md](lesson_voice_15/voice_lesson_15.md) · [индекс Voice](../essence_voice_index.html) |
 | 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
 | 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |
 

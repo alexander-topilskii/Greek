@@ -8,7 +8,7 @@
 |------------------|----------------------------------------------------------|
 | 📘 Урок (modules) | —                                                        |
 | 💎 Суть урока     | [essence_12.md](essence_12/essence_12.md)                |
-| 🎙 Voice (HTML)   | [essence_12.html](essence_12.html) · [индекс Voice](../essence_voice_index.html) |
+| 🎙 Voice (HTML)   | [voice_lesson_12.html](lesson_voice_12/voice_lesson_12.html) · [voice_lesson_12.md](lesson_voice_12/voice_lesson_12.md) · [essence_12.html](essence_12.html) · [индекс Voice](../essence_voice_index.html) |
 | 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |
 | 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |
 

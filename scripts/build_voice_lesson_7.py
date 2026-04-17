@@ -80,7 +80,10 @@ def main() -> None:
         f"| {BOOK} Урок          | [content_7.md](../content_7.md)                                    |",
         f"| {PAGE} Оцифровка     | [lesson_7_digitized.md](../lesson_digitized/lesson_7_digitized.md) |",
         f"| {GEM} Суть урока    | [essence_7/essence_7.md](../essence_7/essence_7.md)                                    |",
-        f"| {MIC} Voice (HTML)  | [essence_7.html](../essence_7.html)                                |",
+        (
+            f"| {MIC} Voice (HTML)  | [voice_lesson_7.html](voice_lesson_7.html) · "
+            f"[essence_7.html](../essence_7.html)                                |"
+        ),
         "",
         "### Блок 1: Коммуникативные ситуации (Ролевые игры)",
         "",

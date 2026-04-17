@@ -43,6 +43,10 @@ def essence_md_exists(folder: Path, lesson_num: int) -> bool:
     return (folder / f"essence_{lesson_num}" / f"essence_{lesson_num}.md").is_file()
 
 
+def voice_lesson_md_exists(folder: Path, lesson_num: int) -> bool:
+    return (folder / f"lesson_voice_{lesson_num}" / f"voice_lesson_{lesson_num}.md").is_file()
+
+
 def content_filename(lesson_num: int) -> str:
     return f"content_{lesson_num}.md"
 
@@ -63,6 +67,10 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     essence_name = f"essence_{lesson_num}.md"
     essence_rel = f"essence_{lesson_num}/essence_{lesson_num}.md"
     essence_cell = f"[{essence_name}]({essence_rel})" if essence_md_exists(folder, lesson_num) else None
+    voice_lesson_rel = f"lesson_voice_{lesson_num}/voice_lesson_{lesson_num}.md"
+    voice_lesson_html_rel = f"lesson_voice_{lesson_num}/voice_lesson_{lesson_num}.html"
+    voice_lesson_exists = voice_lesson_md_exists(folder, lesson_num)
+    voice_essence_html_rel = f"essence_{lesson_num}.html"
     out_name = content_filename(lesson_num)
 
     lines = [
@@ -80,10 +88,15 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
     ]
     if essence_cell:
         lines.append(f"| 💎 Суть урока     | {essence_cell:<56} |")
-        voice_cell = (
-            f"[essence_{lesson_num}.html](essence_{lesson_num}.html) · "
-            f"[индекс Voice](../essence_voice_index.html)"
-        )
+    if essence_cell or voice_lesson_exists:
+        voice_parts: list[str] = []
+        if voice_lesson_exists:
+            voice_parts.append(f"[voice_lesson_{lesson_num}.html]({voice_lesson_html_rel})")
+            voice_parts.append(f"[voice_lesson_{lesson_num}.md]({voice_lesson_rel})")
+        if essence_cell:
+            voice_parts.append(f"[essence_{lesson_num}.html]({voice_essence_html_rel})")
+        voice_parts.append("[индекс Voice](../essence_voice_index.html)")
+        voice_cell = " · ".join(voice_parts)
         lines.append(f"| 🎙 Voice (HTML)   | {voice_cell:<56} |")
     lines.extend(
         [

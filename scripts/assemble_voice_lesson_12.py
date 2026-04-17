@@ -60,7 +60,10 @@ def main() -> None:
     ln(f"| {book} \u0423\u0440\u043e\u043a          | [content_12.md](../content_12.md)                                    |")
     ln(f"| {page} \u041e\u0446\u0438\u0444\u0440\u043e\u0432\u043a\u0430     | [lesson_12_digitized.md](../lesson_digitized/lesson_12_digitized.md) |")
     ln(f"| {gem} \u0421\u0443\u0442\u044c \u0443\u0440\u043e\u043a\u0430    | [essence_12/essence_12.md](../essence_12/essence_12.md)                                    |")
-    ln(f"| {mic} Voice (HTML)  | [essence_12.html](../essence_12.html)                                |")
+    ln(
+        f"| {mic} Voice (HTML)  | [voice_lesson_12.html](voice_lesson_12.html) · "
+        f"[essence_12.html](../essence_12.html)                                |"
+    )
     ln()
     ln("### \u0411\u043b\u043e\u043a 1: \u041a\u043e\u043c\u043c\u0443\u043d\u0438\u043a\u0430\u0442\u0438\u0432\u043d\u044b\u0435 \u0441\u0438\u0442\u0443\u0430\u0446\u0438\u0438 \u0438 \u0440\u043e\u043b\u0435\u0432\u044b\u0435 \u0438\u0433\u0440\u044b")
     ln()

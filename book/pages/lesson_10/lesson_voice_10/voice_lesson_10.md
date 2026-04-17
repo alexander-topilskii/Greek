@@ -7,7 +7,7 @@
 | 📚 Урок          | [content_10.md](../content_10.md)                                    |
 | 📄 Оцифровка     | [lesson_10_digitized.md](../lesson_digitized/lesson_10_digitized.md) |
 | 💎 Суть урока    | [essence_10/essence_10.md](../essence_10/essence_10.md)                                    |
-| 🎙 Voice (HTML)  | [essence_10.html](../essence_10.html)                                |
+| 🎙 Voice (HTML)  | [voice_lesson_10.html](voice_lesson_10.html) · [essence_10.html](../essence_10.html)                                |
 
 ### Блок 1: Коммуникативные ситуации (Ролевые игры)
 

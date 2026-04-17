@@ -55,7 +55,10 @@ def main() -> None:
     ln(f"| {book} Урок          | [content_4.md](../content_4.md)                                    |")
     ln(f"| {page} Оцифровка     | [lesson_4_digitized.md](../lesson_digitized/lesson_4_digitized.md) |")
     ln(f"| {gem} Суть урока    | [essence_4/essence_4.md](../essence_4/essence_4.md)                                    |")
-    ln(f"| {mic} Voice (HTML)  | [essence_4.html](../essence_4.html)                                |")
+    ln(
+        f"| {mic} Voice (HTML)  | [voice_lesson_4.html](voice_lesson_4.html) · "
+        f"[essence_4.html](../essence_4.html)                                |"
+    )
     ln()
     ln("### Блок 1: Коммуникативные ситуации и ролевые игры")
     ln()
