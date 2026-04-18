@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Урок 10 — страницы учебника</title>
+  <link rel="stylesheet" href="../assets/lesson-content.css" />
+</head>
+<body>
+  <div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Навигация">
+      <a href="../../../Readme.md">🏠 Readme</a>
+      → <a href="../">book/pages</a>
+      → <span>📄 content_10.html</span>
+    </nav>
+    <h1>📚 Страницы учебника — урок 10</h1>
+    <p class="note">Оглавление урока: материалы, просмотр сканов и оцифровка по страницам. Генерация из <code>content_10.md</code>.</p>
+
+    <nav class="links-row" aria-label="Быстрые переходы">
+      <a href="essence_10.html">💎 Конспект</a> · <a href="lesson_voice_10/voice_lesson_10.html">🎙 Практика</a>
+    </nav>
+    <table class="quick-table" role="presentation">
+      <tbody>
+        <tr><th>📘 Урок (modules)</th><td>—</td></tr>
+        <tr><th>💎 Конспект (HTML)</th><td><a href="essence_10.html">essence_10.html</a></td></tr>
+        <tr><th>🎙 Практика (HTML)</th><td><a href="lesson_voice_10/voice_lesson_10.html">lesson_voice_10/voice_lesson_10.html</a></td></tr>
+        <tr><th>🎙 Индекс Voice</th><td><a href="../essence_voice_index.html">essence_voice_index.html</a></td></tr>
+      </tbody>
+    </table>
+
+    <section class="block full-chapter" aria-labelledby="full-chapter-h">
+      <h2 id="full-chapter-h">📄 Вся глава (оцифровка)</h2>
+      <p>Единый файл с текстом урока: <a href="lesson_digitized/lesson_10_digitized.md">lesson_10_digitized.md</a></p>
+    </section>
+    <section class="block scan-carousel" aria-labelledby="scan-h">
+      <h2 id="scan-h">🖼 Просмотр сканов</h2>
+      <p class="note">Листайте страницы кнопками; ниже — полный список с ссылками на оцифровку по страницам.</p>
+      <div class="scan-carousel__toolbar">
+        <button type="button" id="scan-carousel-prev" aria-label="Предыдущая страница">← Назад</button>
+        <span id="scan-carousel-counter" aria-live="polite"></span>
+        <button type="button" id="scan-carousel-next" aria-label="Следующая страница">Вперёд →</button>
+      </div>
+      <figure class="scan-carousel__figure">
+        <img id="scan-carousel-img" src="raw/122.png" alt="" width="800" height="1200" loading="eager" />
+        <figcaption id="scan-carousel-caption" class="scan-carousel__caption"></figcaption>
+      </figure>
+      <p class="scan-carousel__open">
+        Открыть файл: <a id="scan-link-png" href="raw/122.png">122.png</a><span id="scan-md-wrap"> · <a id="scan-link-md" href="digitized/122.md">122.md</a></span>
+      </p>
+      <script type="application/json" id="scan-pages-data">[{"n": 122, "png": "raw/122.png", "md": "digitized/122.md"}, {"n": 123, "png": "raw/123.png", "md": "digitized/123.md"}, {"n": 124, "png": "raw/124.png", "md": "digitized/124.md"}, {"n": 125, "png": "raw/125.png", "md": "digitized/125.md"}, {"n": 126, "png": "raw/126.png", "md": "digitized/126.md"}, {"n": 127, "png": "raw/127.png", "md": "digitized/127.md"}, {"n": 128, "png": "raw/128.png", "md": "digitized/128.md"}, {"n": 129, "png": "raw/129.png", "md": "digitized/129.md"}, {"n": 130, "png": "raw/130.png", "md": "digitized/130.md"}, {"n": 131, "png": "raw/131.png", "md": "digitized/131.md"}]</script>
+    </section>
+    <section class="block" aria-labelledby="pages-h">
+      <h2 id="pages-h">🔢 Страницы по номерам</h2>
+      <ul class="page-list">
+        <li><strong>122</strong> — <a href="raw/122.png">122.png</a> · <a href="digitized/122.md">122.md</a></li>
+        <li><strong>123</strong> — <a href="raw/123.png">123.png</a> · <a href="digitized/123.md">123.md</a></li>
+        <li><strong>124</strong> — <a href="raw/124.png">124.png</a> · <a href="digitized/124.md">124.md</a></li>
+        <li><strong>125</strong> — <a href="raw/125.png">125.png</a> · <a href="digitized/125.md">125.md</a></li>
+        <li><strong>126</strong> — <a href="raw/126.png">126.png</a> · <a href="digitized/126.md">126.md</a></li>
+        <li><strong>127</strong> — <a href="raw/127.png">127.png</a> · <a href="digitized/127.md">127.md</a></li>
+        <li><strong>128</strong> — <a href="raw/128.png">128.png</a> · <a href="digitized/128.md">128.md</a></li>
+        <li><strong>129</strong> — <a href="raw/129.png">129.png</a> · <a href="digitized/129.md">129.md</a></li>
+        <li><strong>130</strong> — <a href="raw/130.png">130.png</a> · <a href="digitized/130.md">130.md</a></li>
+        <li><strong>131</strong> — <a href="raw/131.png">131.png</a> · <a href="digitized/131.md">131.md</a></li>
+      </ul>
+    </section>
+
+  </div>
+  <script src="../assets/scan-carousel.js" defer></script>
+</body>
+</html>

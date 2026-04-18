@@ -1,0 +1,221 @@
+/* Shared styles for generated lesson hub pages (content_N.html). */
+:root {
+  --bg: #f6f4ef;
+  --text: #1a1a18;
+  --muted: #5c5a54;
+  --accent: #2d6a4f;
+  --border: #d8d4cb;
+  --card: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1.25rem 1.5rem 2.5rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.page-wrap {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.breadcrumbs {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.breadcrumbs a {
+  color: var(--accent);
+}
+
+h1 {
+  font-size: 1.65rem;
+  font-weight: 650;
+  margin: 0 0 1rem;
+  line-height: 1.25;
+}
+
+.note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+}
+
+.quick-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+  font-size: 0.95rem;
+}
+
+.quick-table th,
+.quick-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.quick-table tr:last-child td {
+  border-bottom: none;
+}
+
+.quick-table th {
+  width: 11rem;
+  background: #ebe7de;
+  font-weight: 600;
+}
+
+.quick-table a {
+  color: var(--accent);
+}
+
+section.block {
+  margin-bottom: 2rem;
+}
+
+section.block h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem;
+}
+
+.links-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.links-row a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.full-chapter {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.full-chapter p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.full-chapter a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Scan carousel */
+.scan-carousel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.1rem 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.scan-carousel__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.scan-carousel__toolbar button {
+  font: inherit;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.scan-carousel__toolbar button:hover {
+  background: #f0ece4;
+}
+
+.scan-carousel__toolbar button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+#scan-carousel-counter {
+  min-width: 4.5rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.scan-carousel__figure {
+  margin: 0;
+  text-align: center;
+}
+
+.scan-carousel__figure img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.scan-carousel__caption {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.scan-carousel__open {
+  text-align: center;
+  margin: 0.75rem 0 0;
+  font-size: 0.92rem;
+}
+
+.scan-carousel__open a {
+  color: var(--accent);
+}
+
+.page-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-list li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-list li:last-child {
+  border-bottom: none;
+}
+
+.page-list a {
+  color: var(--accent);
+}
+
+.empty-msg {
+  color: var(--muted);
+  font-size: 0.95rem;
+}

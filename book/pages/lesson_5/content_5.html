@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Урок 5 — страницы учебника</title>
+  <link rel="stylesheet" href="../assets/lesson-content.css" />
+</head>
+<body>
+  <div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Навигация">
+      <a href="../../../Readme.md">🏠 Readme</a>
+      → <a href="../">book/pages</a>
+      → <span>📄 content_5.html</span>
+    </nav>
+    <h1>📚 Страницы учебника — урок 5</h1>
+    <p class="note">Оглавление урока: материалы, просмотр сканов и оцифровка по страницам. Генерация из <code>content_5.md</code>.</p>
+
+    <nav class="links-row" aria-label="Быстрые переходы">
+      <a href="essence_5.html">💎 Конспект</a> · <a href="lesson_voice_5/voice_lesson_5.html">🎙 Практика</a>
+    </nav>
+    <table class="quick-table" role="presentation">
+      <tbody>
+        <tr><th>📘 Урок (modules)</th><td>—</td></tr>
+        <tr><th>💎 Конспект (HTML)</th><td><a href="essence_5.html">essence_5.html</a></td></tr>
+        <tr><th>🎙 Практика (HTML)</th><td><a href="lesson_voice_5/voice_lesson_5.html">lesson_voice_5/voice_lesson_5.html</a></td></tr>
+        <tr><th>🎙 Индекс Voice</th><td><a href="../essence_voice_index.html">essence_voice_index.html</a></td></tr>
+      </tbody>
+    </table>
+
+    <section class="block full-chapter" aria-labelledby="full-chapter-h">
+      <h2 id="full-chapter-h">📄 Вся глава (оцифровка)</h2>
+      <p>Единый файл с текстом урока: <a href="lesson_digitized/lesson_5_digitized.md">lesson_5_digitized.md</a></p>
+    </section>
+    <section class="block scan-carousel" aria-labelledby="scan-h">
+      <h2 id="scan-h">🖼 Просмотр сканов</h2>
+      <p class="note">Листайте страницы кнопками; ниже — полный список с ссылками на оцифровку по страницам.</p>
+      <div class="scan-carousel__toolbar">
+        <button type="button" id="scan-carousel-prev" aria-label="Предыдущая страница">← Назад</button>
+        <span id="scan-carousel-counter" aria-live="polite"></span>
+        <button type="button" id="scan-carousel-next" aria-label="Следующая страница">Вперёд →</button>
+      </div>
+      <figure class="scan-carousel__figure">
+        <img id="scan-carousel-img" src="raw/59.png" alt="" width="800" height="1200" loading="eager" />
+        <figcaption id="scan-carousel-caption" class="scan-carousel__caption"></figcaption>
+      </figure>
+      <p class="scan-carousel__open">
+        Открыть файл: <a id="scan-link-png" href="raw/59.png">59.png</a><span id="scan-md-wrap"> · <a id="scan-link-md" href="digitized/59.md">59.md</a></span>
+      </p>
+      <script type="application/json" id="scan-pages-data">[{"n": 59, "png": "raw/59.png", "md": "digitized/59.md"}, {"n": 60, "png": "raw/60.png", "md": "digitized/60.md"}, {"n": 61, "png": "raw/61.png", "md": "digitized/61.md"}, {"n": 62, "png": "raw/62.png", "md": "digitized/62.md"}, {"n": 63, "png": "raw/63.png", "md": "digitized/63.md"}, {"n": 64, "png": "raw/64.png", "md": "digitized/64.md"}, {"n": 65, "png": "raw/65.png", "md": "digitized/65.md"}]</script>
+    </section>
+    <section class="block" aria-labelledby="pages-h">
+      <h2 id="pages-h">🔢 Страницы по номерам</h2>
+      <ul class="page-list">
+        <li><strong>59</strong> — <a href="raw/59.png">59.png</a> · <a href="digitized/59.md">59.md</a></li>
+        <li><strong>60</strong> — <a href="raw/60.png">60.png</a> · <a href="digitized/60.md">60.md</a></li>
+        <li><strong>61</strong> — <a href="raw/61.png">61.png</a> · <a href="digitized/61.md">61.md</a></li>
+        <li><strong>62</strong> — <a href="raw/62.png">62.png</a> · <a href="digitized/62.md">62.md</a></li>
+        <li><strong>63</strong> — <a href="raw/63.png">63.png</a> · <a href="digitized/63.md">63.md</a></li>
+        <li><strong>64</strong> — <a href="raw/64.png">64.png</a> · <a href="digitized/64.md">64.md</a></li>
+        <li><strong>65</strong> — <a href="raw/65.png">65.png</a> · <a href="digitized/65.md">65.md</a></li>
+      </ul>
+    </section>
+
+  </div>
+  <script src="../assets/scan-carousel.js" defer></script>
+</body>
+</html>
