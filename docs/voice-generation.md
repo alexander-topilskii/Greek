@@ -4,13 +4,15 @@
 
 **Навигация:** [README.md](README.md) · [Обзор урока в репозитории](lesson-extraction-from-textbook.md) · [Правила конспекта](essence-generation.md)
 
-Конспект **`essence_N.md`** готовится по [essence-generation.md](essence-generation.md). Отдельный пайплайн **`voice_lesson_N.md`** из оцифровки главы — в [voice-lesson-from-digitized.md](voice-lesson-from-digitized.md).
+Конспект **`book/pages/lesson_N/essence_N/essence_N.md`** готовится по [essence-generation.md](essence-generation.md). Отдельный пайплайн **`voice_lesson_N.md`** из оцифровки главы — в [voice-lesson-from-digitized.md](voice-lesson-from-digitized.md).
+
+**Автономность** по смыслу плана относится к **исходным** markdown-файлам урока для читателя (`essence_…/essence_….md`, `lesson_voice_…/voice_lesson_….md`): в них нет перекрёстных ссылок и ссылок на сырьё. Сгенерированный **`essence_N.html`** технически объединяет блок промпта и текст конспекта на одной странице — это **не** нарушение правила «двух островов», потому что в сам **`essence_N.md`** ссылку на голосовой урок или на HTML не вставляют.
 
 ---
 
 ## 1. Статические HTML-страницы (генерация)
 
-Скрипт: **`scripts/generate_essence_html.py`** (также вызывается при регенерации `content_N.md` через `generate_book_lesson_content_md.py`).
+Скрипт: **`scripts/generate_essence_html.py`** (также вызывается при регенерации `content_N.md` / `content_N.html` через **`scripts/generate_book_lesson_content_md.py`**).
 
 | Страница | Источники | Редактировать вручную |
 |----------|-----------|------------------------|
@@ -24,7 +26,7 @@
 ## 2. Промпт голосовой сессии с конспектом
 
 - Файл: **[promts/ai_voice_promt.md](promts/ai_voice_promt.md)** — один и тот же блок для любого урока.
-- В сессии с ИИ: скопировать промпт и приложить **`essence_N.md`** того же урока (или содержимое из `essence_N.html`).
+- В сессии с ИИ: скопировать промпт и **прикрепить файл** **`book/pages/lesson_N/essence_N/essence_N.md`** того же урока (или вставить содержимое из `essence_N.html`). Это **инструкция для сессии**, а не требование вставлять ссылку на конспект внутрь **`voice_lesson_N.md`**.
 - Промпт рассчитан на структуру конспекта из [essence-generation.md](essence-generation.md) (грамматика → фразы → эталоны → словарь; диалоги после микрофраз).
 
 ---
@@ -33,13 +35,13 @@
 
 Раздаточный **`voice_lesson_N.md`** и интеграция в `content_N.md`: **[voice-lesson-from-digitized.md](voice-lesson-from-digitized.md)**. Промпт генерации: **[promts/voice_lesson_generation.md](promts/voice_lesson_generation.md)**.
 
-Его можно приложить к голосовой сессии **вместе** с `essence_N.md` или **вместо** него, если конспекта ещё нет.
+В одной голосовой сессии **вложениями** можно сочетать конспект и `voice_lesson_N.md` — см. [voice-lesson-from-digitized.md](voice-lesson-from-digitized.md); в markdown-файлах урока при этом **нет** обязательных ссылок друг на друга.
 
 ---
 
 ## 4. Строки в `content_N.md` / `content_N.html`
 
-При наличии **`essence_N.md`** скрипт контента добавляет ссылки **«💎 Суть урока»** и **«🎙 Voice (HTML)»** на конспект и на `essence_N.html`. Подробности пересборки — в [essence-generation.md](essence-generation.md) §9.
+При наличии **`essence_N/essence_N.md`** скрипт контента добавляет ссылки **«Суть урока»** и **«Voice (HTML)»** на конспект и на `essence_N.html`. Подробности пересборки — в [essence-generation.md](essence-generation.md), раздел про публикацию и пересборку.
 
 ---
 
