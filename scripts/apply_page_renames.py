@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply verified page-number renames for modules/pages/lesson */*.png (two-phase)."""
+"""Apply verified page-number renames for book/pages/lesson_*/raw/*.png (two-phase)."""
 from __future__ import annotations
 
 import shutil

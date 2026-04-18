@@ -2,7 +2,7 @@
 """Generate lesson HTML pages for GitHub Pages (copy button).
 
 Sources:
-- essence page: docs/ai_voice_promt.md (prompt block) + lesson_N/essence_N/essence_N.md
+- essence page: docs/promts/ai_voice_promt.md (prompt block) + lesson_N/essence_N/essence_N.md
 - voice lesson page: fixed roleplay prompt + lesson_N/lesson_voice_N/voice_lesson_N.md
 Run from repo root: python3 scripts/generate_essence_html.py
 Also invoked from generate_book_lesson_content_md.py
@@ -14,7 +14,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 BOOK_PAGES = REPO / "book" / "pages"
-VOICE_PROMPT_MD = REPO / "docs" / "ai_voice_promt.md"
+VOICE_PROMPT_MD = REPO / "docs" / "promts" / "ai_voice_promt.md"
 ROLEPLAY_PROMPT = """Λειτούργησε ως αυστηρός δάσκαλος ελληνικών και συνεργάτης μου για πρακτική εξάσκηση.
 
 Я новичок в греческом языке, поэтому мета-общение со мной веди на русском. У тебя две основные задачи: разыгрывать со мной диалоги по ролям и строго контролировать мою речь.
@@ -40,7 +40,7 @@ def extract_voice_prompt_block(md: str) -> str:
     """Return text inside the first ```text ... ``` fence."""
     m = re.search(r"```text\n(.*?)```", md, re.DOTALL)
     if not m:
-        raise ValueError("docs/ai_voice_promt.md: не найден блок ```text ... ```")
+        raise ValueError("docs/promts/ai_voice_promt.md: не найден блок ```text ... ```")
     return m.group(1).strip()
 
 
@@ -182,13 +182,13 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
                     title_suffix="Voice + конспект (essence)",
                     section_title=f"Конспект (essence_{n})",
                     source_md_rel=f"essence_{n}/essence_{n}.md",
-                    prompt_title="Промпт (из docs/ai_voice_promt.md)",
+                    prompt_title="Промпт (из docs/promts/ai_voice_promt.md)",
                     source_md_text=md_text,
                     voice_prompt=voice,
                     header_label=f"{chr(0x1F399)} Voice + конспект (essence)",
                     rel_readme="../../../Readme.md",
                     rel_agents="../../../agents.md",
-                    rel_prompt_link="../../../docs/ai_voice_promt.md",
+                    rel_prompt_link="../../../docs/promts/ai_voice_promt.md",
                     rel_content_html=f"content_{n}.html",
                     rel_css="../assets/lesson-content.css",
                     rel_book_pages="../",
