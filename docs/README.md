@@ -6,9 +6,11 @@
 
 ## Методички
 
-| Документ                                                                 | Назначение                                                                                            |
-|--------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md) | Слои урока (скан, оцифровка, `content`, `essence`, Voice HTML), правила конспекта, чеклисты           |
+| Документ | Назначение |
+|----------|------------|
+| [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md) | Обзор: слои урока (скан, оцифровка, `content`, `essence`, Voice), границы `lesson_N` / `raw/`         |
+| [essence-generation.md](essence-generation.md)                           | Правила конспекта `essence_N.md`: содержание, структура, `digitized`, эталоны, чеклист                |
+| [voice-generation.md](voice-generation.md)                               | `essence_N.html`, `voice_lesson_*.html`, промпты, связь с `content_N.md`                              |
 | [voice-lesson-from-digitized.md](voice-lesson-from-digitized.md)         | Пайплайн `voice_lesson_N.md` из `lesson_N_digitized.md`, структура папок, интеграция в `content_N.md` |
 
 ## Промпты (`docs/promts/`)

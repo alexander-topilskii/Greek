@@ -79,7 +79,7 @@
 | Артефакт | Роль |
 |----------|------|
 | `lesson_N_digitized.md` | Единственный обязательный вход для **этого** пайплайна. |
-| `essence_N.md` | Конспект для повторения по правилам [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md); может существовать параллельно. |
+| `essence_N.md` | Конспект для повторения по правилам [essence-generation.md](essence-generation.md); обзор слоёв — [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md). |
 | [promts/ai_voice_promt.md](promts/ai_voice_promt.md) | Промпт для голосовой сессии; к нему можно прикладывать **`voice_lesson_N.md`** вместо или вместе с `essence_N.md`, если сценарий урока это предполагает. |
 | [promts/voice_lesson_generation.md](promts/voice_lesson_generation.md) | Промпт для сборки **`voice_lesson_N.md`** из оцифровки (три блока: ситуации, шпаргалка, словарь). |
 

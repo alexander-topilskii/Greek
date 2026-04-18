@@ -23,6 +23,8 @@ def main() -> None:
         "Куда смотреть: [Readme.md](Readme.md) · "
         "[docs/README.md](docs/README.md) · "
         "[lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) · "
+        "[essence-generation.md](docs/essence-generation.md) · "
+        "[voice-generation.md](docs/voice-generation.md) · "
         "[voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md)\n\n"
     )
     t = t[:a] + new_intro + t[b + 1 :]
@@ -71,7 +73,7 @@ def main() -> None:
         "на конспект и файлы репозитория (см. [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) §3.1)."
     )
     new_p = (
-        "на конспект и файлы репозитория (см. [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md))."
+        "на конспект и файлы репозитория (см. [docs/essence-generation.md](docs/essence-generation.md) §1.1)."
     )
     old_s = (
         f"При наличии файла скрипт регенерации `content_N.md` / `content_N.html` добавит строки «{GEM} Суть урока» и «{MIC} Voice (HTML)» в Markdown "
