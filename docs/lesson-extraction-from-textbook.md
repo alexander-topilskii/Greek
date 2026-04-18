@@ -1,21 +1,9 @@
 # 📖 Правила выноса «урока» из учебника
 
-**[🏠 Readme](../Readme.md) → [🧭 agents.md](../AGENTS.md) → 📄 `docs/lesson-extraction-from-textbook.md`**
-
 *Методичка для авторов репозитория: как связаны сканы, оцифровка и **`essence_N.md`**, как оформлять конспект так, чтобы
 читатель **не нуждался во внешних источниках** для повторения темы и мог **отрабатывать готовый материал** без имитации
 рабочей тетради.*
 
-| ⚡ Быстрые ссылки                |                                                                                                                                          |
-|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| 🧩 Формат `.md`                 | [AGENTS.md](../AGENTS.md)                                                                                                                |
-| 📚 Точка входа по уроку         | `book/pages/lesson_N/content_N.md`                                                                                                       |
-| 💎 Конспект                     | `book/pages/lesson_N/essence_N.md`                                                                                                       |
-| 🎙 Промпт Voice + ИИ            | [ai_voice_promt.md](ai_voice_promt.md)                                                                                                   |
-| 🎙 HTML (Voice + essence)       | [essence_voice_index.html](../book/pages/essence_voice_index.html) — генерируется вместе с `content`                                     |
-| 🖼 Сканы                        | `book/pages/lesson_N/raw/{номер}.png`                                                                                                    |
-| 📷 Переименование PNG           | [page-screenshot-renaming.md](page-screenshot-renaming.md)                                                                               |
-| 🔧 Регенерация `content` + HTML | [scripts/generate_book_lesson_content_md.py](../scripts/generate_book_lesson_content_md.py) (внутри вызывает `generate_essence_html.py`) |
 
 ## 1. Что такое «урок» в этом репозитории
 

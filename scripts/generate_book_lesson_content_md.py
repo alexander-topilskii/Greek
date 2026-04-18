@@ -79,107 +79,30 @@ def page_links_line(folder: Path, n: int) -> str:
 
 
 def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
-    rel_readme = "../../../Readme.md"
-    rel_pages = "../"
-    rel_lesson = f"../../../modules/lesson_{lesson_num}/lesson.md"
-    lesson_cell = f"[lesson.md]({rel_lesson})" if lesson_md_exists(lesson_num) else "—"
-    essence_name = f"essence_{lesson_num}.md"
-    essence_rel = f"essence_{lesson_num}/essence_{lesson_num}.md"
-    essence_cell = f"[{essence_name}]({essence_rel})" if essence_md_exists(folder, lesson_num) else None
-    voice_lesson_rel = f"lesson_voice_{lesson_num}/voice_lesson_{lesson_num}.md"
-    voice_lesson_html_rel = f"lesson_voice_{lesson_num}/voice_lesson_{lesson_num}.html"
-    voice_lesson_exists = voice_lesson_md_exists(folder, lesson_num)
-    voice_essence_html_rel = f"essence_{lesson_num}.html"
+    """Minimal markdown: page list only (no breadcrumbs, no embedded PNG)."""
     out_name = content_filename(lesson_num)
     html_name = content_html_filename(lesson_num)
 
     lines = [
-        f"# 📚 Страницы учебника — урок {lesson_num}",
+        "# " + chr(0x1F4DA) + " Страницы учебника — урок " + str(lesson_num),
         "",
-        f"**[🏠 Readme]({rel_readme}) → [📘 book/pages]({rel_pages}) → 📄 `{out_name}`**",
+        "*Канон для читателя: [`" + html_name + "`](" + html_name + "). Сырьё для генератора: `raw/*.png`, при наличии `digitized/N.md`.*",
         "",
-        f"*Пользовательская точка входа: [`{html_name}`]({html_name}). Здесь (генерация) — ссылки на скан (`raw/*.png`) и оцифровку (`digitized/N.md`), если есть"
-        + ("; при необходимости — конспект в `essence_*/essence_*.md`" if essence_cell else "")
-        + ".*",
+        "## Страницы",
         "",
-        "| ⚡ Быстрые ссылки |                                                          |",
-        "|------------------|----------------------------------------------------------|",
-        f"| 📘 Урок (modules) | {lesson_cell:<56} |",
     ]
-    if essence_cell:
-        lines.append(f"| 💎 Суть урока     | {essence_cell:<56} |")
-    if essence_cell or voice_lesson_exists:
-        voice_parts: list[str] = []
-        if voice_lesson_exists:
-            voice_parts.append(f"[voice_lesson_{lesson_num}.html]({voice_lesson_html_rel})")
-            voice_parts.append(f"[voice_lesson_{lesson_num}.md]({voice_lesson_rel})")
-        if essence_cell:
-            voice_parts.append(f"[essence_{lesson_num}.html]({voice_essence_html_rel})")
-        voice_parts.append("[индекс Voice](../essence_voice_index.html)")
-        voice_cell = " · ".join(voice_parts)
-        lines.append(f"| 🎙 Voice (HTML)   | {voice_cell:<56} |")
-    lines.extend(
-        [
-        "| 📑 Оглавление    | [К навигации по страницам](#lesson-pages-nav)            |",
-        "| 🖼 Превью        | [К превью страниц](#lesson-pages-preview)                |",
-        "",
-        ]
-    )
-    lines.extend(
-        [
-            '<a id="lesson-pages-nav"></a>',
-            "",
-            "## 🔢 Навигация по страницам",
-            "",
-        ]
-    )
 
     if not nums:
         lines.extend(
             [
-                "Пока нет файлов `raw/*.png` — добавьте сканы страниц учебника в папку `raw/`.",
+                "(Нет `raw/*.png` в папке `raw/`.)",
                 "",
             ]
         )
     else:
         for n in nums:
-            lines.append(f"- **{n}** — {page_links_line(folder, n)}")
+            lines.append("- **" + str(n) + "** — " + page_links_line(folder, n))
         lines.append("")
-
-    lines.extend(
-        [
-            '<a id="lesson-pages-preview"></a>',
-            "",
-            "## 🖼 Просмотр страниц",
-            "",
-        ]
-    )
-    if nums:
-        lines.extend(
-            [
-                "Ниже — превью в порядке номеров страницы; перед картинкой — те же ссылки, что в навигации.",
-                "",
-            ]
-        )
-        for n in nums:
-            sub = page_links_line(folder, n)
-            lines.extend(
-                [
-                    f"### Стр. {n}",
-                    "",
-                    sub,
-                    "",
-                    f"![Страница {n}]({rel_raw_png(n)})",
-                    "",
-                ]
-            )
-    else:
-        lines.extend(
-            [
-                "Здесь появятся превью после добавления `*.png` в папку `raw/`.",
-                "",
-            ]
-        )
 
     folder.mkdir(parents=True, exist_ok=True)
     out_path = folder / out_name

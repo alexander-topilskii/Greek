@@ -12,9 +12,12 @@ def main() -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     lines = digit_path.read_text(encoding="utf-8").splitlines()
+    ANCHOR_LINE_BASE = 25
+    _cur_anchor = next(i for i, ln in enumerate(lines) if '<a id="' in ln)
+    _slice_shift = ANCHOR_LINE_BASE - _cur_anchor
 
     def sl(a: int, b: int) -> str:
-        return "\n".join(lines[a:b]).rstrip()
+        return "\n".join(lines[a - _slice_shift : b - _slice_shift]).rstrip()
 
     mic = chr(0x1F399)
     house = chr(0x1F3E0)
@@ -45,22 +48,6 @@ def main() -> None:
 
     ln(f"# {mic} Голосовой урок 3 (по оцифровке главы)")
     ln()
-    ln(
-        f"**[{house} Readme](../../../../Readme.md) → [{book} content_3.md](../content_3.md) "
-        f"→ {page} `lesson_voice_3/voice_lesson_3.md`**"
-    )
-    ln()
-    ln(f"| {zap} Быстрые ссылки |                                                                    |")
-    ln("|------------------|--------------------------------------------------------------------|")
-    ln(f"| {book} Урок          | [content_3.md](../content_3.md)                                    |")
-    ln(f"| {page} Оцифровка     | [lesson_3_digitized.md](../lesson_digitized/lesson_3_digitized.md) |")
-    ln(f"| {gem} Суть урока    | [essence_3/essence_3.md](../essence_3/essence_3.md)                                    |")
-    ln(
-        f"| {mic} Voice (HTML)  | [voice_lesson_3.html](voice_lesson_3.html) · "
-        f"[essence_3.html](../essence_3.html)                                |"
-    )
-    ln()
-
     ln("### Блок 1: Коммуникативные ситуации и ролевые игры")
     ln()
 

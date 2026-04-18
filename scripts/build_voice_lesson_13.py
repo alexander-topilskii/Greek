@@ -53,27 +53,23 @@ def strip_colored_pos_bullet(s: str) -> str:
 
 def main() -> None:
     L = DIG.read_text(encoding="utf-8").splitlines()
+    ANCHOR_LINE_BASE = 31
+    _cur_anchor = next(i for i, ln in enumerate(L) if '<a id="' in ln)
+    _line_shift = ANCHOR_LINE_BASE - _cur_anchor
+
+    def _dl(n: int) -> str:
+        return L[n - _line_shift]
+
     if len(L) < 900:
         raise SystemExit("digitized too short")
 
-    br_a, br_b = table_two_cells(L[283])
-    party_a, party_b = table_two_cells(L[608])
-    int_a, int_b = table_two_cells(L[884])
+    br_a, br_b = table_two_cells(_dl(283))
+    party_a, party_b = table_two_cells(_dl(608))
+    int_a, int_b = table_two_cells(_dl(884))
 
     lines: list[str] = [
         f"# {MIC} Голосовой урок 13 (по оцифровке главы)",
         "",
-        f"**[{HOME} Readme](../../../../Readme.md) → [{BOOK} content_13.md](../content_13.md) → {PAGE} `lesson_voice_13/voice_lesson_13.md`**",
-        "",
-        f"| {ZAP} Быстрые ссылки |                                                                     |",
-        "|------------------|---------------------------------------------------------------------|",
-        f"| {BOOK} Урок          | [content_13.md](../content_13.md)                                    |",
-        f"| {PAGE} Оцифровка     | [lesson_13_digitized.md](../lesson_digitized/lesson_13_digitized.md) |",
-        f"| {GEM} Суть урока    | [essence_13/essence_13.md](../essence_13/essence_13.md)                                    |",
-        (
-            f"| {MIC} Voice (HTML)  | [voice_lesson_13.html](voice_lesson_13.html) · "
-            f"[essence_13.html](../essence_13.html)                                |"
-        ),
         "",
         "### Блок 1: Коммуникативные ситуации (Ролевые игры)",
         "",
@@ -82,17 +78,17 @@ def main() -> None:
         "* **Роль А:** Панайотис / Элени / Хамидт — по очереди ведите диалог.",
         "* **Роль Б:** Пабло и остальные — отвечайте по оцифровке.",
         f"* {TGT} **Чек-лист для ситуации:**",
-        f"  - *{dialogue_tail(L[65])}* — Добрый вечер. С праздником, Пабло. Чтобы жил(а).",
-        f"  - *{dialogue_tail(L[67])}* — Будь здоров, Панайотис.",
-        f"  - *{dialogue_tail(L[71])}* — Спасибо! Представляю друзей из школы…",
-        f"  - *{dialogue_tail(L[79])}* — Вы вместе учитесь? Как ты его познал?",
-        f"  - *{dialogue_tail(L[81])}* — Через друга Никоса; Пабло подменял в кафенейоне…",
-        f"  - *{dialogue_tail(L[83])}* — (Никос) Едет с Мелек. В пути. Ты был в Англии на каникулах?",
-        f"  - *{dialogue_tail(L[89])}* — К счастью. Конец благой — всё благо… Давно в Греции, Элени?",
-        f"  - *{dialogue_tail(L[91])}* — Шесть лет… Большая история! Муж из Сербии…",
-        f"  - *{dialogue_tail(L[99])}* — Родилась в Афинах, выросла в Австралии…",
-        f"  - *{dialogue_tail(L[101])}* — Не сам на работе учил греческий — помог брат…",
-        f"  - *{strip_lead_dash(L[37])}* — Родился(ась)… вырос(ла)… (вводная рамка).",
+        f"  - *{dialogue_tail(_dl(65))}* — Добрый вечер. С праздником, Пабло. Чтобы жил(а).",
+        f"  - *{dialogue_tail(_dl(67))}* — Будь здоров, Панайотис.",
+        f"  - *{dialogue_tail(_dl(71))}* — Спасибо! Представляю друзей из школы…",
+        f"  - *{dialogue_tail(_dl(79))}* — Вы вместе учитесь? Как ты его познал?",
+        f"  - *{dialogue_tail(_dl(81))}* — Через друга Никоса; Пабло подменял в кафенейоне…",
+        f"  - *{dialogue_tail(_dl(83))}* — (Никос) Едет с Мелек. В пути. Ты был в Англии на каникулах?",
+        f"  - *{dialogue_tail(_dl(89))}* — К счастью. Конец благой — всё благо… Давно в Греции, Элени?",
+        f"  - *{dialogue_tail(_dl(91))}* — Шесть лет… Большая история! Муж из Сербии…",
+        f"  - *{dialogue_tail(_dl(99))}* — Родилась в Афинах, выросла в Австралии…",
+        f"  - *{dialogue_tail(_dl(101))}* — Не сам на работе учил греческий — помог брат…",
+        f"  - *{strip_lead_dash(_dl(37))}* — Родился(ась)… вырос(ла)… (вводная рамка).",
         "",
         "---",
         "",
@@ -100,11 +96,11 @@ def main() -> None:
         "* **Контекст:** Цветные блоки с готовыми фразами после первого диалога.",
         "* **Роль А / Б:** Произносите реплики по цветовым группам; переводите смысл на русский вслух.",
         f"* {TGT} **Чек-лист для ситуации:**",
-        f"  - *{strip_colored_pos_bullet(L[107])}*",
-        f"  - *{strip_colored_pos_bullet(L[108])}*",
-        f"  - *{strip_colored_pos_bullet(L[109])}*",
-        f"  - *{strip_colored_pos_bullet(L[110])}*",
-        f"  - *{strip_colored_pos_bullet(L[111])}*",
+        f"  - *{strip_colored_pos_bullet(_dl(107))}*",
+        f"  - *{strip_colored_pos_bullet(_dl(108))}*",
+        f"  - *{strip_colored_pos_bullet(_dl(109))}*",
+        f"  - *{strip_colored_pos_bullet(_dl(110))}*",
+        f"  - *{strip_colored_pos_bullet(_dl(111))}*",
         "",
         "---",
         "",
@@ -113,15 +109,15 @@ def main() -> None:
         "* **Роль А:** Ведущий за столом — тосты и объяснение формул; Хамидт — коротко о себе; Марина — о собаке.",
         "* **Роль Б:** Пабло приносит напитки и блюдо; гости отвечают.",
         f"* {TGT} **Чек-лист для ситуации:**",
-        f"  - *{dialogue_tail(L[296])}* — Принёс напитки.",
-        f"  - *{dialogue_tail(L[298])}* — За твоё здоровье! С праздником!",
-        f"  - *{dialogue_tail(L[300])}* — «Да проживёшь сотню» — сто лет…",
-        f"  - *{dialogue_tail(L[302])}* — Или «да наживёшь тысячу»…",
-        f"  - *{dialogue_tail(L[312])}* — Три года в Греции; война на родине…",
-        f"  - *{dialogue_tail(L[320])}* — Мелек, Никос, Марина: добрый вечер.",
-        f"  - *{dialogue_tail(L[322])}* — Пришла и Кукла! Добро пожаловать!",
-        f"  - *{dialogue_tail(L[330])}* — Паэлья; идём к столу.",
-        f"  - *{dialogue_tail(L[332])}* — Общий отклик гостей.",
+        f"  - *{dialogue_tail(_dl(296))}* — Принёс напитки.",
+        f"  - *{dialogue_tail(_dl(298))}* — За твоё здоровье! С праздником!",
+        f"  - *{dialogue_tail(_dl(300))}* — «Да проживёшь сотню» — сто лет…",
+        f"  - *{dialogue_tail(_dl(302))}* — Или «да наживёшь тысячу»…",
+        f"  - *{dialogue_tail(_dl(312))}* — Три года в Греции; война на родине…",
+        f"  - *{dialogue_tail(_dl(320))}* — Мелек, Никос, Марина: добрый вечер.",
+        f"  - *{dialogue_tail(_dl(322))}* — Пришла и Кукла! Добро пожаловать!",
+        f"  - *{dialogue_tail(_dl(330))}* — Паэлья; идём к столу.",
+        f"  - *{dialogue_tail(_dl(332))}* — Общий отклик гостей.",
         "",
         "---",
         "",
@@ -142,11 +138,11 @@ def main() -> None:
         f"* {TGT} **Чек-лист для ситуации:**",
         f"  - *{int_a.strip()}* — Роль Б: интервьюируемый 90 лет.",
         f"  - *{int_b.strip()}* — Роль А: журналист.",
-        f"  - *{strip_lead_dash(L[146])}* — Когда и где ты родился(ась)?",
-        f"  - *{strip_lead_dash(L[147])}* — Где вырос(ла)?",
-        f"  - *{strip_lead_dash(L[148])}* *{strip_lead_dash(L[149])}* · *{strip_lead_dash(L[150])}* — Работа (условный блок).",
-        f"  - *{strip_lead_dash(L[151])}* *{strip_lead_dash(L[152])}* · *{strip_lead_dash(L[153])}* · *{strip_lead_dash(L[154])}* — Брак и дети.",
-        f"  - *{strip_lead_dash(L[155])}* *{strip_lead_dash(L[156])}* · *{strip_lead_dash(L[157])}* — Жизнь в Греции и язык.",
+        f"  - *{strip_lead_dash(_dl(146))}* — Когда и где ты родился(ась)?",
+        f"  - *{strip_lead_dash(_dl(147))}* — Где вырос(ла)?",
+        f"  - *{strip_lead_dash(_dl(148))}* *{strip_lead_dash(_dl(149))}* · *{strip_lead_dash(_dl(150))}* — Работа (условный блок).",
+        f"  - *{strip_lead_dash(_dl(151))}* *{strip_lead_dash(_dl(152))}* · *{strip_lead_dash(_dl(153))}* · *{strip_lead_dash(_dl(154))}* — Брак и дети.",
+        f"  - *{strip_lead_dash(_dl(155))}* *{strip_lead_dash(_dl(156))}* · *{strip_lead_dash(_dl(157))}* — Жизнь в Греции и язык.",
         "",
         "---",
         "",
@@ -154,18 +150,18 @@ def main() -> None:
         "",
         "**Вводная рамка «Η ιστορία της ζωής μου»**",
         "",
-        f"* **{strip_lead_dash(L[37])}** — *Родился(ась) в Афинах, но вырос(ла) в Австралии.*",
-        f"* **{strip_lead_dash(L[38])}** — *Приехал(а) в Грецию в прошлом году.*",
-        f"* **{strip_lead_dash(L[39])}** — *Нашёл(ла) работу в Салониках.*",
-        f"* **{strip_lead_dash(L[40])}** — *С праздником! Чтобы жил(а)!*",
+        f"* **{strip_lead_dash(_dl(37))}** — *Родился(ась) в Афинах, но вырос(ла) в Австралии.*",
+        f"* **{strip_lead_dash(_dl(38))}** — *Приехал(а) в Грецию в прошлом году.*",
+        f"* **{strip_lead_dash(_dl(39))}** — *Нашёл(ла) работу в Салониках.*",
+        f"* **{strip_lead_dash(_dl(40))}** — *С праздником! Чтобы жил(а)!*",
         "",
         "**«Πώς το λένε» — после первого диалога**",
         "",
-        f"* **{strip_colored_pos_bullet(L[107])}** — *С праздником! · Чтобы жил(а)! · Будь здоров!*",
-        f"* **{strip_colored_pos_bullet(L[108])}** — *Едет. В пути.*",
-        f"* **{strip_colored_pos_bullet(L[109])}** — *Это тебе. · Тысяча благодарностей.*",
-        f"* **{strip_colored_pos_bullet(L[110])}** — *Конец благой — всё благо.*",
-        f"* **{strip_colored_pos_bullet(L[111])}** — *Родился(ась) в Афинах, вырос(ла) в Австралии.*",
+        f"* **{strip_colored_pos_bullet(_dl(107))}** — *С праздником! · Чтобы жил(а)! · Будь здоров!*",
+        f"* **{strip_colored_pos_bullet(_dl(108))}** — *Едет. В пути.*",
+        f"* **{strip_colored_pos_bullet(_dl(109))}** — *Это тебе. · Тысяча благодарностей.*",
+        f"* **{strip_colored_pos_bullet(_dl(110))}** — *Конец благой — всё благо.*",
+        f"* **{strip_colored_pos_bullet(_dl(111))}** — *Родился(ась) в Афинах, вырос(ла) в Австралии.*",
         "",
         "**Тосты и пожелания (фрагмент B11 + список 2.5)**",
         "",

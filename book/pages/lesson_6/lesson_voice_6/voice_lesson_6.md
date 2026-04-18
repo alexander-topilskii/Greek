@@ -1,13 +1,5 @@
 # 🎙 Голосовой урок 6 (по оцифровке главы)
 
-**[🏠 Readme](../../../../Readme.md) → [📚 content_6.md](../content_6.md) → 📄 `lesson_voice_6/voice_lesson_6.md`**
-
-| ⚡ Быстрые ссылки |                                                                    |
-|------------------|--------------------------------------------------------------------|
-| 📚 Урок          | [content_6.md](../content_6.md)                                    |
-| 📄 Оцифровка     | [lesson_6_digitized.md](../lesson_digitized/lesson_6_digitized.md) |
-| 💎 Суть урока    | [essence_6/essence_6.md](../essence_6/essence_6.md)                                    |
-| 🎙 Voice (HTML)  | [essence_6.html](../essence_6.html)                                |
 
 ### Блок 1: Коммуникативные ситуации (Ролевые игры)
 

@@ -1,13 +1,5 @@
 # 🎙 Голосовой урок по оцифровке главы
 
-**[🏠 Readme](../Readme.md) → [🧭 agents.md](../AGENTS.md) → 📄 `docs/voice-lesson-from-digitized.md`**
-
-| ⚡ Быстрые ссылки          |                                                                                                |
-|---------------------------|------------------------------------------------------------------------------------------------|
-| 📖 Оцифровка и конспект   | [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md)                       |
-| 🎙 Промпт Voice + essence | [ai_voice_promt.md](ai_voice_promt.md) · [индекс HTML](../book/pages/essence_voice_index.html) |
-| 📄 Точка входа урока      | `book/pages/lesson_N/content_N.md`                                                             |
-
 Этот документ задаёт **стандарт создания «голосового урока»**: практический раздаточный материал для разговорной
 отработки, **строго по тексту** единой цифровой главы урока из `lesson_digitized/`.
 

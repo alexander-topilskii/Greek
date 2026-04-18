@@ -1,13 +1,5 @@
 # 🎙 Голосовой урок 9 (по оцифровке главы)
 
-**[🏠 Readme](../../../../Readme.md) → [📚 content_9.md](../content_9.md) → 📄 `lesson_voice_9/voice_lesson_9.md`**
-
-| ⚡ Быстрые ссылки |                                                                    |
-|------------------|--------------------------------------------------------------------|
-| 📚 Урок          | [content_9.md](../content_9.md)                                    |
-| 📄 Оцифровка     | [lesson_9_digitized.md](../lesson_digitized/lesson_9_digitized.md) |
-| 💎 Суть урока    | [essence_9/essence_9.md](../essence_9/essence_9.md)                                    |
-| 🎙 Voice (HTML)  | [essence_9.html](../essence_9.html)                                |
 
 ### Блок 1: Коммуникативные ситуации (Ролевые игры)
 

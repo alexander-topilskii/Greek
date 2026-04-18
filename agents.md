@@ -1,18 +1,8 @@
 # 🧩 Markdown Formatting Rules (Project Standard)
 
-[🏠 Readme](Readme.md) → 🧭 `agents.md`
+Правила для всех `.md` в репозитории. **Крошки и таблица «быстрые ссылки» в шапке — только у корневого [Readme.md](Readme.md).** В остальных файлах после `# …` сразу содержание (при необходимости курсив-ввод), без навигации по репозиторию; читательские переходы — в HTML (`content_N.html`, `essence_N.html`, индексы).
 
-| ⚡ Быстрые ссылки  |                                                                 |
-|-------------------|-----------------------------------------------------------------|
-| 🏠 Readme         | [Readme.md](Readme.md)                                          |
-| 📘 Уроки          | [К таблице уроков](#5-lesson-table-readme)                      |
-| 🧾 Суммарный      | [К спискам](#6-summary-section-суммарный)                       |
-| 🎙 Voice + essence | [essence_voice_index.html](book/pages/essence_voice_index.html) |
-| 📷 Скриншоты стр. | [page-screenshot-renaming.md](docs/page-screenshot-renaming.md) |
-| 📖 Урок из учебника | [lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) |
-| 🎙 Голосовой урок (оцифровка) | [voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md) |
-
-Use these rules for all new `.md` pages in this repo.
+Куда смотреть: [Readme.md](Readme.md) · [essence_voice_index.html](book/pages/essence_voice_index.html) · [lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) · [voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md) · [page-screenshot-renaming.md](docs/page-screenshot-renaming.md)
 
 ## 1. 🎯 Headings and emojis
 
@@ -21,44 +11,29 @@ Use these rules for all new `.md` pages in this repo.
 - Section headers use `##` and can include emojis to improve scanability.
 - Keep emojis consistent across similar sections (e.g. `📚 Материалы`, `🔁 Переходы`).
 
-## 2. 🧭 Breadcrumbs (Хлебные крошки)
+## 2. Без шапки-навигации в Markdown (кроме корневого Readme)
 
-- Immediately after the title, add a bold breadcrumbs line.
-- Format:
-    - `[🏠 Readme](../../Readme.md) → ... → 📄 \`file.md\``
-- Use the correct relative path for the current file.
-- Use backticks for the current filename.
+- Не добавляй строку хлебных крошек `**[🏠 Readme](...) → …**`.
+- Не добавляй двухколоночную таблицу «быстрые ссылки» на другие файлы репозитория сразу под заголовком.
+- Не добавляй в `lesson_*_digitized.md` блок «## … Навигация по разделам» со списком якорей по главе.
+- Исключение: **[Readme.md](Readme.md)** в корне — там сохраняются оглавление и таблица уроков.
+- Таблицы **внутри** учебного текста (спряжения, лексика) не считаются навигацией и допустимы.
 
-## 3. ⚡ Quick links table (⚡ Быстрые ссылки)
+## 3. Вводный абзац
 
-- After breadcrumbs, add a compact two-column table.
-- Example structure:
-    - `| ⚡ Быстрые ссылки    |                                                          |`
-    - `|---------------------|----------------------------------------------------------|`
-    - `| 📄 Список слов      | [all.md](all.md)                                         |`
-- Keep the header row left-aligned and pad spacing for neat monospace alignment.
-- Use consistent labels and emojis:
-    - `📄 Список слов`
-    - `🧠 Карточки`
-    - `🧭 Навигация урока`
-    - `🧾 Суммарный список`
-    - `📘 Правила`
+- Сразу после `#` можно один короткий курсив с контекстом (*источник страницы, тема*), без таблиц.
 
-## 4. 🧭 Navigation sections
+## 4. Разделы со ссылками (содержание, не «хром» сайта)
 
-- Use sections like:
-    - `## 📚 Материалы`
-    - `## 🔁 Переходы`
-- Links are bullet lists with emoji prefixes.
-- Example bullet:
-    - `- 🧠 [index.html](index.html)`
+- Разделы вроде `## 📚 Материалы` с предметными ссылками допустимы, если это часть материала, а не дублирование шапки сайта.
+
 
 ## 5. 📘 Lesson table (Readme)
 
-- В `Readme.md` одна колонка: ссылка на **`content_{N}.html`** как точку входа по уроку для читателя (`lesson_0` … `lesson_20`). Файл **`content_{N}.md`** пересобирается тем же скриптом, что и HTML (`scripts/generate_book_lesson_content_md.py`), и служит источником/синхронным дублем для диффов и превью в репозитории; в пользовательской навигации используйте HTML.
-- Ссылки на сканы (`raw/*.png`), оцифровки (`digitized/N.md`), при наличии — **`lesson_digitized/lesson_N_digitized.md`**, конспект и voice задаются **внутри** сгенерированного `content_N.html` / `content_N.md`, не дублируются отдельными колонками в Readme.
-- Опционально в `book/pages/lesson_N/` можно добавить **`essence_N.md`** — **практическая замена** печатного материала для повторения: правила, фразы, словарь. **В тексте конспекта нельзя** упоминать или подразумевать учебник, книгу, пособие — читатель опирается только на конспект и файлы репозитория (см. [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) §3.1). Рекомендуемый порядок: **грамматика → готовые фразы/диалоги → [опционально] эталоны → словарь в конце**; **в конце раздела со словарём (📇)** — **итоговая таблица** всех **уникальных** слов и форм из материала урока в учебнике, **включая слова из названий и условий заданий**, с переводом (греч. | рус.). Вместо сносок «это не входит в активный словарь» давай **пояснение + таблицу или примеры для тренировки**. При наличии файла скрипт регенерации `content_N.md` / `content_N.html` добавит строки «💎 Суть урока» и «🎙 Voice (HTML)» в Markdown и обновит сгенерированный **`essence_N.html`** (промпт из [docs/ai_voice_promt.md](docs/ai_voice_promt.md) + конспект; индекс: [essence_voice_index.html](book/pages/essence_voice_index.html)). Подробный чеклист: [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md).
-- Опционально **`lesson_voice_N/voice_lesson_N.md`** — раздаточный материал для разговорной отработки **по единой оцифровке** `lesson_digitized/lesson_N_digitized.md`: чеклист, структура папки, промпт и ссылка из сгенерированного оглавления (`content_N.html` / `content_N.md`) — [docs/voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md).
+- В `Readme.md` одна колонка: ссылка на **`content_{N}.html`** как точку входа по уроку для читателя (`lesson_0` … `lesson_20`). Файл **`content_{N}.md`** пересобирается тем же скриптом, что и HTML (`scripts/generate_book_lesson_content_md.py`), и служит сырьём для диффов; в пользовательской навигации используйте HTML.
+- Ссылки на сканы (`raw/*.png`), оцифровки (`digitized/N.md`), при наличии — **`lesson_digitized/lesson_N_digitized.md`**, конспект и voice задаются **внутри** `content_N.html` / минимального `content_N.md`, не дублируются отдельными колонками в Readme.
+- Опционально в `book/pages/lesson_N/` можно добавить **`essence_N.md`** — **практическая замена** печатного материала для повторения: правила, фразы, словарь. **В тексте конспекта нельзя** упоминать или подразумевать учебник, книгу, пособие — читатель опирается только на конспект и файлы репозитория (см. [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md)). Рекомендуемый порядок: **грамматика → готовые фразы/диалоги → [опционально] эталоны → словарь в конце**; **в конце раздела со словарём (📇)** — **итоговая таблица** всех **уникальных** слов и форм из материала урока в учебнике, **включая слова из названий и условий заданий**, с переводом (греч. | рус.). Вместо сносок «это не входит в активный словарь» давай **пояснение + таблицу или примеры для тренировки**. При наличии файла скрипт регенерации `content_N.md` / `content_N.html` обновляет **`essence_N.html`** (промпт из [docs/ai_voice_promt.md](docs/ai_voice_promt.md) + конспект; индекс: [essence_voice_index.html](book/pages/essence_voice_index.html)). Подробный чеклист: [docs/lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md).
+- Опционально **`lesson_voice_N/voice_lesson_N.md`** — раздаточный материал для разговорной отработки **по единой оцифровке** `lesson_digitized/lesson_N_digitized.md`: чеклист, структура папки, промпт — [docs/voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md).
 - Ссылки на слова/карточки в других модулях оформляй отдельно, не в этой таблице.
 
 ## 6. 🧾 Summary section (Суммарный)

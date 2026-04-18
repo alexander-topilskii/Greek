@@ -1,13 +1,5 @@
 # 🎙 Голосовой урок 8 (по оцифровке главы)
 
-**[🏠 Readme](../../../../Readme.md) → [📚 content_8.md](../content_8.md) → 📄 `lesson_voice_8/voice_lesson_8.md`**
-
-| ⚡ Быстрые ссылки |                                                                    |
-|------------------|--------------------------------------------------------------------|
-| 📚 Урок          | [content_8.md](../content_8.md)                                    |
-| 📄 Оцифровка     | [lesson_8_digitized.md](../lesson_digitized/lesson_8_digitized.md) |
-| 💎 Суть урока    | [essence_8/essence_8.md](../essence_8/essence_8.md)                                    |
-| 🎙 Voice (HTML)  | [essence_8.html](../essence_8.html)                                |
 
 ### Блок 1: Коммуникативные ситуации (Ролевые игры)
 

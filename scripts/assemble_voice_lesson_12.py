@@ -12,9 +12,12 @@ def main() -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     lines = digit_path.read_text(encoding="utf-8").splitlines()
+    ANCHOR_LINE_BASE = 31
+    _cur_anchor = next(i for i, ln in enumerate(lines) if '<a id="' in ln)
+    _slice_shift = ANCHOR_LINE_BASE - _cur_anchor
 
     def sl(a: int, b: int) -> str:
-        return "\n".join(lines[a:b]).rstrip()
+        return "\n".join(lines[a - _slice_shift : b - _slice_shift]).rstrip()
 
     mic = chr(0x1F399)
     house = chr(0x1F3E0)
@@ -49,21 +52,6 @@ def main() -> None:
         out.append(s)
 
     ln(f"# {mic} \u0413\u043e\u043b\u043e\u0441\u043e\u0432\u043e\u0439 \u0443\u0440\u043e\u043a 12 (\u043f\u043e \u043e\u0446\u0438\u0444\u0440\u043e\u0432\u043a\u0435 \u0433\u043b\u0430\u0432\u044b)")
-    ln()
-    ln(
-        f"**[{house} Readme](../../../../Readme.md) \u2192 [{book} content_12.md](../content_12.md) "
-        f"\u2192 {page} `lesson_voice_12/voice_lesson_12.md`**"
-    )
-    ln()
-    ln(f"| {zap} \u0411\u044b\u0441\u0442\u0440\u044b\u0435 \u0441\u0441\u044b\u043b\u043a\u0438 |                                                                    |")
-    ln("|------------------|--------------------------------------------------------------------|")
-    ln(f"| {book} \u0423\u0440\u043e\u043a          | [content_12.md](../content_12.md)                                    |")
-    ln(f"| {page} \u041e\u0446\u0438\u0444\u0440\u043e\u0432\u043a\u0430     | [lesson_12_digitized.md](../lesson_digitized/lesson_12_digitized.md) |")
-    ln(f"| {gem} \u0421\u0443\u0442\u044c \u0443\u0440\u043e\u043a\u0430    | [essence_12/essence_12.md](../essence_12/essence_12.md)                                    |")
-    ln(
-        f"| {mic} Voice (HTML)  | [voice_lesson_12.html](voice_lesson_12.html) · "
-        f"[essence_12.html](../essence_12.html)                                |"
-    )
     ln()
     ln("### \u0411\u043b\u043e\u043a 1: \u041a\u043e\u043c\u043c\u0443\u043d\u0438\u043a\u0430\u0442\u0438\u0432\u043d\u044b\u0435 \u0441\u0438\u0442\u0443\u0430\u0446\u0438\u0438 \u0438 \u0440\u043e\u043b\u0435\u0432\u044b\u0435 \u0438\u0433\u0440\u044b")
     ln()

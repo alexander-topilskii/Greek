@@ -72,7 +72,7 @@ def build_page_html(
     rel_readme: str,
     rel_agents: str,
     rel_prompt_link: str | None,
-    rel_content_md: str,
+    rel_content_html: str,
     rel_index: str,
 ) -> str:
     """Single static HTML; links are relative to book/pages/lesson_N/*."""
@@ -132,7 +132,7 @@ def build_page_html(
       <a href="{html_escape(rel_readme)}">Readme</a>
       <a href="{html_escape(rel_agents)}">agents</a>
       {prompt_link_html}
-      <a href="{html_escape(rel_content_md)}">content_{lesson_num}.md</a>
+      <a href="{html_escape(rel_content_html)}">content_{lesson_num}.html</a>
       <a href="{html_escape(source_md_rel)}">{html_escape(source_md_rel.split('/')[-1])}</a>
       <a href="{html_escape(rel_index)}">Все уроки (индекс)</a>
     </span>
@@ -274,7 +274,7 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
                     rel_readme="../../../Readme.md",
                     rel_agents="../../../agents.md",
                     rel_prompt_link="../../../docs/ai_voice_promt.md",
-                    rel_content_md=f"content_{n}.md",
+                    rel_content_html=f"content_{n}.html",
                     rel_index="../essence_voice_index.html",
                 ),
                 encoding="utf-8",
@@ -303,7 +303,7 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
                     rel_readme="../../../../Readme.md",
                     rel_agents="../../../../agents.md",
                     rel_prompt_link=None,
-                    rel_content_md=f"../content_{n}.md",
+                    rel_content_html=f"../content_{n}.html",
                     rel_index="../../essence_voice_index.html",
                 ),
                 encoding="utf-8",

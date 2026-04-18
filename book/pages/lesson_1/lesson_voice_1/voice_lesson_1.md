@@ -1,14 +1,5 @@
 # 🎙 Голосовой урок 1 (по оцифровке главы)
 
-**[🏠 Readme](../../../../Readme.md) → [📚 content_1.md](../content_1.md) → 📄 `lesson_voice_1/voice_lesson_1.md`**
-
-| ⚡ Быстрые ссылки |                                                                    |
-|------------------|--------------------------------------------------------------------|
-| 📚 Урок          | [content_1.md](../content_1.md)                                    |
-| 📄 Оцифровка     | [lesson_1_digitized.md](../lesson_digitized/lesson_1_digitized.md) |
-| 💎 Суть урока    | [essence_1/essence_1.md](../essence_1/essence_1.md)                                    |
-| 🎙 Voice (HTML)  | [essence_1.html](../essence_1.html)                                |
-
 ### Блок 1: Коммуникативные ситуации (Ролевые игры)
 
 * **Ситуация 1: Кафене, знакомство через третье лицо**
