@@ -23,8 +23,7 @@ def main() -> None:
         "Куда смотреть: [Readme.md](Readme.md) · "
         "[docs/README.md](docs/README.md) · "
         "[lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) · "
-        "[voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md) · "
-        "[page-screenshot-renaming.md](docs/page-screenshot-renaming.md)\n\n"
+        "[voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md)\n\n"
     )
     t = t[:a] + new_intro + t[b + 1 :]
 

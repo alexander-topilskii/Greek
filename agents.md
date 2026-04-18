@@ -2,7 +2,7 @@
 
 Правила для всех `.md` в репозитории. **Крошки и таблица «быстрые ссылки» в шапке — только у корневого [Readme.md](Readme.md).** В остальных файлах после `# …` сразу содержание (при необходимости курсив-ввод), без навигации по репозиторию; читательские переходы — в HTML (`content_N.html`, при наличии `essence_N.html` и `lesson_voice_N/voice_lesson_N.html`).
 
-Куда смотреть: [Readme.md](Readme.md) · [docs/README.md](docs/README.md) · [lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) · [voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md) · [page-screenshot-renaming.md](docs/page-screenshot-renaming.md)
+Куда смотреть: [Readme.md](Readme.md) · [docs/README.md](docs/README.md) · [lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) · [voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md)
 
 ## 1. 🎯 Headings and emojis
 
@@ -60,8 +60,7 @@
 - При переименовании PNG в **`book/pages/lesson_N/raw/`** в вид **`{номер}.png`** по номеру в колонтитуле страницы следуй полному чеклисту:
   надёжная идентификация номера (OCR только как помощник), проверка диапазона, **двухфазное** переименование без
   коллизий, поиск битых ссылок в репо.
-- Подробности, типичные ошибки OCR и шаблон
-  процесса: [docs/page-screenshot-renaming.md](docs/page-screenshot-renaming.md).
+- Пример двухфазного переноса с таблицей соответствий: [scripts/apply_page_renames.py](scripts/apply_page_renames.py).
 
 ## 10. UTF-8, греческий текст и генерация файлов
 
