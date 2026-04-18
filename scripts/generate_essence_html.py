@@ -15,7 +15,6 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 BOOK_PAGES = REPO / "book" / "pages"
 VOICE_PROMPT_MD = REPO / "docs" / "ai_voice_promt.md"
-INDEX_HTML = BOOK_PAGES / "essence_voice_index.html"
 ROLEPLAY_PROMPT = """Λειτούργησε ως αυστηρός δάσκαλος ελληνικών και συνεργάτης μου για πρακτική εξάσκηση.
 
 Я новичок в греческом языке, поэтому мета-общение со мной веди на русском. У тебя две основные задачи: разыгрывать со мной диалоги по ролям и строго контролировать мою речь.
@@ -73,9 +72,11 @@ def build_page_html(
     rel_agents: str,
     rel_prompt_link: str | None,
     rel_content_html: str,
-    rel_index: str,
+    rel_css: str,
+    rel_book_pages: str,
+    current_file_label: str,
 ) -> str:
-    """Single static HTML; links are relative to book/pages/lesson_N/*."""
+    """Single static HTML; links are relative to book/pages/lesson_N/* or lesson_voice_N/*."""
     title = f"Урок {lesson_num} — {title_suffix}"
     import json
 
@@ -90,69 +91,45 @@ def build_page_html(
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html_escape(title)}</title>
-  <style>
-    :root {{ font-family: system-ui, sans-serif; line-height: 1.45; }}
-    body {{ max-width: 52rem; margin: 0 auto; padding: 1rem 1.25rem 3rem; color: #1a1a1a; }}
-    header.nav {{ border-bottom: 1px solid #ddd; padding-bottom: 0.75rem; margin-bottom: 1.25rem; }}
-    header.nav a {{ margin-right: 0.75rem; }}
-    button#copy-all {{
-      cursor: pointer; padding: 0.45rem 0.9rem; font-size: 0.95rem;
-      background: #0969da; color: #fff; border: none; border-radius: 6px;
-    }}
-    button#copy-all:hover {{ background: #0550ae; }}
-    .ok {{ color: #1a7f37; font-size: 0.9rem; margin-left: 0.5rem; }}
-    h2 {{ margin-top: 1.75rem; font-size: 1.15rem; }}
-    #essence-render {{ overflow-x: auto; }}
-    #essence-render table {{ border-collapse: collapse; width: 100%; }}
-    #essence-render th, #essence-render td {{ border: 1px solid #ccc; padding: 0.35rem 0.5rem; }}
-    .prompt-details {{
-      margin-top: 0.5rem; border: 1px solid #d0d7de; border-radius: 8px; background: #fafbfc;
-    }}
-    .prompt-details summary {{
-      cursor: pointer; padding: 0.65rem 1rem; font-size: 1.05rem; font-weight: 600;
-      list-style: none;
-    }}
-    .prompt-details summary::-webkit-details-marker {{ display: none; }}
-    .prompt-details summary::before {{
-      content: "▸ "; display: inline-block; width: 1.1em; color: #57606a;
-    }}
-    .prompt-details[open] summary::before {{ content: "▾ "; }}
-    .prompt-details[open] summary {{ border-bottom: 1px solid #e1e4e8; }}
-    #prompt-block {{
-      white-space: pre-wrap; background: #f6f8fa; padding: 1rem; margin: 0;
-      font-size: 0.9rem; border-radius: 0 0 7px 7px;
-    }}
-    .hint {{ font-size: 0.85rem; color: #57606a; margin-top: 0.35rem; }}
-  </style>
+  <link rel="stylesheet" href="{html_escape(rel_css)}" />
 </head>
 <body>
-  <header class="nav">
-    <strong>{html_escape(header_label)}</strong> · урок {lesson_num}
-    <span style="display:block;margin-top:0.5rem;">
+  <div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Навигация">
       <a href="{html_escape(rel_readme)}">Readme</a>
-      <a href="{html_escape(rel_agents)}">agents</a>
-      {prompt_link_html}
-      <a href="{html_escape(rel_content_html)}">content_{lesson_num}.html</a>
-      <a href="{html_escape(source_md_rel)}">{html_escape(source_md_rel.split('/')[-1])}</a>
-      <a href="{html_escape(rel_index)}">Все уроки (индекс)</a>
-    </span>
-    <p style="margin: 0.75rem 0 0;">
-      <button type="button" id="copy-all">Скопировать промпт + материал</button>
-      <span id="copy-feedback" class="ok" aria-live="polite"></span>
-    </p>
-      <p class="hint">В буфер попадает текст промпта и полный markdown файла из раздела урока.</p>
-  </header>
+      → <a href="{html_escape(rel_book_pages)}">book/pages</a>
+      → <a href="{html_escape(rel_content_html)}">content_{lesson_num}.html</a>
+      → <span>{html_escape(current_file_label)}</span>
+    </nav>
+    <h1>{html_escape(title)}</h1>
+    <p class="note">{html_escape(header_label)}</p>
 
-  <section>
-    <details class="prompt-details">
-      <summary>{html_escape(prompt_title)}</summary>
-      <div id="prompt-block"></div>
-    </details>
-  </section>
-  <section>
-    <h2>{html_escape(section_title)} ({html_escape(source_md_rel)})</h2>
-    <div id="essence-render"></div>
-  </section>
+    <header class="app-header">
+      <span class="voice-top-links">
+        <a href="{html_escape(rel_readme)}">Оглавление (Readme)</a>
+        <a href="{html_escape(rel_agents)}">agents</a>
+        {prompt_link_html}
+        <a href="{html_escape(rel_content_html)}">Страницы урока</a>
+        <a href="{html_escape(source_md_rel)}">{html_escape(source_md_rel.split('/')[-1])}</a>
+      </span>
+      <p class="copy-row">
+        <button type="button" id="copy-all">Скопировать промпт + материал</button>
+        <span id="copy-feedback" class="ok" aria-live="polite"></span>
+      </p>
+      <p class="hint">В буфер попадает текст промпта и полный markdown файла из раздела урока.</p>
+    </header>
+
+    <section>
+      <details class="prompt-details">
+        <summary>{html_escape(prompt_title)}</summary>
+        <div id="prompt-block"></div>
+      </details>
+    </section>
+    <section class="essence-section">
+      <h2>{html_escape(section_title)} ({html_escape(source_md_rel)})</h2>
+      <div id="essence-render"></div>
+    </section>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" crossorigin="anonymous"></script>
   <script>
@@ -183,68 +160,6 @@ def build_page_html(
 """
 
 
-def write_index_html(
-    essence_entries: list[tuple[int, str]],
-    voice_entries: list[tuple[int, str]],
-) -> None:
-    """Entries are (lesson_num, relative_path_from_book_pages)."""
-    essence_map = {n: rel for n, rel in essence_entries}
-    voice_map = {n: rel for n, rel in voice_entries}
-    rows = []
-    lesson_nums = sorted(set(essence_map) | set(voice_map))
-    for n in lesson_nums:
-        essence_rel = essence_map.get(n)
-        voice_rel = voice_map.get(n)
-        essence_cell = (
-            f'<a href="{html_escape(essence_rel)}">essence_{n}.html</a> · '
-            f'<a href="lesson_{n}/essence_{n}/essence_{n}.md">essence_{n}.md</a>'
-            if essence_rel
-            else "—"
-        )
-        voice_cell = (
-            f'<a href="{html_escape(voice_rel)}">voice_lesson_{n}.html</a> · '
-            f'<a href="lesson_{n}/lesson_voice_{n}/voice_lesson_{n}.md">voice_lesson_{n}.md</a>'
-            if voice_rel
-            else "—"
-        )
-        rows.append(
-            f"    <tr><td>{n}</td><td>{essence_cell}</td><td>{voice_cell}</td></tr>"
-        )
-    body = (
-        "\n".join(rows)
-        if rows
-        else "    <tr><td colspan=\"3\">Нет сгенерированных страниц.</td></tr>"
-    )
-    html = f"""<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Индекс — Voice + essence</title>
-  <style>
-    body {{ font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; }}
-    table {{ border-collapse: collapse; width: 100%; }}
-    th, td {{ border: 1px solid #ccc; padding: 0.4rem 0.6rem; text-align: left; }}
-    th {{ background: #f6f8fa; }}
-  </style>
-</head>
-<body>
-  <p><a href="../../Readme.md">Readme</a> · <a href="../../docs/ai_voice_promt.md">Промпт Voice (md)</a></p>
-  <h1>🎙 Страницы Voice (HTML)</h1>
-  <p>Генерируются скриптом <code>scripts/generate_essence_html.py</code> из <code>essence_N.md</code> и <code>voice_lesson_N.md</code>.</p>
-  <table>
-    <thead><tr><th>Урок</th><th>Essence HTML</th><th>Voice lesson HTML</th></tr></thead>
-    <tbody>
-{body}
-    </tbody>
-  </table>
-</body>
-</html>
-"""
-    INDEX_HTML.parent.mkdir(parents=True, exist_ok=True)
-    INDEX_HTML.write_text(html, encoding="utf-8")
-
-
 def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
     """Generate lesson HTML pages. Remove orphan html files."""
     voice = load_voice_prompt()
@@ -270,16 +185,17 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
                     prompt_title="Промпт (из docs/ai_voice_promt.md)",
                     source_md_text=md_text,
                     voice_prompt=voice,
-                    header_label="🎙 Voice + essence",
+                    header_label=f"{chr(0x1F399)} Voice + конспект (essence)",
                     rel_readme="../../../Readme.md",
                     rel_agents="../../../agents.md",
                     rel_prompt_link="../../../docs/ai_voice_promt.md",
                     rel_content_html=f"content_{n}.html",
-                    rel_index="../essence_voice_index.html",
+                    rel_css="../assets/lesson-content.css",
+                    rel_book_pages="../",
+                    current_file_label=f"essence_{n}.html",
                 ),
                 encoding="utf-8",
             )
-            # path from book/pages to lesson_N/essence_N.html
             essence_entries.append((n, f"lesson_{n}/essence_{n}.html"))
         else:
             if ehtml.is_file():
@@ -299,12 +215,14 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
                     prompt_title="Промпт для ролевой практики (фиксированный)",
                     source_md_text=voice_md_text,
                     voice_prompt=ROLEPLAY_PROMPT,
-                    header_label="🎙 Voice lesson",
+                    header_label=f"{chr(0x1F399)} Голосовой урок (roleplay)",
                     rel_readme="../../../../Readme.md",
                     rel_agents="../../../../agents.md",
                     rel_prompt_link=None,
                     rel_content_html=f"../content_{n}.html",
-                    rel_index="../../essence_voice_index.html",
+                    rel_css="../../assets/lesson-content.css",
+                    rel_book_pages="../../",
+                    current_file_label=f"voice_lesson_{n}.html",
                 ),
                 encoding="utf-8",
             )
@@ -312,7 +230,6 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
         else:
             if vhtml.is_file():
                 vhtml.unlink()
-    write_index_html(essence_entries, voice_entries)
     return essence_entries, voice_entries
 
 
@@ -321,7 +238,7 @@ def main() -> None:
     print(
         "Generated "
         f"{len(essence_entries)} essence_*.html and "
-        f"{len(voice_entries)} voice_lesson_*.html + {INDEX_HTML.relative_to(REPO)}"
+        f"{len(voice_entries)} voice_lesson_*.html"
     )
 
 

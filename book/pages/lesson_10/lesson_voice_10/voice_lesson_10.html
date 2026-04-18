@@ -4,69 +4,45 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Урок 10 — Voice lesson (roleplay)</title>
-  <style>
-    :root { font-family: system-ui, sans-serif; line-height: 1.45; }
-    body { max-width: 52rem; margin: 0 auto; padding: 1rem 1.25rem 3rem; color: #1a1a1a; }
-    header.nav { border-bottom: 1px solid #ddd; padding-bottom: 0.75rem; margin-bottom: 1.25rem; }
-    header.nav a { margin-right: 0.75rem; }
-    button#copy-all {
-      cursor: pointer; padding: 0.45rem 0.9rem; font-size: 0.95rem;
-      background: #0969da; color: #fff; border: none; border-radius: 6px;
-    }
-    button#copy-all:hover { background: #0550ae; }
-    .ok { color: #1a7f37; font-size: 0.9rem; margin-left: 0.5rem; }
-    h2 { margin-top: 1.75rem; font-size: 1.15rem; }
-    #essence-render { overflow-x: auto; }
-    #essence-render table { border-collapse: collapse; width: 100%; }
-    #essence-render th, #essence-render td { border: 1px solid #ccc; padding: 0.35rem 0.5rem; }
-    .prompt-details {
-      margin-top: 0.5rem; border: 1px solid #d0d7de; border-radius: 8px; background: #fafbfc;
-    }
-    .prompt-details summary {
-      cursor: pointer; padding: 0.65rem 1rem; font-size: 1.05rem; font-weight: 600;
-      list-style: none;
-    }
-    .prompt-details summary::-webkit-details-marker { display: none; }
-    .prompt-details summary::before {
-      content: "▸ "; display: inline-block; width: 1.1em; color: #57606a;
-    }
-    .prompt-details[open] summary::before { content: "▾ "; }
-    .prompt-details[open] summary { border-bottom: 1px solid #e1e4e8; }
-    #prompt-block {
-      white-space: pre-wrap; background: #f6f8fa; padding: 1rem; margin: 0;
-      font-size: 0.9rem; border-radius: 0 0 7px 7px;
-    }
-    .hint { font-size: 0.85rem; color: #57606a; margin-top: 0.35rem; }
-  </style>
+  <link rel="stylesheet" href="../../assets/lesson-content.css" />
 </head>
 <body>
-  <header class="nav">
-    <strong>🎙 Voice lesson</strong> · урок 10
-    <span style="display:block;margin-top:0.5rem;">
+  <div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Навигация">
       <a href="../../../../Readme.md">Readme</a>
-      <a href="../../../../agents.md">agents</a>
-      Промпт (в этой странице)
-      <a href="../content_10.html">content_10.html</a>
-      <a href="voice_lesson_10.md">voice_lesson_10.md</a>
-      <a href="../../essence_voice_index.html">Все уроки (индекс)</a>
-    </span>
-    <p style="margin: 0.75rem 0 0;">
-      <button type="button" id="copy-all">Скопировать промпт + материал</button>
-      <span id="copy-feedback" class="ok" aria-live="polite"></span>
-    </p>
-      <p class="hint">В буфер попадает текст промпта и полный markdown файла из раздела урока.</p>
-  </header>
+      → <a href="../../">book/pages</a>
+      → <a href="../content_10.html">content_10.html</a>
+      → <span>voice_lesson_10.html</span>
+    </nav>
+    <h1>Урок 10 — Voice lesson (roleplay)</h1>
+    <p class="note">🎙 Голосовой урок (roleplay)</p>
 
-  <section>
-    <details class="prompt-details">
-      <summary>Промпт для ролевой практики (фиксированный)</summary>
-      <div id="prompt-block"></div>
-    </details>
-  </section>
-  <section>
-    <h2>Голосовой урок (voice_lesson_10) (voice_lesson_10.md)</h2>
-    <div id="essence-render"></div>
-  </section>
+    <header class="app-header">
+      <span class="voice-top-links">
+        <a href="../../../../Readme.md">Оглавление (Readme)</a>
+        <a href="../../../../agents.md">agents</a>
+        Промпт (в этой странице)
+        <a href="../content_10.html">Страницы урока</a>
+        <a href="voice_lesson_10.md">voice_lesson_10.md</a>
+      </span>
+      <p class="copy-row">
+        <button type="button" id="copy-all">Скопировать промпт + материал</button>
+        <span id="copy-feedback" class="ok" aria-live="polite"></span>
+      </p>
+      <p class="hint">В буфер попадает текст промпта и полный markdown файла из раздела урока.</p>
+    </header>
+
+    <section>
+      <details class="prompt-details">
+        <summary>Промпт для ролевой практики (фиксированный)</summary>
+        <div id="prompt-block"></div>
+      </details>
+    </section>
+    <section class="essence-section">
+      <h2>Голосовой урок (voice_lesson_10) (voice_lesson_10.md)</h2>
+      <div id="essence-render"></div>
+    </section>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" crossorigin="anonymous"></script>
   <script>

@@ -2,7 +2,7 @@
 """Regenerate book/pages/lesson_*/content_{N}.md from raw/*.png in each folder.
 
 Also writes content_{N}.html (user-facing hub: links, full-chapter MD, scan carousel, page list)
-and runs generate_essence_html.generate_all() so essence_N.html and essence_voice_index.html
+and runs generate_essence_html.generate_all() so essence_N.html / voice_lesson_N.html
 stay in sync before quick links are written."""
 from __future__ import annotations
 
@@ -147,8 +147,6 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
         if primary_links
         else ""
     )
-    index_voice = "../essence_voice_index.html"
-
     pages_payload: list[dict[str, int | str | None]] = []
     for n in nums:
         item: dict[str, int | str | None] = {"n": n, "png": rel_raw_png(n)}
@@ -243,7 +241,6 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
         <tr><th>📘 Урок (modules)</th><td>{lesson_cell}</td></tr>
         <tr><th>💎 Конспект (HTML)</th><td>{essence_cell}</td></tr>
         <tr><th>🎙 Практика (HTML)</th><td>{voice_cell}</td></tr>
-        <tr><th>🎙 Индекс Voice</th><td><a href="{html.escape(index_voice)}">essence_voice_index.html</a></td></tr>
       </tbody>
     </table>
 

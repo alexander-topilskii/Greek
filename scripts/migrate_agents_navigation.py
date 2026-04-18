@@ -19,8 +19,8 @@ def main() -> None:
     new_intro = (
         "Правила для всех `.md` в репозитории. **Крошки и таблица «быстрые ссылки» в шапке — только у корневого "
         "[Readme.md](Readme.md).** В остальных файлах после `# …` сразу содержание (при необходимости курсив-ввод), "
-        "без навигации по репозиторию; читательские переходы — в HTML (`content_N.html`, `essence_N.html`, индексы).\n\n"
-        "Куда смотреть: [Readme.md](Readme.md) · [essence_voice_index.html](book/pages/essence_voice_index.html) · "
+        "без навигации по репозиторию; читательские переходы — в HTML (`content_N.html`, при наличии `essence_N.html` и voice HTML).\n\n"
+        "Куда смотреть: [Readme.md](Readme.md) · "
         "[lesson-extraction-from-textbook.md](docs/lesson-extraction-from-textbook.md) · "
         "[voice-lesson-from-digitized.md](docs/voice-lesson-from-digitized.md) · "
         "[page-screenshot-renaming.md](docs/page-screenshot-renaming.md)\n\n"
