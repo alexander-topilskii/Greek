@@ -3,9 +3,11 @@
 
 Sources:
 - essence page: docs/promt/voice_essence_notes_promt.md (prompt block) + lesson_N/essence_N/essence_N.md
-  Optional fragments in the same folder, appended in order (e.g. lexicon): lesson_N/essence_N/lexicon.md
+  Optional fragments in the same folder, appended in order (see OPTIONAL_MD_FRAGMENTS), e.g. lexicon.md.
+  All parts are concatenated into one string (--- between parts), json-embedded as SOURCE_MD, rendered
+  in the browser with marked.js, and copied to the clipboard together with the prompt.
 - voice lesson page: docs/promt/voice_roleplay_system_promt.md (prompt block) + lesson_N/lesson_voice_N/voice_lesson_N.md
-  Optional: lesson_N/lesson_voice_N/lexicon.md
+  Optional: lesson_N/lesson_voice_N/lexicon.md (same concatenation rules).
 Run from repo root: python3 scripts/generate_essence_html.py
 Also invoked from generate_book_lesson_content_md.py
 """
@@ -57,7 +59,10 @@ def _join_markdown_fragments(parts: list[str]) -> str:
 def load_essence_markdown_bundle(
     main_md: Path, lesson_folder: Path
 ) -> tuple[str, list[str]]:
-    """Return concatenated markdown and href paths relative to lesson_N/ (essence_*.html location)."""
+    """Return concatenated markdown and href paths relative to lesson_N/ (essence_*.html location).
+
+    Every existing file named in OPTIONAL_MD_FRAGMENTS next to essence_N.md is appended after the main file.
+    """
     chunks = [main_md.read_text(encoding="utf-8")]
     hrefs = [main_md.relative_to(lesson_folder).as_posix()]
     ess_dir = main_md.parent
@@ -271,10 +276,24 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
 
 def main() -> None:
     essence_entries, voice_entries = generate_all()
+    ess_with_lex = sum(
+        1
+        for n, _ in essence_entries
+        if (BOOK_PAGES / f"lesson_{n}" / f"essence_{n}" / "lexicon.md").is_file()
+    )
+    voice_with_lex = sum(
+        1
+        for n, _ in voice_entries
+        if (BOOK_PAGES / f"lesson_{n}" / f"lesson_voice_{n}" / "lexicon.md").is_file()
+    )
     print(
         "Generated "
         f"{len(essence_entries)} essence_*.html and "
         f"{len(voice_entries)} voice_lesson_*.html"
+    )
+    print(
+        f"Merged lexicon.md into SOURCE_MD: essence {ess_with_lex}/{len(essence_entries)}, "
+        f"voice {voice_with_lex}/{len(voice_entries)}"
     )
 
 
