@@ -2,7 +2,7 @@
 
 **Навигация:** [Readme](../../Readme.md) → [docs/README.md](../README.md) → `docs/promt/README.md`
 
-В **`docs/promt/`** лежат **только** те промпты, текст которых **подставляется в сгенерированные страницы** скриптом **`scripts/generate_essence_html.py`** (кнопка «Скопировать промпт + материал» в браузере).
+В **`docs/promt/`** лежат **только** те промпты, текст которых **подставляется в сгенерированные страницы** скриптом **`scripts/generate_essence_html.py`** (кнопка «Скопировать промпт + материал» в браузере). После изменения файлов здесь нужно перегенерировать HTML (`scripts/generate_book_lesson_content_md.py`) и закоммитить вывод; при включённом **GitHub Actions** для Pages это делает workflow **GitHub Pages**.
 
 **Не класть сюда:** методички «для людей» без встраивания, промпты только для чата ИИ без участия HTML, вспомогательные промпты генерации markdown (например [voice_lesson_generation.md](../promts/voice_lesson_generation.md)) — им место в **[docs/promts/](../promts/)** или в других методичках.
 

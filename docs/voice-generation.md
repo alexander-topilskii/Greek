@@ -16,10 +16,14 @@
 
 | Страница | Источники | Редактировать вручную |
 |----------|-----------|------------------------|
-| **`essence_N.html`** | блок промпта из [promt/voice_essence_notes_promt.md](promt/voice_essence_notes_promt.md) + `essence_N/essence_N.md` | нет |
-| **`lesson_voice_N/voice_lesson_N.html`** | блок промпта из [promt/voice_roleplay_system_promt.md](promt/voice_roleplay_system_promt.md) + `voice_lesson_N.md` | нет |
+| **`essence_N.html`** | блок промпта из [promt/voice_essence_notes_promt.md](promt/voice_essence_notes_promt.md) + `essence_N/essence_N.md` (+ при наличии **`essence_N/lexicon.md`**, склейка при генерации) | нет |
+| **`lesson_voice_N/voice_lesson_N.html`** | блок промпта из [promt/voice_roleplay_system_promt.md](promt/voice_roleplay_system_promt.md) + `voice_lesson_N.md` (+ при наличии **`lesson_voice_N/lexicon.md`**) | нет |
 
-В браузере: кнопка копирования собирает **текст промпта** и **markdown** материала урока для вставки в чат.
+Фрагменты после основного файла перечислены в **`scripts/generate_essence_html.py`** (`OPTIONAL_MD_FRAGMENTS`); сейчас это только `lexicon.md`. Между частями вставляется разделитель `---`.
+
+В браузере: кнопка копирования собирает **текст промпта** и **весь склеенный markdown** материала урока для вставки в чат.
+
+Пересборка опубликованных HTML при правках промптов или уроков: локально `python3 scripts/generate_book_lesson_content_md.py` и коммит; на GitHub — workflow **GitHub Pages** (после включения источника *GitHub Actions* в настройках Pages репозитория).
 
 ---
 

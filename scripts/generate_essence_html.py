@@ -3,7 +3,9 @@
 
 Sources:
 - essence page: docs/promt/voice_essence_notes_promt.md (prompt block) + lesson_N/essence_N/essence_N.md
+  Optional fragments in the same folder, appended in order (e.g. lexicon): lesson_N/essence_N/lexicon.md
 - voice lesson page: docs/promt/voice_roleplay_system_promt.md (prompt block) + lesson_N/lesson_voice_N/voice_lesson_N.md
+  Optional: lesson_N/lesson_voice_N/lexicon.md
 Run from repo root: python3 scripts/generate_essence_html.py
 Also invoked from generate_book_lesson_content_md.py
 """
@@ -16,6 +18,9 @@ REPO = Path(__file__).resolve().parents[1]
 BOOK_PAGES = REPO / "book" / "pages"
 VOICE_PROMPT_MD = REPO / "docs" / "promt" / "voice_essence_notes_promt.md"
 ROLEPLAY_PROMPT_MD = REPO / "docs" / "promt" / "voice_roleplay_system_promt.md"
+
+# Optional markdown files next to the main lesson file (same directory), appended after "---" separators.
+OPTIONAL_MD_FRAGMENTS: tuple[str, ...] = ("lexicon.md",)
 
 
 def extract_voice_prompt_block(md: str) -> str:
@@ -43,13 +48,55 @@ def html_escape(s: str) -> str:
     )
 
 
+def _join_markdown_fragments(parts: list[str]) -> str:
+    if len(parts) == 1:
+        return parts[0]
+    return parts[0] + "\n\n---\n\n" + "\n\n---\n\n".join(parts[1:])
+
+
+def load_essence_markdown_bundle(
+    main_md: Path, lesson_folder: Path
+) -> tuple[str, list[str]]:
+    """Return concatenated markdown and href paths relative to lesson_N/ (essence_*.html location)."""
+    chunks = [main_md.read_text(encoding="utf-8")]
+    hrefs = [main_md.relative_to(lesson_folder).as_posix()]
+    ess_dir = main_md.parent
+    for name in OPTIONAL_MD_FRAGMENTS:
+        frag = ess_dir / name
+        if frag.is_file():
+            chunks.append(frag.read_text(encoding="utf-8"))
+            hrefs.append(frag.relative_to(lesson_folder).as_posix())
+    return _join_markdown_fragments(chunks), hrefs
+
+
+def load_voice_markdown_bundle(main_md: Path) -> tuple[str, list[str]]:
+    """Return concatenated markdown and href paths relative to lesson_voice_N/ (voice HTML location)."""
+    chunks = [main_md.read_text(encoding="utf-8")]
+    hrefs = [main_md.name]
+    vdir = main_md.parent
+    for name in OPTIONAL_MD_FRAGMENTS:
+        frag = vdir / name
+        if frag.is_file():
+            chunks.append(frag.read_text(encoding="utf-8"))
+            hrefs.append(frag.name)
+    return _join_markdown_fragments(chunks), hrefs
+
+
+def _source_md_links_html(hrefs: list[str]) -> str:
+    parts: list[str] = []
+    for h in hrefs:
+        label = Path(h).name
+        parts.append(f'<a href="{html_escape(h)}">{html_escape(label)}</a>')
+    return " · ".join(parts)
+
+
 def build_page_html(
     *,
     lesson_num: int,
     page_kind: str,
     title_suffix: str,
     section_title: str,
-    source_md_rel: str,
+    source_md_hrefs: list[str],
     prompt_title: str,
     source_md_text: str,
     voice_prompt: str,
@@ -71,6 +118,8 @@ def build_page_html(
     prompt_link_html = (
         f'<a href="{html_escape(rel_prompt_link)}">Промпт (md)</a>' if rel_prompt_link else "Промпт (в этой странице)"
     )
+    source_files_note = " + ".join(html_escape(Path(h).name) for h in source_md_hrefs)
+    source_md_links = _source_md_links_html(source_md_hrefs)
     return f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -96,13 +145,13 @@ def build_page_html(
         <a href="{html_escape(rel_agents)}">agents</a>
         {prompt_link_html}
         <a href="{html_escape(rel_content_html)}">Страницы урока</a>
-        <a href="{html_escape(source_md_rel)}">{html_escape(source_md_rel.split('/')[-1])}</a>
+        <span class="source-md-links">{source_md_links}</span>
       </span>
       <p class="copy-row">
         <button type="button" id="copy-all">Скопировать промпт + материал</button>
         <span id="copy-feedback" class="ok" aria-live="polite"></span>
       </p>
-      <p class="hint">В буфер попадает текст промпта и полный markdown файла из раздела урока.</p>
+      <p class="hint">В буфер попадает текст промпта и полный markdown материала (основной файл и при наличии — lexicon.md).</p>
     </header>
 
     <section>
@@ -112,7 +161,7 @@ def build_page_html(
       </details>
     </section>
     <section class="essence-section">
-      <h2>{html_escape(section_title)} ({html_escape(source_md_rel)})</h2>
+      <h2>{html_escape(section_title)} ({source_files_note})</h2>
       <div id="essence-render"></div>
     </section>
   </div>
@@ -161,14 +210,14 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
         emd = folder / f"essence_{n}" / f"essence_{n}.md"
         ehtml = folder / f"essence_{n}.html"
         if emd.is_file():
-            md_text = emd.read_text(encoding="utf-8")
+            md_text, md_hrefs = load_essence_markdown_bundle(emd, folder)
             ehtml.write_text(
                 build_page_html(
                     lesson_num=n,
                     page_kind="essence",
                     title_suffix="Voice + конспект (essence)",
                     section_title=f"Конспект (essence_{n})",
-                    source_md_rel=f"essence_{n}/essence_{n}.md",
+                    source_md_hrefs=md_hrefs,
                     prompt_title="Промпт (из docs/promt/voice_essence_notes_promt.md)",
                     source_md_text=md_text,
                     voice_prompt=voice,
@@ -191,14 +240,14 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
         vhtml = folder / f"lesson_voice_{n}" / f"voice_lesson_{n}.html"
         if vmd.is_file():
             vhtml.parent.mkdir(parents=True, exist_ok=True)
-            voice_md_text = vmd.read_text(encoding="utf-8")
+            voice_md_text, voice_hrefs = load_voice_markdown_bundle(vmd)
             vhtml.write_text(
                 build_page_html(
                     lesson_num=n,
                     page_kind="voice lesson",
                     title_suffix="Voice lesson (roleplay)",
                     section_title=f"Голосовой урок (voice_lesson_{n})",
-                    source_md_rel=f"voice_lesson_{n}.md",
+                    source_md_hrefs=voice_hrefs,
                     prompt_title="Промпт (из docs/promt/voice_roleplay_system_promt.md)",
                     source_md_text=voice_md_text,
                     voice_prompt=roleplay,
