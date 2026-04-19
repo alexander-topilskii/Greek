@@ -4,16 +4,16 @@
 
 Краткое оглавление методичек и промптов.
 
-**Политика автономности:** учебные файлы **`book/pages/lesson_N/essence_N/essence_N.md`** и **`book/pages/lesson_N/lesson_voice_N/voice_lesson_N.md`** самодостаточны для читателя (без ссылок на сырьё и без перекрёста друг с другом); навигация по всем слоям урока — через **`content_N.md`**. Подробности: [essence-generation.md](essence-generation.md), [voice-lesson-from-digitized.md](voice-lesson-from-digitized.md), обзор слоёв — [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md).
+**Политика автономности:** учебные файлы **`book/pages/lesson_N/essence_N/essence_N.md`** (при вынесении словаря — ещё **`lexicon.md`** в той же папке) и **`book/pages/lesson_N/lesson_voice_N/voice_lesson_N.md`** самодостаточны для читателя относительно сырья (без ссылок на сырьё и без перекрёста конспекта с голосовым уроком); навигация по всем слоям урока — через **`content_N.md`**. Подробности: [essence-generation.md](essence-generation.md), [voice-lesson-from-digitized.md](voice-lesson-from-digitized.md), обзор слоёв — [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md).
 
-**Скрипты:** упоминания `lesson_digitized` / `digitized` в `scripts/*.py` относятся к **входам** пайплайнов и к генерации **`content_N`** как хаба; это не задача вставлять такие ссылки в тело автономных `essence_*.md` / `voice_lesson_*.md`.
+**Скрипты:** упоминания `lesson_digitized` / `digitized` в `scripts/*.py` относятся к **входам** пайплайнов и к генерации **`content_N`** как хаба; это не задача вставлять такие ссылки в тело автономных `essence_*.md`, при необходимости **`lexicon.md`**, и `voice_lesson_*.md`.
 
 ## Методички
 
 | Документ | Назначение |
 |----------|------------|
 | [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md) | Обзор: подготовка (скан, оцифровка, `lesson_digitized`), хаб `content`, автономные `essence` и `voice_lesson`, Voice HTML |
-| [essence-generation.md](essence-generation.md)                           | Правила конспекта `essence_N/essence_N.md`: автономность, структура, эталоны, чеклист |
+| [essence-generation.md](essence-generation.md)                           | Правила конспекта `essence_N/essence_N.md` (опционально `lexicon.md`): автономность комплекта, структура, эталоны, чеклист |
 | [voice-generation.md](voice-generation.md)                               | `essence_N.html`, `voice_lesson_*.html`, промпты, связь с `content_N.md` |
 | [voice-lesson-from-digitized.md](voice-lesson-from-digitized.md)         | Вход генерации `lesson_N_digitized.md` vs автономный `voice_lesson_N.md`, папки, интеграция в `content_N.md` |
 
