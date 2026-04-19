@@ -5,7 +5,7 @@
 | Быстрые ссылки | |
 |----------------|--------------------------------------------------|
 | Хаб урока | [content_15.md](content_15.md) |
-| Конспект | *отсутствует* — планируется `essence_15/essence_15.md` |
+| Конспект | [essence_15/essence_15.md](essence_15/essence_15.md) |
 | Голосовой урок | [lesson_voice_15/voice_lesson_15.md](lesson_voice_15/voice_lesson_15.md) |
 | Оцифровка главы | [lesson_digitized/lesson_15_digitized.md](lesson_digitized/lesson_15_digitized.md) |
 
