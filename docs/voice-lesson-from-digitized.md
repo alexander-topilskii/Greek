@@ -13,7 +13,7 @@
 | **Итог для читателя** | **`book/pages/lesson_N/lesson_voice_N/voice_lesson_N.md`** — **автономный** учебный файл: в шапке и теле **нет** markdown-ссылок на `lesson_digitized`, `digitized`, `raw`, на конспект `essence`, на `essence_N.html` / Voice HTML, на другой «остров» материала. Условия и лексика из главы **перенесены в текст** при необходимости, без отсылок к файлам сырья. |
 | **Хаб урока** | Ссылка на голосовой урок размещается в **`book/pages/lesson_N/content_N.md`** (таблица «Быстрые ссылки» и т.п.); там же перечисляются сканы, оцифровки, конспект, HTML — это **не** нарушение автономности `voice_lesson_N.md`. |
 
-Голосовая сессия с ИИ по конспекту — отдельный сценарий ([promts/ai_voice_promt.md](promts/ai_voice_promt.md), [voice-generation.md](voice-generation.md)). При желании в **одной сессии** можно **прикладывать** файлы `voice_lesson_N.md` и конспект как **вложения к чату** — это не требует ссылок между этими файлами внутри markdown.
+Голосовая сессия с ИИ по конспекту — отдельный сценарий ([promt/voice_essence_notes_promt.md](promt/voice_essence_notes_promt.md), [promts/ai_voice_promt.md](promts/ai_voice_promt.md), [voice-generation.md](voice-generation.md)). При желании в **одной сессии** можно **прикладывать** файлы `voice_lesson_N.md` и конспект как **вложения к чату** — это не требует ссылок между этими файлами внутри markdown.
 
 ---
 
@@ -83,5 +83,5 @@
 |----------|------|
 | `lesson_N_digitized.md` | Обязательный **вход** пайплайна генерации `voice_lesson_N.md`; в итоговом `voice_lesson_N.md` на него **не** ссылаются. |
 | `essence_N/essence_N.md` | Конспект по [essence-generation.md](essence-generation.md); обзор слоёв — [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md). Не дублировать навигацию на голосовой урок внутри конспекта. |
-| [promts/ai_voice_promt.md](promts/ai_voice_promt.md) | Промпт голосовой сессии с **конспектом**; к сессии можно **прикладывать** `voice_lesson_N.md` как второй файл — без ссылки на него из тела конспекта или наоборот. |
+| [promt/voice_essence_notes_promt.md](promt/voice_essence_notes_promt.md) · [promts/ai_voice_promt.md](promts/ai_voice_promt.md) | Текст промпта для сессии с **конспектом** и методичка; к сессии можно **прикладывать** `voice_lesson_N.md` как второй файл — без ссылки на него из тела конспекта или наоборот. |
 | [promts/voice_lesson_generation.md](promts/voice_lesson_generation.md) | Промпт сборки **`voice_lesson_N.md`** из оцифровки главы (три блока: ситуации, шпаргалка, словарь). |

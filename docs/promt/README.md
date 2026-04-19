@@ -10,6 +10,7 @@
 
 | Файл | Куда встраивается |
 |------|-------------------|
+| [voice_essence_notes_promt.md](voice_essence_notes_promt.md) | `book/pages/lesson_N/essence_N.html` |
 | [voice_roleplay_system_promt.md](voice_roleplay_system_promt.md) | `book/pages/lesson_N/lesson_voice_N/voice_lesson_N.html` |
 
-Промпт для **`essence_N.html`** по-прежнему в [promts/ai_voice_promt.md](../promts/ai_voice_promt.md); обзор пайплайна — [voice-generation.md](../voice-generation.md).
+Методичка для людей (как пользоваться сессией, без дублирования текста промпта): [promts/ai_voice_promt.md](../promts/ai_voice_promt.md). Обзор пайплайна — [voice-generation.md](../voice-generation.md).

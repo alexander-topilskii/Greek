@@ -16,7 +16,7 @@
 
 | Страница | Источники | Редактировать вручную |
 |----------|-----------|------------------------|
-| **`essence_N.html`** | блок промпта из [promts/ai_voice_promt.md](promts/ai_voice_promt.md) + `essence_N/essence_N.md` | нет |
+| **`essence_N.html`** | блок промпта из [promt/voice_essence_notes_promt.md](promt/voice_essence_notes_promt.md) + `essence_N/essence_N.md` | нет |
 | **`lesson_voice_N/voice_lesson_N.html`** | блок промпта из [promt/voice_roleplay_system_promt.md](promt/voice_roleplay_system_promt.md) + `voice_lesson_N.md` | нет |
 
 В браузере: кнопка копирования собирает **текст промпта** и **markdown** материала урока для вставки в чат.
@@ -25,12 +25,12 @@
 
 ## 2. Промпты, которые копирует HTML
 
-- **Конспект:** **[promts/ai_voice_promt.md](promts/ai_voice_promt.md)** — один и тот же блок для любого `essence_N.html`.
+- **Конспект:** **[promt/voice_essence_notes_promt.md](promt/voice_essence_notes_promt.md)** — один и тот же блок для любого `essence_N.html`.
 - **Ролевой урок:** **[promt/voice_roleplay_system_promt.md](promt/voice_roleplay_system_promt.md)** — для любого `voice_lesson_N.html`. Каталог **`docs/promt/`** — только промпты, встраиваемые в HTML; см. [promt/README.md](promt/README.md).
 
 ## 3. Промпт голосовой сессии с конспектом (ручная сессия)
 
-- Файл: **[promts/ai_voice_promt.md](promts/ai_voice_promt.md)** — один и тот же блок для любого урока.
+- Текст промпта: **[promt/voice_essence_notes_promt.md](promt/voice_essence_notes_promt.md)**. Как пользоваться сессией: **[promts/ai_voice_promt.md](promts/ai_voice_promt.md)**.
 - В сессии с ИИ: скопировать промпт и **прикрепить файл** **`book/pages/lesson_N/essence_N/essence_N.md`** того же урока (или вставить содержимое из `essence_N.html`). Это **инструкция для сессии**, а не требование вставлять ссылку на конспект внутрь **`voice_lesson_N.md`**.
 - Промпт рассчитан на структуру конспекта из [essence-generation.md](essence-generation.md) (грамматика → фразы → эталоны → словарь; диалоги после микрофраз).
 

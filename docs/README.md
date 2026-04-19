@@ -23,11 +23,12 @@
 
 | Файл | Куда попадает |
 |------|----------------|
+| [promt/voice_essence_notes_promt.md](promt/voice_essence_notes_promt.md) | `essence_N.html` |
 | [promt/voice_roleplay_system_promt.md](promt/voice_roleplay_system_promt.md) | `lesson_voice_N/voice_lesson_N.html` |
 
 ## Прочие промпты и методички (`docs/promts/`)
 
 | Файл                                                                   | Назначение                                                                                               |
 |------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| [promts/ai_voice_promt.md](promts/ai_voice_promt.md)                   | Голосовая сессия с приложенным `essence_N/essence_N.md`; тот же блок подставляется в `essence_N.html`   |
+| [promts/ai_voice_promt.md](promts/ai_voice_promt.md)                   | Методичка: голосовая сессия с `essence_N/essence_N.md`; ссылка на канонический текст в `docs/promt/voice_essence_notes_promt.md`   |
 | [promts/voice_lesson_generation.md](promts/voice_lesson_generation.md) | Генерация раздаточного `voice_lesson_N.md` по тексту `lesson_N_digitized.md`                             |
