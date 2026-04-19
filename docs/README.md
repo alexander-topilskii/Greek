@@ -17,7 +17,15 @@
 | [voice-generation.md](voice-generation.md)                               | `essence_N.html`, `voice_lesson_*.html`, промпты, связь с `content_N.md` |
 | [voice-lesson-from-digitized.md](voice-lesson-from-digitized.md)         | Вход генерации `lesson_N_digitized.md` vs автономный `voice_lesson_N.md`, папки, интеграция в `content_N.md` |
 
-## Промпты (`docs/promts/`)
+## Промпты для встраивания в HTML (`docs/promt/`)
+
+Только тексты, которые **подставляет** `scripts/generate_essence_html.py` в сгенерированные страницы. Правило каталога: [promt/README.md](promt/README.md).
+
+| Файл | Куда попадает |
+|------|----------------|
+| [promt/voice_roleplay_system_promt.md](promt/voice_roleplay_system_promt.md) | `lesson_voice_N/voice_lesson_N.html` |
+
+## Прочие промпты и методички (`docs/promts/`)
 
 | Файл                                                                   | Назначение                                                                                               |
 |------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|

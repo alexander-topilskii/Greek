@@ -3,7 +3,7 @@
 
 Sources:
 - essence page: docs/promts/ai_voice_promt.md (prompt block) + lesson_N/essence_N/essence_N.md
-- voice lesson page: fixed roleplay prompt + lesson_N/lesson_voice_N/voice_lesson_N.md
+- voice lesson page: docs/promt/voice_roleplay_system_promt.md (prompt block) + lesson_N/lesson_voice_N/voice_lesson_N.md
 Run from repo root: python3 scripts/generate_essence_html.py
 Also invoked from generate_book_lesson_content_md.py
 """
@@ -15,44 +15,12 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 BOOK_PAGES = REPO / "book" / "pages"
 VOICE_PROMPT_MD = REPO / "docs" / "promts" / "ai_voice_promt.md"
-ROLEPLAY_PROMPT = """Ρόλος:
-Είσαι ένας αυστηρός, λακωνικός και ενεργητικός καθηγητής ελληνικών για ηχητική εξάσκηση (Voice Mode). Ο μαθητής σου είναι ρωσόφωνος αρχάριος. Τo έργο σου είναι να τον βοηθήσεις να εμπεδώσει το υλικό μέσω διαλόγου και αυστηρού ελέγχου.
-
-### ΠΡΑВИЛА КОНТРОЛЯ И ОШИБОК (КРИТИЧЕСКИ ВАЖНО):
-1. **Алгоритм исправления:** Если я ошибся (грамматика, артикль, окончание):
-   - Скажи: «Όχι» или «Λάθος» + [Правильный вариант].
-   - Скажи: «Επανάλαβε». Жди, пока я произнесу верно.
-   - Сразу после этого дай похожее задание для закрепления.
-2. **Отложенное повторение:** Запоминай фразы с ошибками. Через 2-3 реплики верни их в диалог (органично или как вопрос), чтобы проверить усвоение.
-3. **Адекватность и вариативность (АНТИ-СКРИПТ):** - Категорически запрещено требовать дословного повторения фраз из учебника или чек-листа. 
-   - Если мой ответ грамматически верен и смысл передан — **это не ошибка**. Не исправляй стиль или порядок слов, если они допустимы в языке.
-   - Одобряй синонимы. Игнорируй несовпадение имен персонажей.
-4. **Краткость:** В диалоге, если всё верно, **не говори «ОК»**, а сразу отвечай своей репликой по роли. Похвала — максимум одно слово: «Μπράβο».
-5. **Перевод:** Переводи на русский ТОЛЬКО по команде «Перевод» или «Translate».
-
-### ΠРАВИЛА РОЛЕВОЙ ИГРЫ:
-1. **Выбор роли:** Перед каждой ситуацией кратко обрисуй её на русском и спроси: «Какую роль хочешь играть: Роль А или Роль Б?».
-2. **Инициатива:** Если по сценарию твоя роль начинает первой — начинай. Если моя — жди.
-3. **Реакция на смысл:** Отвечай на содержание моей фразы, а не на её соответствие учебнику. Если я импровизирую в рамках темы, продолжай играть роль, подстраиваясь под мой контекст.
-4. **Подсказки:** Если я молчу или застрял:
-   - Дай подсказку в виде 1-2 ключевых слов на греческом, из которых я могу собрать ответ.
-   - Не выдавай ответ целиком, пока я не скажу: «Πες μου την απάντηση».
-
-### СПЕЦИФИКА ГОЛОСОВОГО РЕЖИМА (VOICE MODE):
-- **Ультра-краткость:** Твои реплики — максимум 1-2 коротких предложения.
-- **Один шаг:** Только один вопрос или одна реплика за раз.
-- **Чистая речь:** Никакого Markdown-форматирования (списков, жирного шрифта, скобок). Текст должен быть естественным для озвучки.
-- **Контроль распознавания:** Если мой ввод распознан как бессмыслица, скажи на русском: «Не понял, повтори еще раз».
-- **Фокус на слух:** Следи за четкостью окончаний (-ος, -η, -ο). Если я их «глотаю» — это ошибка.
-
-### ИНСТРУКЦИЯ ПО ВЫПОЛНЕНИЮ:
-Жди от меня текст урока и команду с номером ситуации (например, «Ситуация 1»). Как только получишь — предложи выбрать роль и начинай. Все инструкции на русском, практика — на греческом.
-"""
+ROLEPLAY_PROMPT_MD = REPO / "docs" / "promt" / "voice_roleplay_system_promt.md"
 
 
 def extract_voice_prompt_block(md: str) -> str:
     """Return text inside the first ```text ... ``` fence."""
-    m = re.search(r"```text\n(.*?)```", md, re.DOTALL)
+    m = re.search(r"```text\n(.*?)```", md, re.DOTALL)лдьб
     if not m:
         raise ValueError("docs/promts/ai_voice_promt.md: не найден блок ```text ... ```")
     return m.group(1).strip()
@@ -60,6 +28,10 @@ def extract_voice_prompt_block(md: str) -> str:
 
 def load_voice_prompt() -> str:
     return extract_voice_prompt_block(VOICE_PROMPT_MD.read_text(encoding="utf-8"))
+
+
+def load_roleplay_prompt() -> str:
+    return extract_voice_prompt_block(ROLEPLAY_PROMPT_MD.read_text(encoding="utf-8"))
 
 
 def html_escape(s: str) -> str:
@@ -177,6 +149,7 @@ def build_page_html(
 def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
     """Generate lesson HTML pages. Remove orphan html files."""
     voice = load_voice_prompt()
+    roleplay = load_roleplay_prompt()
     essence_entries: list[tuple[int, str]] = []
     voice_entries: list[tuple[int, str]] = []
     lesson_dirs = sorted(
@@ -226,13 +199,13 @@ def generate_all() -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
                     title_suffix="Voice lesson (roleplay)",
                     section_title=f"Голосовой урок (voice_lesson_{n})",
                     source_md_rel=f"voice_lesson_{n}.md",
-                    prompt_title="Промпт для ролевой практики (фиксированный)",
+                    prompt_title="Промпт (из docs/promt/voice_roleplay_system_promt.md)",
                     source_md_text=voice_md_text,
-                    voice_prompt=ROLEPLAY_PROMPT,
+                    voice_prompt=roleplay,
                     header_label=f"{chr(0x1F399)} Голосовой урок (roleplay)",
                     rel_readme="../../../../Readme.md",
                     rel_agents="../../../../agents.md",
-                    rel_prompt_link=None,
+                    rel_prompt_link="../../../../docs/promt/voice_roleplay_system_promt.md",
                     rel_content_html=f"../content_{n}.html",
                     rel_css="../../assets/lesson-content.css",
                     rel_book_pages="../../",

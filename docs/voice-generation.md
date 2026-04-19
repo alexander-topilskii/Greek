@@ -17,13 +17,18 @@
 | Страница | Источники | Редактировать вручную |
 |----------|-----------|------------------------|
 | **`essence_N.html`** | блок промпта из [promts/ai_voice_promt.md](promts/ai_voice_promt.md) + `essence_N/essence_N.md` | нет |
-| **`lesson_voice_N/voice_lesson_N.html`** | фиксированный ролевой промпт в скрипте + `voice_lesson_N.md` | нет |
+| **`lesson_voice_N/voice_lesson_N.html`** | блок промпта из [promt/voice_roleplay_system_promt.md](promt/voice_roleplay_system_promt.md) + `voice_lesson_N.md` | нет |
 
 В браузере: кнопка копирования собирает **текст промпта** и **markdown** материала урока для вставки в чат.
 
 ---
 
-## 2. Промпт голосовой сессии с конспектом
+## 2. Промпты, которые копирует HTML
+
+- **Конспект:** **[promts/ai_voice_promt.md](promts/ai_voice_promt.md)** — один и тот же блок для любого `essence_N.html`.
+- **Ролевой урок:** **[promt/voice_roleplay_system_promt.md](promt/voice_roleplay_system_promt.md)** — для любого `voice_lesson_N.html`. Каталог **`docs/promt/`** — только промпты, встраиваемые в HTML; см. [promt/README.md](promt/README.md).
+
+## 3. Промпт голосовой сессии с конспектом (ручная сессия)
 
 - Файл: **[promts/ai_voice_promt.md](promts/ai_voice_promt.md)** — один и тот же блок для любого урока.
 - В сессии с ИИ: скопировать промпт и **прикрепить файл** **`book/pages/lesson_N/essence_N/essence_N.md`** того же урока (или вставить содержимое из `essence_N.html`). Это **инструкция для сессии**, а не требование вставлять ссылку на конспект внутрь **`voice_lesson_N.md`**.
@@ -31,7 +36,7 @@
 
 ---
 
-## 3. Голосовой урок по единой оцифровке
+## 4. Голосовой урок по единой оцифровке
 
 Раздаточный **`voice_lesson_N.md`** и интеграция в `content_N.md`: **[voice-lesson-from-digitized.md](voice-lesson-from-digitized.md)**. Промпт генерации: **[promts/voice_lesson_generation.md](promts/voice_lesson_generation.md)**.
 
@@ -39,7 +44,7 @@
 
 ---
 
-## 4. Строки в `content_N.md` / `content_N.html`
+## 5. Строки в `content_N.md` / `content_N.html`
 
 При наличии **`essence_N/essence_N.md`** скрипт контента добавляет ссылки **«Суть урока»** и **«Voice (HTML)»** на конспект и на `essence_N.html`. Подробности пересборки — в [essence-generation.md](essence-generation.md), раздел про публикацию и пересборку.
 
