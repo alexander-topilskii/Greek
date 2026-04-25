@@ -10,12 +10,10 @@ on:
       - main
     paths:
       - "book/pages/**"
-      - "docs/promt/**"
       - "scripts/generate_book_lesson_content_md.py"
-      - "scripts/generate_essence_html.py"
       - "_config.yml"
       - "Readme.md"
-      - "agents.md"
+      - "AGENTS.md"
   workflow_dispatch:
 
 permissions:
@@ -35,7 +33,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Regenerate lesson and voice HTML
+      - name: Regenerate lesson content HTML
         run: python3 scripts/generate_book_lesson_content_md.py
       - uses: actions/upload-pages-artifact@v3
         with:

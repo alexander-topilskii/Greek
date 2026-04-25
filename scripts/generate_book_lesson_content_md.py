@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
 """Regenerate book/pages/lesson_*/content_{N}.md from raw/*.png in each folder.
 
-Also writes content_{N}.html (user-facing hub: links, full-chapter MD, scan carousel, page list)
-and runs generate_essence_html.generate_all() so essence_N.html / voice_lesson_N.html
-stay in sync before quick links are written."""
+Also writes content_{N}.html (user-facing hub: optional lexicon.md, full-chapter MD, scan carousel, page list)."""
 from __future__ import annotations
 
 import html
 import json
 import re
 from pathlib import Path
-
-from generate_essence_html import generate_all
 
 REPO = Path(__file__).resolve().parents[1]
 BOOK_PAGES = REPO / "book" / "pages"
@@ -42,12 +38,8 @@ def lesson_md_exists(n: int) -> bool:
     return (REPO / "modules" / f"lesson_{n}" / "lesson.md").is_file()
 
 
-def essence_md_exists(folder: Path, lesson_num: int) -> bool:
-    return (folder / f"essence_{lesson_num}" / f"essence_{lesson_num}.md").is_file()
-
-
-def voice_lesson_md_exists(folder: Path, lesson_num: int) -> bool:
-    return (folder / f"lesson_voice_{lesson_num}" / f"voice_lesson_{lesson_num}.md").is_file()
+def lexicon_md_exists(folder: Path) -> bool:
+    return (folder / "lexicon.md").is_file()
 
 
 def content_filename(lesson_num: int) -> str:
@@ -60,14 +52,6 @@ def content_html_filename(lesson_num: int) -> str:
 
 def lesson_digitized_md_exists(folder: Path, lesson_num: int) -> bool:
     return (folder / "lesson_digitized" / f"lesson_{lesson_num}_digitized.md").is_file()
-
-
-def voice_lesson_html_exists(folder: Path, lesson_num: int) -> bool:
-    return (folder / f"lesson_voice_{lesson_num}" / f"voice_lesson_{lesson_num}.html").is_file()
-
-
-def essence_html_exists(folder: Path, lesson_num: int) -> bool:
-    return (folder / f"essence_{lesson_num}.html").is_file()
 
 
 def page_links_line(folder: Path, n: int) -> str:
@@ -88,9 +72,16 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
         "",
         "*Канон для читателя: [`" + html_name + "`](" + html_name + "). Сырьё для генератора: `raw/*.png`, при наличии `digitized/N.md`.*",
         "",
-        "## Страницы",
-        "",
     ]
+    if lexicon_md_exists(folder):
+        lines.append("*Словарь: [`lexicon.md`](lexicon.md).*")
+        lines.append("")
+    lines.extend(
+        [
+            "## Страницы",
+            "",
+        ]
+    )
 
     if not nums:
         lines.extend(
@@ -113,13 +104,12 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
 
 
 def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
-    """User-facing HTML hub: essence + voice + optional full-chapter MD, carousel, page list."""
+    """User-facing HTML hub: optional lexicon, full-chapter MD, carousel, page list."""
     rel_readme = "../../../Readme.md"
     rel_pages = "../"
     rel_lesson = f"../../../modules/lesson_{lesson_num}/lesson.md"
     out_html = content_html_filename(lesson_num)
-    essence_rel = f"essence_{lesson_num}.html"
-    voice_html_rel = f"lesson_voice_{lesson_num}/voice_lesson_{lesson_num}.html"
+    lexicon_rel = "lexicon.md"
     full_chapter_rel = f"lesson_digitized/lesson_{lesson_num}_digitized.md"
 
     lesson_cell = (
@@ -127,21 +117,14 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
         if lesson_md_exists(lesson_num)
         else "—"
     )
-    essence_cell = (
-        f'<a href="{html.escape(essence_rel)}">{html.escape(essence_rel)}</a>'
-        if essence_html_exists(folder, lesson_num)
-        else "—"
-    )
-    voice_cell = (
-        f'<a href="{html.escape(voice_html_rel)}">{html.escape(voice_html_rel)}</a>'
-        if voice_lesson_html_exists(folder, lesson_num)
+    lexicon_cell = (
+        f'<a href="{html.escape(lexicon_rel)}">{html.escape(lexicon_rel)}</a>'
+        if lexicon_md_exists(folder)
         else "—"
     )
     primary_links: list[str] = []
-    if essence_html_exists(folder, lesson_num):
-        primary_links.append(f'<a href="{html.escape(essence_rel)}">💎 Конспект</a>')
-    if voice_lesson_html_exists(folder, lesson_num):
-        primary_links.append(f'<a href="{html.escape(voice_html_rel)}">🎙 Практика</a>')
+    if lexicon_md_exists(folder):
+        primary_links.append(f'<a href="{html.escape(lexicon_rel)}">📇 Словарь</a>')
     primary_html = (
         f'    <nav class="links-row" aria-label="Быстрые переходы">\n      {" · ".join(primary_links)}\n    </nav>\n'
         if primary_links
@@ -239,8 +222,7 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
 {primary_html}    <table class="quick-table" role="presentation">
       <tbody>
         <tr><th>📘 Урок (modules)</th><td>{lesson_cell}</td></tr>
-        <tr><th>💎 Конспект (HTML)</th><td>{essence_cell}</td></tr>
-        <tr><th>🎙 Практика (HTML)</th><td>{voice_cell}</td></tr>
+        <tr><th>📇 Словарь</th><td>{lexicon_cell}</td></tr>
       </tbody>
     </table>
 
@@ -256,7 +238,6 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
 
 
 def main() -> None:
-    generate_all()
     lesson_dirs = sorted(
         [p for p in BOOK_PAGES.iterdir() if p.is_dir() and re.match(r"^lesson_\d+$", p.name)],
         key=lambda p: int(p.name.split("_")[1]),

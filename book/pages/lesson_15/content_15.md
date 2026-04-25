@@ -2,6 +2,8 @@
 
 *Канон для читателя: [`content_15.html`](content_15.html). Сырьё для генератора: `raw/*.png`, при наличии `digitized/N.md`.*
 
+*Словарь: [`lexicon.md`](lexicon.md).*
+
 ## Страницы
 
 - **200** — [200.png](raw/200.png) · [200.md](digitized/200.md)

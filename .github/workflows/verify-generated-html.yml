@@ -6,9 +6,9 @@ on:
   pull_request:
     paths:
       - "book/pages/**"
-      - "docs/promt/**"
       - "scripts/generate_book_lesson_content_md.py"
-      - "scripts/generate_essence_html.py"
+      - "AGENTS.md"
+      - "docs/**"
   workflow_dispatch:
 
 permissions:
