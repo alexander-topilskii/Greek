@@ -220,7 +220,7 @@ section.block h2 {
   font-size: 0.95rem;
 }
 
-/* Essence / Voice HTML (generate_essence_html.py) */
+/* Optional: embedded markdown panels (legacy class names) */
 .app-header {
   border-bottom: 1px solid var(--border);
   padding-bottom: 0.75rem;
