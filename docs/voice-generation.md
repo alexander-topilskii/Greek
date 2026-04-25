@@ -36,7 +36,7 @@
 
 - Текст промпта: **[promt/voice_essence_notes_promt.md](promt/voice_essence_notes_promt.md)**. Как пользоваться сессией: **[promts/ai_voice_promt.md](promts/ai_voice_promt.md)**.
 - В сессии с ИИ: скопировать промпт и **прикрепить файл** **`book/pages/lesson_N/essence_N/essence_N.md`** того же урока (или вставить содержимое из `essence_N.html`). Это **инструкция для сессии**, а не требование вставлять ссылку на конспект внутрь **`voice_lesson_N.md`**.
-- Промпт рассчитан на структуру конспекта из [essence-generation.md](essence-generation.md) (грамматика → фразы → эталоны → словарь; диалоги после микрофраз).
+- Промпт рассчитан на структуру конспекта из [essence-generation.md](essence-generation.md) (грамматика → фразы → словарь; диалоги после микрофраз; без ключей к заданиям пособия).
 
 ---
 
