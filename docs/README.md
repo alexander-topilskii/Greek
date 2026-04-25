@@ -4,7 +4,7 @@
 
 Краткое оглавление методичек.
 
-**Слои урока:** в `book/pages/lesson_N/` — хаб **`content_N.html`** (и `content_N.md`), сканы, оцифровки, при наличии **`lesson_digitized/`** и опционально **`lexicon.md`**. Подробно: [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md).
+**Слои урока:** в `book/pages/lesson_N/` — хаб **`content_N.html`** (и `content_N.md`), сканы, оцифровки, при наличии **`lesson_digitized/`** и опционально **`lexicon.md`**. Подробно: [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md). Формат **lexicon.md** — [AGENTS.md](../AGENTS.md) (§5).
 
 **Скрипты:** `scripts/generate_book_lesson_content_md.py` пересобирает `content_N.md` / `content_N.html` из `raw/*.png` и вставляет ссылку на `lexicon.md`, если файл есть.
 
