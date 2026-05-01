@@ -40,7 +40,7 @@ def write_digitized(lesson_num: int, page: int, png: Path, text: str) -> None:
 
     md = f"""# 📄 Σελίδα {page}
 
-**[🏠 Readme](../../../../Readme.md) → [📘 lesson_{lesson_num}](../) → [✨ digitized](.) → 📄 `{page}.md`**
+**[🏠 Readme](https://alexander-topilskii.github.io/Greek/) → [📘 lesson_{lesson_num}](../) → [✨ digitized](.) → 📄 `{page}.md`**
 
 | ⚡ Быстрые ссылки    |                             |
 |---------------------|-----------------------------|

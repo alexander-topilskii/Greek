@@ -121,7 +121,7 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
 
 def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
     """User-facing HTML hub: optional lexicon, full-chapter MD, carousel, page list."""
-    rel_readme = "../../../Readme.md"
+    rel_readme = "https://alexander-topilskii.github.io/Greek/"
     rel_pages = "../"
     rel_lesson = f"../../../modules/lesson_{lesson_num}/lesson.md"
     out_html = content_html_filename(lesson_num)

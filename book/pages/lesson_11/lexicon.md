@@ -1,6 +1,6 @@
 # 📇 Урок 11 — словарь урока
 
-**[🏠 Readme](../../../Readme.md) → `book/pages` → [content_11.md](content_11.md) → 📄 `lexicon.md`**
+**[🏠 Readme](https://alexander-topilskii.github.io/Greek/) → `book/pages` → [content_11.md](content_11.md) → 📄 `lexicon.md`**
 
 ## Словарь урока
 

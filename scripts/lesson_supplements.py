@@ -117,7 +117,7 @@ def write_supplement_html(
         ],
     ).strip()
 
-    rel_readme = "../../../Readme.md"
+    rel_readme = "https://alexander-topilskii.github.io/Greek/"
     rel_pages = "../../"
     content_hub = content_html_filename(lesson_num)
     content_hub_href = "../" + content_hub
