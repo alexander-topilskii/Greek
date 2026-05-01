@@ -1,0 +1,2 @@
+# Optional: генерация essence_N.html из markdown (scripts/generate_book_lesson_content_md.py)
+markdown>=3.5
