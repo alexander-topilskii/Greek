@@ -2,6 +2,10 @@
 
 *Канон для читателя: [`content_7.html`](content_7.html). Сырьё для генератора: `raw/*.png`, при наличии `digitized/N.md`.*
 
+*Конспект: [`essence/essence_7.html`](essence/essence_7.html).*
+
+*Практика (задания): [`task/task_7.html`](task/task_7.html).*
+
 *Словарь: [`lexicon.md`](lexicon.md).*
 
 ## Страницы
