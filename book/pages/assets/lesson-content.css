@@ -290,6 +290,70 @@ button#copy-all:hover {
   padding: 0.35rem 0.5rem;
 }
 
+/* Lexicon (generated from lexicon.md) */
+.lexicon-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.15rem 1.35rem;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+#lexicon-render {
+  overflow-x: auto;
+}
+
+.lexicon-section h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  font-size: 1.2rem;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.lexicon-section h2:first-child {
+  margin-top: 0;
+}
+
+.lexicon-section h3 {
+  margin: 1.35rem 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent);
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid rgba(45, 106, 79, 0.2);
+}
+
+#lexicon-render table {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--card);
+  font-size: 0.96rem;
+}
+
+#lexicon-render thead th {
+  background: #ebe7de;
+  font-weight: 650;
+  text-align: left;
+}
+
+#lexicon-render th,
+#lexicon-render td {
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.55rem;
+  vertical-align: top;
+}
+
+#lexicon-render tbody tr:nth-child(even) {
+  background: rgba(246, 244, 239, 0.65);
+}
+
+#lexicon-render tbody td:first-child {
+  font-family: "Noto Serif", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  font-size: 1.04em;
+  line-height: 1.45;
+}
+
 .prompt-details {
   margin-top: 0.5rem;
   border: 1px solid var(--border);

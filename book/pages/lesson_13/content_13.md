@@ -2,7 +2,7 @@
 
 *Канон для читателя: [`content_13.html`](content_13.html). Сырьё для генератора: `raw/*.png`, при наличии `digitized/N.md`.*
 
-*Словарь: [`lexicon.md`](lexicon.md).*
+*Словарь: [`lexicon.html`](lexicon.html).*
 
 ## Страницы
 

@@ -1,8 +1,9 @@
-"""Определения и генерация дополнительных HTML-страниц урока (конспект, практика).
+"""Определения и генерация дополнительных HTML-страниц урока (конспект, практика, словарь).
 
 Используется из `generate_book_lesson_content_md.py`. Для любого номера урока N при
 наличии исходного Markdown в `lesson_N/<subdir>/<stem>_N.md` записывает
 `<subdir>/<stem>_N.html` с общей версткой, крошками и ссылкой на хаб content_N.html.
+При наличии `lesson_N/lexicon.md` записывает `lesson_N/lexicon.html`.
 
 Зависимость: пакет `markdown` (см. `scripts/requirements-generate.txt`).
 """
@@ -161,4 +162,87 @@ def write_supplement_html(
 """
 
     (target_dir / html_fname).write_text(doc, encoding="utf-8")
+    return True
+
+
+def write_lexicon_html(
+    lesson_num: int,
+    lesson_folder: Path,
+    *,
+    generator_script: str = "generate_book_lesson_content_md.py",
+) -> bool:
+    """Пишет `lexicon.html` из `lexicon.md` в корне папки урока. Без `lexicon.md` удаляет устаревший `lexicon.html`."""
+    path_md = lesson_folder / "lexicon.md"
+    path_html = lesson_folder / "lexicon.html"
+    if not path_md.is_file():
+        if path_html.is_file():
+            path_html.unlink()
+        return False
+    if _markdown is None:
+        print(
+            "Warning: package `markdown` not installed — skip lexicon.html; install: pip install markdown"
+        )
+        return False
+
+    raw = path_md.read_text(encoding="utf-8")
+    title_vis, body_md = strip_first_atx_title(raw, "Словарь урока")
+    content_md = f"content_{lesson_num}.md"
+    content_html = f"content_{lesson_num}.html"
+    body_md = body_md.replace(
+        f"[{content_md}]({content_md})",
+        f"[{content_html}]({content_html})",
+    )
+    body_md = body_md.replace(f"]({content_md})", f"]({content_html})")
+    body_md = body_md.replace("📄 `lexicon.md`", "📄 `lexicon.html`")
+
+    body_html = _markdown.markdown(
+        body_md,
+        extensions=[
+            "tables",
+            "fenced_code",
+        ],
+    ).strip()
+
+    rel_readme = "https://alexander-topilskii.github.io/Greek/"
+    rel_pages = "../"
+    content_hub = content_html_filename(lesson_num)
+    md_fname = "lexicon.md"
+    html_fname = "lexicon.html"
+
+    nav_html = f"""    <nav class="breadcrumbs" aria-label="Навигация">
+      <a href="{html.escape(rel_readme)}">🏠 Readme</a>
+      → <a href="{html.escape(rel_pages)}">book/pages</a>
+      → <a href="{html.escape(content_hub)}">{html.escape(content_hub)}</a>
+      → <span>📄 {html.escape(html_fname)}</span>
+    </nav>
+    <nav class="links-row" aria-label="Связанные страницы">
+      <a href="{html.escape(content_hub)}">📚 Страницы урока</a>
+      <a href="{html.escape(md_fname)}">📄 Markdown-источник</a>
+    </nav>
+"""
+    doc = f"""<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{html.escape(title_vis)} — урок {lesson_num}</title>
+  <link rel="stylesheet" href="../assets/lesson-content.css" />
+</head>
+<body>
+  <div class="page-wrap">
+{nav_html}    <h1>{html.escape(title_vis)}</h1>
+    <p class="note">Источник: <code>{html.escape(md_fname)}</code>. Пересборка скриптом <code>{html.escape(generator_script)}</code>.</p>
+
+    <article class="lexicon-section">
+      <div id="lexicon-render">
+{textwrap.indent(body_html, "        ")}
+      </div>
+    </article>
+  </div>
+</body>
+</html>
+"""
+
+    lesson_folder.mkdir(parents=True, exist_ok=True)
+    path_html.write_text(doc, encoding="utf-8")
     return True

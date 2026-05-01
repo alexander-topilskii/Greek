@@ -2,8 +2,8 @@
 """Regenerate book/pages/lesson_*/content_{N}.md from raw/*.png in each folder.
 
 Also writes content_{N}.html (user-facing hub), optional supplementary HTML pages
-from `lesson_supplements.py` — см. SUPPLEMENT_ORDER (essence_N.md → HTML, task_N.md → HTML).
-Requires the `markdown` package for supplements.
+from `lesson_supplements.py` — см. SUPPLEMENT_ORDER (essence_N.md → HTML, task_N.md → HTML),
+и `lexicon.html` при наличии `lexicon.md`. Requires the `markdown` package for supplements and lexicon.
 """
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
-from lesson_supplements import SUPPLEMENT_ORDER, write_supplement_html
+from lesson_supplements import SUPPLEMENT_ORDER, write_lexicon_html, write_supplement_html
 
 import generate_index_html
 
@@ -92,7 +92,7 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
             lines.append("*" + lab + ": [`" + rp + "`](" + rp + ").*")
             lines.append("")
     if lexicon_md_exists(folder):
-        lines.append("*Словарь: [`lexicon.md`](lexicon.md).*")
+        lines.append("*Словарь: [`lexicon.html`](lexicon.html).*")
         lines.append("")
     lines.extend(
         [
@@ -127,7 +127,7 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
     rel_pages = "../"
     rel_lesson = f"../../../modules/lesson_{lesson_num}/lesson.md"
     out_html = content_html_filename(lesson_num)
-    lexicon_rel = "lexicon.md"
+    lexicon_rel = "lexicon.html"
     full_chapter_rel = f"lesson_digitized/lesson_{lesson_num}_digitized.md"
 
     lesson_cell = (
@@ -281,6 +281,7 @@ def main() -> None:
         write_content_html(n, d, pnums)
         for spec in SUPPLEMENT_ORDER:
             write_supplement_html(n, d, spec)
+        write_lexicon_html(n, d)
     print(f"Updated {len(lesson_dirs)} content_*.md and content_*.html under {BOOK_PAGES}")
     idx = generate_index_html.write_index_html(REPO)
     print(f"Wrote {idx.relative_to(REPO)} from Readme.md")
