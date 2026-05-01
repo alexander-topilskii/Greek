@@ -21,3 +21,18 @@
 ## Прочие материалы в `docs/promts/`
 
 Вспомогательные подсказки и черновики без привязки к генератору — по мере появления.
+
+
+## ⚙️ Генерация `content_*.html` и приложений (`essence_*`, `task_*`)
+
+Из корня репозитория (нужен пакет `markdown`):
+
+```bash
+pip3 install -r ../scripts/requirements-generate.txt
+python3 ../scripts/generate_book_lesson_content_md.py
+```
+
+Скрипт: [`scripts/generate_book_lesson_content_md.py`](scripts/generate_book_lesson_content_md.py).
+
+**Из Cursor / VS Code:** палитра команд → **Tasks: Run Task** → **Generate book lesson HTML** (или задача с установкой зависимости: **Install generate deps + …** — см. [`.vscode/tasks.json`](.vscode/tasks.json)).
+
