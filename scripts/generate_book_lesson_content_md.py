@@ -19,6 +19,8 @@ if str(SCRIPTS_DIR) not in sys.path:
 
 from lesson_supplements import SUPPLEMENT_ORDER, write_supplement_html
 
+import generate_index_html
+
 REPO = Path(__file__).resolve().parents[1]
 BOOK_PAGES = REPO / "book" / "pages"
 
@@ -280,6 +282,8 @@ def main() -> None:
         for spec in SUPPLEMENT_ORDER:
             write_supplement_html(n, d, spec)
     print(f"Updated {len(lesson_dirs)} content_*.md and content_*.html under {BOOK_PAGES}")
+    idx = generate_index_html.write_index_html(REPO)
+    print(f"Wrote {idx.relative_to(REPO)} from Readme.md")
 
 
 if __name__ == "__main__":
