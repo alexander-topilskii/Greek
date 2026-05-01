@@ -263,24 +263,29 @@ button#copy-all:hover {
   margin-left: 0.5rem;
 }
 
-.essence-section h2 {
+.essence-section h2,
+.task-section h2 {
   margin-top: 1.75rem;
   font-size: 1.15rem;
   font-weight: 600;
 }
 
-#essence-render {
+#essence-render,
+#task-render {
   overflow-x: auto;
 }
 
-#essence-render table {
+#essence-render table,
+#task-render table {
   border-collapse: collapse;
   width: 100%;
   background: var(--card);
 }
 
 #essence-render th,
-#essence-render td {
+#essence-render td,
+#task-render th,
+#task-render td {
   border: 1px solid var(--border);
   padding: 0.35rem 0.5rem;
 }

@@ -22,7 +22,7 @@
 
 | Слой              | Файлы                                      | Назначение |
 |-------------------|--------------------------------------------|------------|
-| **Хаб**           | `lesson_N/content_N.md` / `content_N.html` | Список страниц, просмотр сканов, ссылки на оцифровку, modules, словарь. Генерируется `scripts/generate_book_lesson_content_md.py`. |
+| **Хаб**           | `lesson_N/content_N.md` / `content_N.html` | Просмотр сканов, список страниц, при необходимости ссылки на `modules`, **`lexicon.md`**, доп. материалы [AGENTS.md §12](../AGENTS.md) (`essence_*.md` / `task_*.md` → HTML). Генерируется `scripts/generate_book_lesson_content_md.py` и `scripts/lesson_supplements.py`. |
 | **Словарь** (опц.)| `lesson_N/lexicon.md`                      | Итоговая лексика урока, если ведёте отдельный файл; ссылка из хаба. Оформление: [AGENTS.md](../AGENTS.md), §5. |
 
 ---

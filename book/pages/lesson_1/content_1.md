@@ -4,6 +4,8 @@
 
 *Конспект: [`essence/essence_1.html`](essence/essence_1.html).*
 
+*Практика (задания): [`task/task_1.html`](task/task_1.html).*
+
 *Словарь: [`lexicon.md`](lexicon.md).*
 
 ## Страницы

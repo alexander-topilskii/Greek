@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 """Regenerate book/pages/lesson_*/content_{N}.md from raw/*.png in each folder.
 
-Also writes content_{N}.html (user-facing hub: optional lexicon.md, full-chapter MD, scan carousel, page list).
-
-If `lesson_N/essence/essence_N.md` exists, writes `essence/essence_N.html` (requires the `markdown` package)."""
+Also writes content_{N}.html (user-facing hub), optional supplementary HTML pages
+from `lesson_supplements.py` — см. SUPPLEMENT_ORDER (essence_N.md → HTML, task_N.md → HTML).
+Requires the `markdown` package for supplements.
+"""
 from __future__ import annotations
 
 import html
 import json
 import re
-import textwrap
+import sys
 from pathlib import Path
 
-try:
-    import markdown as _markdown
-except ImportError:
-    _markdown = None  # type: ignore[assignment, misc]
+SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
+
+from lesson_supplements import SUPPLEMENT_ORDER, write_supplement_html
 
 REPO = Path(__file__).resolve().parents[1]
 BOOK_PAGES = REPO / "book" / "pages"
@@ -62,99 +64,6 @@ def lesson_digitized_md_exists(folder: Path, lesson_num: int) -> bool:
     return (folder / "lesson_digitized" / f"lesson_{lesson_num}_digitized.md").is_file()
 
 
-def essence_md_path(folder: Path, lesson_num: int) -> Path:
-    return folder / "essence" / f"essence_{lesson_num}.md"
-
-
-def essence_md_exists(folder: Path, lesson_num: int) -> bool:
-    return essence_md_path(folder, lesson_num).is_file()
-
-
-def essence_html_relpath(lesson_num: int) -> str:
-    return f"essence/essence_{lesson_num}.html"
-
-
-def _essence_strip_title(md_raw: str, lesson_num: int) -> tuple[str, str]:
-    """Split leading ATX heading (if any) from body for separate page <h1>."""
-    lines = md_raw.splitlines()
-    i = 0
-    while i < len(lines) and not lines[i].strip():
-        i += 1
-    if i < len(lines) and lines[i].startswith("#"):
-        title = lines[i].lstrip("#").strip()
-        body = "\n".join(lines[i + 1 :]).lstrip("\n")
-        return title or f"Конспект — урок {lesson_num}", body
-    return f"Конспект — урок {lesson_num}", md_raw.lstrip()
-
-
-def write_essence_html(lesson_num: int, folder: Path) -> bool:
-    """Render essence/essence_N.md → essence_N.html with nav. Returns True if wrote file."""
-    path_md = essence_md_path(folder, lesson_num)
-    if not path_md.is_file():
-        return False
-    if _markdown is None:
-        print(
-            f"Warning: package `markdown` not installed — skip {essence_html_relpath(lesson_num)!r}; "
-            "install: pip install markdown"
-        )
-        return False
-    raw = path_md.read_text(encoding="utf-8")
-    title_vis, body_md = _essence_strip_title(raw, lesson_num)
-    body_html = _markdown.markdown(
-        body_md,
-        extensions=[
-            "tables",
-            "fenced_code",
-        ],
-    ).strip()
-
-    rel_readme = "../../../Readme.md"
-    rel_pages = "../../"
-    content_hub = content_html_filename(lesson_num)
-    content_hub_href = "../" + content_hub
-    essence_md_rel = f"essence_{lesson_num}.md"
-    essence_dir = folder / "essence"
-    essence_dir.mkdir(parents=True, exist_ok=True)
-
-    nav_html = f"""    <nav class="breadcrumbs" aria-label="Навигация">
-      <a href="{html.escape(rel_readme)}">🏠 Readme</a>
-      → <a href="{html.escape(rel_pages)}">book/pages</a>
-      → <a href="{html.escape(content_hub_href)}">{html.escape(content_hub)}</a>
-      → <span>📄 {html.escape(essence_md_rel.removesuffix(".md"))}.html</span>
-    </nav>
-    <nav class="links-row" aria-label="Связанные страницы">
-      <a href="{html.escape(content_hub_href)}">📚 Страницы урока</a>
-      <a href="{html.escape(essence_md_rel)}">📄 Markdown-источник</a>
-    </nav>
-"""
-    doc = f"""<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{html.escape(title_vis)} — урок {lesson_num}</title>
-  <link rel="stylesheet" href="../../assets/lesson-content.css" />
-</head>
-<body>
-  <div class="page-wrap">
-{nav_html}    <h1>{html.escape(title_vis)}</h1>
-    <p class="note">Источник рядом с этой страницей: <code>{html.escape(essence_md_rel)}</code>. Пересборка скриптом <code>generate_book_lesson_content_md.py</code>.</p>
-
-    <article class="essence-section">
-      <div id="essence-render">
-{textwrap.indent(body_html, "        ")}
-      </div>
-    </article>
-  </div>
-</body>
-</html>
-"""
-
-    html_path = essence_dir / f"essence_{lesson_num}.html"
-    html_path.write_text(doc, encoding="utf-8")
-    return True
-
-
 def page_links_line(folder: Path, n: int) -> str:
     """Скан PNG + опционально оцифровка digitized/N.md."""
     parts = [f"[{n}.png]({rel_raw_png(n)})"]
@@ -174,10 +83,12 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
         "*Канон для читателя: [`" + html_name + "`](" + html_name + "). Сырьё для генератора: `raw/*.png`, при наличии `digitized/N.md`.*",
         "",
     ]
-    if essence_md_exists(folder, lesson_num):
-        er = essence_html_relpath(lesson_num)
-        lines.append("*Конспект: [`" + er + "`](" + er + ").*")
-        lines.append("")
+    for spec in SUPPLEMENT_ORDER:
+        if spec.md_exists(folder, lesson_num):
+            rp = spec.relpath_to_html_from_lesson(lesson_num)
+            lab = spec.md_intro_label
+            lines.append("*" + lab + ": [`" + rp + "`](" + rp + ").*")
+            lines.append("")
     if lexicon_md_exists(folder):
         lines.append("*Словарь: [`lexicon.md`](lexicon.md).*")
         lines.append("")
@@ -227,16 +138,20 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
         if lexicon_md_exists(folder)
         else "—"
     )
-    essence_rel = essence_html_relpath(lesson_num)
-    has_essence = essence_md_exists(folder, lesson_num)
-    essence_row = (
-        f'        <tr><th>📋 Конспект</th><td><a href="{html.escape(essence_rel)}">{html.escape(essence_rel)}</a></td></tr>\n'
-        if has_essence
-        else ""
-    )
+
+    supplement_rows_html = ""
     primary_links: list[str] = []
-    if has_essence:
-        primary_links.append(f'<a href="{html.escape(essence_rel)}">📋 Конспект</a>')
+    for spec in SUPPLEMENT_ORDER:
+        if spec.md_exists(folder, lesson_num):
+            rp = spec.relpath_to_html_from_lesson(lesson_num)
+            supplement_rows_html += (
+                "        "
+                f'<tr><th>{html.escape(spec.table_heading)}</th>'
+                f'<td><a href="{html.escape(rp)}">{html.escape(rp)}</a></td></tr>\n'
+            )
+            primary_links.append(
+                f'<a href="{html.escape(rp)}">{spec.links_row_primary}</a>'
+            )
     if lexicon_md_exists(folder):
         primary_links.append(f'<a href="{html.escape(lexicon_rel)}">📇 Словарь</a>')
     primary_html = (
@@ -244,6 +159,7 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
         if primary_links
         else ""
     )
+
     pages_payload: list[dict[str, int | str | None]] = []
     for n in nums:
         item: dict[str, int | str | None] = {"n": n, "png": rel_raw_png(n)}
@@ -336,7 +252,7 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
 {primary_html}    <table class="quick-table" role="presentation">
       <tbody>
         <tr><th>📘 Урок (modules)</th><td>{lesson_cell}</td></tr>
-{essence_row}        <tr><th>📇 Словарь</th><td>{lexicon_cell}</td></tr>
+{supplement_rows_html}        <tr><th>📇 Словарь</th><td>{lexicon_cell}</td></tr>
       </tbody>
     </table>
 
@@ -361,7 +277,8 @@ def main() -> None:
         pnums = page_nums(d)
         write_content(n, d, pnums)
         write_content_html(n, d, pnums)
-        write_essence_html(n, d)
+        for spec in SUPPLEMENT_ORDER:
+            write_supplement_html(n, d, spec)
     print(f"Updated {len(lesson_dirs)} content_*.md and content_*.html under {BOOK_PAGES}")
 
 

@@ -1,2 +1,2 @@
-# Optional: генерация essence_N.html из markdown (scripts/generate_book_lesson_content_md.py)
+# Optional: генерация HTML доп. материалов урока (`essence_*`, `task_*`) через scripts/lesson_supplements.py
 markdown>=3.5
