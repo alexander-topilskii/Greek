@@ -6,7 +6,7 @@
 
 *Практика (задания): [`task/task_8.html`](task/task_8.html).*
 
-*Словарь: [`lexicon.html`](lexicon.html).*
+*Словарь: [`lexicon/lexicon.html`](lexicon/lexicon.html).*
 
 ## Страницы
 

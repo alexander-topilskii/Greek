@@ -4,15 +4,15 @@
 
 Краткое оглавление методичек.
 
-**Слои урока:** в `book/pages/lesson_N/` — хаб **`content_N.html`** (и `content_N.md`), сканы, оцифровки, при наличии **`lesson_digitized/`** и опционально **`lexicon.md`**. Подробно: [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md). Формат **lexicon.md** — [AGENTS.md](../AGENTS.md) (§5).
+**Слои урока:** в `book/pages/lesson_N/` — хаб **`content_N.html`** (и `content_N.md`), сканы, оцифровки, при наличии **`lesson_digitized/`** и опционально **`lexicon/lexicon.md`**. Подробно: [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md). Формат **lexicon.md** — [AGENTS.md](../AGENTS.md) (§5).
 
-**Скрипты:** `scripts/generate_book_lesson_content_md.py` пересобирает `content_N.md` / `content_N.html` из `raw/*.png` и вставляет ссылки при наличии `lexicon.md`, `essence/essence_N.md`, `task/task_N.md` (HTML генерирует модуль `scripts/lesson_supplements.py`, см. [AGENTS.md §12](../AGENTS.md)).
+**Скрипты:** `scripts/generate_book_lesson_content_md.py` пересобирает `content_N.md` / `content_N.html` из `raw/*.png` и вставляет ссылки при наличии `lexicon/lexicon.md`, `essence/essence_N.md`, `task/task_N.md` (HTML генерирует модуль `scripts/lesson_supplements.py`, см. [AGENTS.md §12](../AGENTS.md)).
 
 ## Методички
 
 | Документ | Назначение |
 |----------|------------|
-| [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md) | Обзор: подготовка (скан, оцифровка, `lesson_digitized`), хаб `content`, словарь `lexicon.md` |
+| [lesson-extraction-from-textbook.md](lesson-extraction-from-textbook.md) | Обзор: подготовка (скан, оцифровка, `lesson_digitized`), хаб `content`, словарь `lexicon/lexicon.md` |
 
 ## Каталог `docs/promt/`
 

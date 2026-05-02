@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Split lesson_1/lexicon.md 'Итоговая лексика' into themed sub-tables (~10–12 rows)."""
+"""Split lesson_1/lexicon/lexicon.md 'Итоговая лексика' into themed sub-tables (~10–12 rows)."""
 from __future__ import annotations
 
 import re
@@ -7,7 +7,7 @@ from collections import OrderedDict
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-LEX = REPO / "book/pages/lesson_1/lexicon.md"
+LEX = REPO / "book/pages/lesson_1/lexicon/lexicon.md"
 MAXR = 12
 
 ORDER = (

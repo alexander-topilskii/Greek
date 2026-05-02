@@ -3,7 +3,7 @@
 
 Also writes content_{N}.html (user-facing hub), optional supplementary HTML pages
 from `lesson_supplements.py` — см. SUPPLEMENT_ORDER (essence_N.md → HTML, task_N.md → HTML),
-и `lexicon.html` при наличии `lexicon.md`. Requires the `markdown` package for supplements and lexicon.
+и `lexicon/lexicon.html` при наличии `lexicon/lexicon.md`. Requires the `markdown` package for supplements and lexicon.
 """
 from __future__ import annotations
 
@@ -51,7 +51,7 @@ def lesson_md_exists(n: int) -> bool:
 
 
 def lexicon_md_exists(folder: Path) -> bool:
-    return (folder / "lexicon.md").is_file()
+    return (folder / "lexicon" / "lexicon.md").is_file()
 
 
 def content_filename(lesson_num: int) -> str:
@@ -92,7 +92,7 @@ def write_content(lesson_num: int, folder: Path, nums: list[int]) -> None:
             lines.append("*" + lab + ": [`" + rp + "`](" + rp + ").*")
             lines.append("")
     if lexicon_md_exists(folder):
-        lines.append("*Словарь: [`lexicon.html`](lexicon.html).*")
+        lines.append("*Словарь: [`lexicon/lexicon.html`](lexicon/lexicon.html).*")
         lines.append("")
     lines.extend(
         [
@@ -127,7 +127,7 @@ def write_content_html(lesson_num: int, folder: Path, nums: list[int]) -> None:
     rel_pages = "../"
     rel_lesson = f"../../../modules/lesson_{lesson_num}/lesson.md"
     out_html = content_html_filename(lesson_num)
-    lexicon_rel = "lexicon.html"
+    lexicon_rel = "lexicon/lexicon.html"
     full_chapter_rel = f"lesson_digitized/lesson_{lesson_num}_digitized.md"
 
     lesson_cell = (

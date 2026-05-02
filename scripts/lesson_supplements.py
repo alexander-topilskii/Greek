@@ -3,7 +3,7 @@
 Используется из `generate_book_lesson_content_md.py`. Для любого номера урока N при
 наличии исходного Markdown в `lesson_N/<subdir>/<stem>_N.md` записывает
 `<subdir>/<stem>_N.html` с общей версткой, крошками и ссылкой на хаб content_N.html.
-При наличии `lesson_N/lexicon.md` записывает `lesson_N/lexicon.html`.
+При наличии `lesson_N/lexicon/lexicon.md` записывает `lesson_N/lexicon/lexicon.html`.
 
 Зависимость: пакет `markdown` (см. `scripts/requirements-generate.txt`).
 """
@@ -171,12 +171,16 @@ def write_lexicon_html(
     *,
     generator_script: str = "generate_book_lesson_content_md.py",
 ) -> bool:
-    """Пишет `lexicon.html` из `lexicon.md` в корне папки урока. Без `lexicon.md` удаляет устаревший `lexicon.html`."""
-    path_md = lesson_folder / "lexicon.md"
-    path_html = lesson_folder / "lexicon.html"
+    """Пишет `lexicon/lexicon.html` из `lexicon/lexicon.md`. Без исходного `.md` удаляет сгенерированный HTML и устаревший `lexicon.html` в корне урока."""
+    lex_dir = lesson_folder / "lexicon"
+    path_md = lex_dir / "lexicon.md"
+    path_html = lex_dir / "lexicon.html"
+    legacy_root_html = lesson_folder / "lexicon.html"
     if not path_md.is_file():
         if path_html.is_file():
             path_html.unlink()
+        if legacy_root_html.is_file():
+            legacy_root_html.unlink()
         return False
     if _markdown is None:
         print(
@@ -192,6 +196,10 @@ def write_lexicon_html(
         f"[{content_md}]({content_md})",
         f"[{content_html}]({content_html})",
     )
+    body_md = body_md.replace(
+        f"[{content_md}](../{content_md})",
+        f"[{content_html}](../{content_html})",
+    )
     body_md = body_md.replace(f"]({content_md})", f"]({content_html})")
     body_md = body_md.replace("📄 `lexicon.md`", "📄 `lexicon.html`")
 
@@ -204,19 +212,20 @@ def write_lexicon_html(
     ).strip()
 
     rel_readme = "https://alexander-topilskii.github.io/Greek/"
-    rel_pages = "../"
+    rel_pages = "../../"
     content_hub = content_html_filename(lesson_num)
+    content_hub_href = "../" + content_hub
     md_fname = "lexicon.md"
     html_fname = "lexicon.html"
 
     nav_html = f"""    <nav class="breadcrumbs" aria-label="Навигация">
       <a href="{html.escape(rel_readme)}">🏠 Readme</a>
       → <a href="{html.escape(rel_pages)}">book/pages</a>
-      → <a href="{html.escape(content_hub)}">{html.escape(content_hub)}</a>
+      → <a href="{html.escape(content_hub_href)}">{html.escape(content_hub)}</a>
       → <span>📄 {html.escape(html_fname)}</span>
     </nav>
     <nav class="links-row" aria-label="Связанные страницы">
-      <a href="{html.escape(content_hub)}">📚 Страницы урока</a>
+      <a href="{html.escape(content_hub_href)}">📚 Страницы урока</a>
       <a href="{html.escape(md_fname)}">📄 Markdown-источник</a>
     </nav>
 """
@@ -226,7 +235,7 @@ def write_lexicon_html(
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{html.escape(title_vis)} — урок {lesson_num}</title>
-  <link rel="stylesheet" href="../assets/lesson-content.css" />
+  <link rel="stylesheet" href="../../assets/lesson-content.css" />
 </head>
 <body>
   <div class="page-wrap">
@@ -243,6 +252,8 @@ def write_lexicon_html(
 </html>
 """
 
-    lesson_folder.mkdir(parents=True, exist_ok=True)
+    lex_dir.mkdir(parents=True, exist_ok=True)
     path_html.write_text(doc, encoding="utf-8")
+    if legacy_root_html.is_file():
+        legacy_root_html.unlink()
     return True

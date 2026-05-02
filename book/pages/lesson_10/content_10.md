@@ -4,7 +4,7 @@
 
 *Конспект: [`essence/essence_10.html`](essence/essence_10.html).*
 
-*Словарь: [`lexicon.html`](lexicon.html).*
+*Словарь: [`lexicon/lexicon.html`](lexicon/lexicon.html).*
 
 ## Страницы
 
